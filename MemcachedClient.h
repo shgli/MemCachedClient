@@ -1,11 +1,15 @@
 #ifndef _MEMCACHEDCLIENT_H
 #define _MEMCACHEDCLIENT_H
 #include <boost/function.hpp>
+#include <boost/noncopyable.hpp>
 #include <boost/pool/object_pool.hpp>
 #include <boost/unordered/unordered_map.hpp>
 class MemcachedClient
+    :boost::noncopyable
 {
 public:
+    MemcachedClient();
+
     ServerList Servers;
 
     typedef boost::function<void (const MemResult)> Callback;

@@ -1,10 +1,12 @@
 
-mem=/home/shgli/src/network CD=. filter="*.h *.cpp" {
+mem=/home/shgli/src/MemCachedClient CD=. filter="*.h *.cpp" {
+ Buffer.h
  MemResult.h
  MemcachedClient.h
  MemcachedCommon.h
  SharedBuffer.h
  TcpClient.h
+ TcpClient.cpp
  MemResult.cpp
  MemcachedClient.cpp
  SharedBuffer.cpp
@@ -13,3 +15,4 @@ mem=/home/shgli/src/network CD=. filter="*.h *.cpp" {
  ServerList.h
  ServerList.cpp
 }
+

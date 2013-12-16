@@ -1,6 +1,24 @@
 #include <string.h>
 #include "MemcachedClient.h"
 #include <memcached/protocol_binary.h>
+MemcachedClient::MemcachedClient()
+{
+    Servers.OnServerAdded.connect(&MemcachedClient::OnServerAdded,this);
+    Servers.OnServerRemoved.connect(&MemcachedClient::OnServerRemoved,this);
+}
+
+void MemcachedClient::OnServerAdded(const ServerItem& item)
+{
+    item->OnHeader = ;
+    item->OnBody.connect(&MemcachedClient::On,this);
+}
+
+void MemcachedClient::OnServerRemoved(const ServerItem& item)
+{
+    item->OnHeader = ;
+    item->OnBody.disconnect();
+}
+
 const MemResult& MemcachedClient::Get(const std::string& key,Callback callback)
 {
     auto itResult = mInWorkingResult.find(key);
