@@ -87,10 +87,8 @@ void TcpClient::Send(const SharedBuffer& buf)
 
 void TcpClient::Send()
 {
-    if(!mIsInWriting)
+    if(!mIsInWriting.test_and_set())
     {
-	mIsInWriting = true;
-
 	{
 	    boost::scoped_lock<boost::mutex> lock(mWriteBufMut);
             mPendingBuffers.swap(mWritingBuffers);
@@ -100,7 +98,7 @@ void TcpClient::Send()
 		mWritingBuffers,
 		[this](system::error_code ec,std::size_t len)
 		{
-		    mIsInWriting = false;
+		    mIsInWriting.clear();
 		    if(!ec)
 		    {
 		        if(0 != mPendingBuffers.size())

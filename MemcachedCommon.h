@@ -7,5 +7,6 @@
 #define internal private
 #endif
 
+typedef size_t hash_t;
 #endif
  
