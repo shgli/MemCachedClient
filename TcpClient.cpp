@@ -19,6 +19,7 @@ void TcpClient::Connect(const std::string& host,int port)
 	        if(!ec)
 		{
 		    ReadHeader();
+                    OnConnected();
 		}
 		else
 		{
@@ -33,12 +34,11 @@ void TcpClient::ReadHeader()
 	    asio::buffer(mHeaderBuffer,mHeaderLength),
 	    [this](system::error_code ec,std::size_t len)
 	    {
-	       Buffer* pBodyBuf = nullptr;
-	       if(!ec && ((len = OnHeader(static_cast<void*const>(mHeaderBuffer),pBodyBuf)) >= 0) && nullptr != pBodyBuf)
+	       if(!ec && ((len = OnHeader(static_cast<void*const>(mHeaderBuffer),mReadBuffers)) >= 0) && 0 != mReadBuffers.size())
 	       {
 	           if(0 != len)
 		   {
-		       ReadBody(*pBodyBuf);
+		       ReadBody();
 		   }
 		   else
 		   {
@@ -59,15 +59,15 @@ void TcpClient::ReadHeader()
 	    });
 }
 
-void TcpClient::ReadBody(const Buffer& bodyBuf)
+void TcpClient::ReadBody()
 {
     asio::async_read(mSocket,
-	    bodyBuf,
+	    mReadBuffers,
 	    [this](system::error_code ec,std::size_t len)
 	    {
 	        if(!ec)
 		{
-		    OnBody(bodyBuf);
+		    OnBody(static_cast<void*const>(mHeaderBuffer),mReadBuffers);
 		}
 		else
 		{
@@ -78,30 +78,29 @@ void TcpClient::ReadBody(const Buffer& bodyBuf)
 
 void TcpClient::Send(const SharedBuffer& buf)
 {
-    {
-	boost::scoped_lock<boost::mutex> lock(mWriteBufMut);
-        mPendingBuffers.push_back(buf);
-    }
-    Send(); 
+    mSocket.get_io_service().post(
+        [this,buf]()
+        {
+            mWriteBuffers.push_back(buf);
+            Send();
+        }
 }
 
 void TcpClient::Send()
 {
-    if(!mIsInWriting.test_and_set())
+    if(!mIsInWriting)
     {
-	{
-	    boost::scoped_lock<boost::mutex> lock(mWriteBufMut);
-            mPendingBuffers.swap(mWritingBuffers);
-	}
+        mIsInWriting = true;
 
 	asio::async_write(mSocket,
-		mWritingBuffers,
+		mWriteBuffers,
 		[this](system::error_code ec,std::size_t len)
 		{
-		    mIsInWriting.clear();
+		    mIsInWriting = false;
+
 		    if(!ec)
 		    {
-		        if(0 != mPendingBuffers.size())
+		        if(0 != mWriteBuffers.size())
 		        {
 			    Send();
 		        }

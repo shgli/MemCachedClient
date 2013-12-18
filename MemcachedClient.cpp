@@ -9,14 +9,29 @@ MemcachedClient::MemcachedClient()
 
 void MemcachedClient::OnServerAdded(const ServerItem& item)
 {
-    item->OnHeader = ;
-    item->OnBody.connect(&MemcachedClient::On,this);
+    item->OnHeader.connect(&MemcachedClient::OnHeaderReaded,this);
+    item->OnBody.connect(&MemcachedClient::OnBodayReaded,this);
 }
 
 void MemcachedClient::OnServerRemoved(const ServerItem& item)
 {
-    item->OnHeader = ;
-    item->OnBody.disconnect();
+    item->OnHeader.disconnect(&MemcachedClient::OnHeaderReaded,this);
+    item->OnBody.disconnect(&MemcachedClient::OnBodayReaded,this);
+}
+
+int MemcachedClient::OnHeaderReaded(void* const header,std::vector<SharedBuffer>& boday)
+{
+    ();
+}
+
+void MemcachedClient::OnBodayReaded(void* const header,const std::vector<SharedBuffer>& boday)
+{
+
+}
+
+const MemResult& MemcachedClient::Get(const std::string& key,Callback callback)
+{
+
 }
 
 const MemResult& MemcachedClient::Get(const std::string& key,Callback callback)

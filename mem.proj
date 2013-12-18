@@ -1,6 +1,5 @@
 
 mem=/home/shgli/src/MemCachedClient CD=. filter="*.h *.cpp" {
- Buffer.h
  DistributeAlgorithm.h
  ConsistentHashDistri.h
  ConsistentHashDistri.cpp

@@ -28,7 +28,7 @@ private:
     shared_mutex mFinishMut;
     condition_variable mFinishCond;
 
-    void* mResult;
+    SharedBuffer mResult;
 };
 #endif
  

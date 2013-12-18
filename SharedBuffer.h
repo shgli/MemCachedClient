@@ -17,9 +17,8 @@ public:
     {}
 
     typedef const_buffer value_type;
-    typedef const boost::asio::const_buffer* const_iterator;
-    const value_type* begin() const { return mData.get();}
-    const value_type* end() const { return mData.get() + 1;}
+
+    operator value_type& () { return *mData; }
 
     template<T>
     T& GetHeader( void )

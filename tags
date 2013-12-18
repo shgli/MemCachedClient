@@ -1,0 +1,160 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Add	ServerList.cpp	/^void ServerList::Add(const std::string& host,int port)$/;"	f	class:ServerList	signature:(const std::string& host,int port)
+Add	ServerList.h	/^    void Add(const std::string& host,int port);$/;"	p	class:ServerList	access:public	signature:(const std::string& host,int port)
+BOOST_AUTO_TEST_CASE	test/SharedBufferTest.cpp	/^    BOOST_AUTO_TEST_CASE(Test1)$/;"	f	signature:(Test1)
+BOOST_TEST_DYN_LINK	test/SharedBufferTest.cpp	1;"	d	file:
+BOOST_TEST_MODULE	test/SharedBufferTest.cpp	2;"	d	file:
+BodayReadedEvent	TcpClient.h	/^    typedef signals2::signal<function<void (const SharedBuffer& boday)> > BodayReadedEvent;$/;"	t	class:TcpClient	access:public
+Callback	MemcachedClient.h	/^    typedef boost::function<void (const MemResult)> Callback;$/;"	t	class:MemcachedClient	access:public
+Close	TcpClient.cpp	/^void TcpClient::Close( void )$/;"	f	class:TcpClient	signature:( void )
+Close	TcpClient.h	/^    void Close( void );$/;"	p	class:TcpClient	access:public	signature:( void )
+CloseEvent	TcpClient.h	/^    typedef signals2::signal<function<void ( void )> > CloseEvent;$/;"	t	class:TcpClient	access:public
+Connect	TcpClient.cpp	/^void TcpClient::Connect(const std::string& host,int port)$/;"	f	class:TcpClient	signature:(const std::string& host,int port)
+Connect	TcpClient.h	/^    void Connect(const std::string& host,int port);$/;"	p	class:TcpClient	access:public	signature:(const std::string& host,int port)
+Count	ServerList.h	/^    size_t Count( void ) { return mServers.size(); }$/;"	f	class:ServerList	access:public	signature:( void )
+D	SharedBuffer.h	/^    typedef boost::function<void (const void* data)> D;$/;"	t	class:SharedBuffer	access:public
+DefaultCallback	MemcachedClient.h	/^    static void DefaultCallback(const MemResult&){}$/;"	f	class:MemcachedClient	access:private	signature:(const MemResult&)
+DefaultD	SharedBuffer.h	/^    static void DefaultD(const void* data) {}$/;"	f	class:SharedBuffer	access:private	signature:(const void* data)
+ErrorCode	MemResult.h	/^    int ErrorCode( void ) const { return mErrorCode; }$/;"	f	class:MemResult	access:public	signature:( void ) const
+ErrorEvent	TcpClient.h	/^    typedef signals2::signal<function<void (const system::error& error)> > ErrorEvent;$/;"	t	class:TcpClient	access:public
+Finish	MemResult.h	/^    T Finish<T>( void )$/;"	f	class:MemResult	access:public	signature:( void )
+Free	SharedBuffer.h	/^    static void Free(const_buffer* pBuffer,D d)$/;"	f	class:SharedBuffer	access:private	signature:(const_buffer* pBuffer,D d)
+Get	MemcachedClient.cpp	/^const MemResult& MemcachedClient::Get(const std::string& key,Callback callback)$/;"	f	class:MemcachedClient	signature:(const std::string& key,Callback callback)
+Get	MemcachedClient.h	/^    const MemResult& Get(const std::string& key,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(const std::string& key,Callback callback = DefaultCallback)
+Get	ServerList.cpp	/^ServerItem& ServerList::Get(const std::string& key)$/;"	f	class:ServerList	signature:(const std::string& key)
+Get	ServerList.h	/^    ServerItem& Get(const std::string& key);$/;"	p	class:ServerList	access:public	signature:(const std::string& key)
+GetBody	SharedBuffer.h	/^    void* GetBody( void )$/;"	f	class:SharedBuffer	access:public	signature:( void )
+GetHeader	SharedBuffer.h	/^    T& GetHeader( void )$/;"	f	class:SharedBuffer	access:public	signature:( void )
+HeaderReadedEvent	TcpClient.h	/^    typedef signals2::signal<function<bool (const SharedBuffer& header,SharedBuffer*& body)> > HeaderReadedEvent;$/;"	t	class:TcpClient	access:public
+Host	ServerItem.h	/^    const std::string& Host( void ) const { return mHost; }$/;"	f	class:ServerItem	access:public	signature:( void ) const
+MemResult	MemResult.h	/^    MemResult();$/;"	p	class:MemResult	access:public	signature:()
+MemResult	MemResult.h	/^class MemResult$/;"	c
+MemResult::ErrorCode	MemResult.h	/^    int ErrorCode( void ) const { return mErrorCode; }$/;"	f	class:MemResult	access:public	signature:( void ) const
+MemResult::Finish	MemResult.h	/^    T Finish<T>( void )$/;"	f	class:MemResult	access:public	signature:( void )
+MemResult::MemResult	MemResult.h	/^    MemResult();$/;"	p	class:MemResult	access:public	signature:()
+MemResult::SetResult	MemResult.cpp	/^void MemResult::SetResult(void* result)$/;"	f	class:MemResult	signature:(void* result)
+MemResult::SetResult	MemResult.h	/^    void SetResult(void* result);$/;"	p	class:MemResult	access:public	signature:(void* result)
+MemResult::mErrorCode	MemResult.h	/^    int mErrorCode;$/;"	m	class:MemResult	access:private
+MemResult::mFinishCond	MemResult.h	/^    condition_variable mFinishCond;$/;"	m	class:MemResult	access:private
+MemResult::mFinishMut	MemResult.h	/^    shared_mutex mFinishMut;$/;"	m	class:MemResult	access:private
+MemResult::mResult	MemResult.h	/^    void* mResult;$/;"	m	class:MemResult	access:private
+MemcachedClient	MemcachedClient.h	/^class MemcachedClient$/;"	c
+MemcachedClient::Callback	MemcachedClient.h	/^    typedef boost::function<void (const MemResult)> Callback;$/;"	t	class:MemcachedClient	access:public
+MemcachedClient::DefaultCallback	MemcachedClient.h	/^    static void DefaultCallback(const MemResult&){}$/;"	f	class:MemcachedClient	access:private	signature:(const MemResult&)
+MemcachedClient::Get	MemcachedClient.cpp	/^const MemResult& MemcachedClient::Get(const std::string& key,Callback callback)$/;"	f	class:MemcachedClient	signature:(const std::string& key,Callback callback)
+MemcachedClient::Get	MemcachedClient.h	/^    const MemResult& Get(const std::string& key,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(const std::string& key,Callback callback = DefaultCallback)
+MemcachedClient::Servers	MemcachedClient.h	/^    ServerList Servers;$/;"	m	class:MemcachedClient	access:public
+MemcachedClient::mInWorkingResult	MemcachedClient.h	/^    boost::unordered_map<std::string,MemResult> mInWorkingResult;$/;"	m	class:MemcachedClient	access:private
+MemcachedClient::mRequestPool	MemcachedClient.h	/^    boost::pool<> mRequestPool;$/;"	m	class:MemcachedClient	access:private
+MemcachedClient::mResultPool	MemcachedClient.h	/^    boost::object_pool<MemResult> mResultPool;$/;"	m	class:MemcachedClient	access:private
+OnBoday	TcpClient.h	/^    BodayReadedEvent OnBoday;$/;"	m	class:TcpClient	access:public
+OnClosed	TcpClient.h	/^    CloseEvent OnClosed;$/;"	m	class:TcpClient	access:public
+OnError	TcpClient.h	/^    ErrorEvent OnError;$/;"	m	class:TcpClient	access:public
+OnHeader	TcpClient.h	/^    HeaderReadedEvent OnHeader;$/;"	m	class:TcpClient	access:public
+OnServerAdded	ServerList.h	/^    ServerEvent OnServerAdded;$/;"	m	class:ServerList	access:public
+OnServerRemoved	ServerList.h	/^    ServerEvent OnServerRemoved;$/;"	m	class:ServerList	access:public
+Port	ServerItem.h	/^    int Port( void ) const { return mPort; }$/;"	f	class:ServerItem	access:public	signature:( void ) const
+Remove	ServerList.cpp	/^void ServerList::Remove(const std::string& host)$/;"	f	class:ServerList	signature:(const std::string& host)
+Remove	ServerList.h	/^    void Remove(const std::string& host);$/;"	p	class:ServerList	access:public	signature:(const std::string& host)
+Send	TcpClient.cpp	/^void TcpClient::Send(const SharedBuffer& buf)$/;"	f	class:TcpClient	signature:(const SharedBuffer& buf)
+Send	TcpClient.h	/^    void Send(const SharedBuffer& buf);$/;"	p	class:TcpClient	access:public	signature:(const SharedBuffer& buf)
+ServerEvent	ServerList.h	/^    typedef signals2::signal<function<void (const ServerItem&)> > ServerEvent;$/;"	t	class:ServerList	access:public
+ServerItem	ServerItem.h	/^    explicit ServerItem(const std::string& host,int port = 11211,int weight = 1)$/;"	f	class:ServerItem	access:public	signature:(const std::string& host,int port = 11211,int weight = 1)
+ServerItem	ServerItem.h	/^class ServerItem$/;"	c
+ServerItem::Host	ServerItem.h	/^    const std::string& Host( void ) const { return mHost; }$/;"	f	class:ServerItem	access:public	signature:( void ) const
+ServerItem::Port	ServerItem.h	/^    int Port( void ) const { return mPort; }$/;"	f	class:ServerItem	access:public	signature:( void ) const
+ServerItem::ServerItem	ServerItem.h	/^    explicit ServerItem(const std::string& host,int port = 11211,int weight = 1)$/;"	f	class:ServerItem	access:public	signature:(const std::string& host,int port = 11211,int weight = 1)
+ServerItem::Weight	ServerItem.h	/^    int Weight( void ) const { return mWeight; }$/;"	f	class:ServerItem	access:public	signature:( void ) const
+ServerItem::mHost	ServerItem.h	/^    std::string mHost;$/;"	m	class:ServerItem	access:private
+ServerItem::mPort	ServerItem.h	/^    int mPort;$/;"	m	class:ServerItem	access:private
+ServerItem::mSocket	ServerItem.h	/^    TcpClient mSocket;$/;"	m	class:ServerItem	access:private
+ServerItem::mWeight	ServerItem.h	/^    int mWeight;$/;"	m	class:ServerItem	access:private
+ServerItem::operator ->	ServerItem.h	/^    TcpClient* operator-> () { return mSocket; }$/;"	f	class:ServerItem	access:public	signature:()
+ServerList	ServerList.h	/^class ServerList$/;"	c
+ServerList::Add	ServerList.cpp	/^void ServerList::Add(const std::string& host,int port)$/;"	f	class:ServerList	signature:(const std::string& host,int port)
+ServerList::Add	ServerList.h	/^    void Add(const std::string& host,int port);$/;"	p	class:ServerList	access:public	signature:(const std::string& host,int port)
+ServerList::Count	ServerList.h	/^    size_t Count( void ) { return mServers.size(); }$/;"	f	class:ServerList	access:public	signature:( void )
+ServerList::Get	ServerList.cpp	/^ServerItem& ServerList::Get(const std::string& key)$/;"	f	class:ServerList	signature:(const std::string& key)
+ServerList::Get	ServerList.h	/^    ServerItem& Get(const std::string& key);$/;"	p	class:ServerList	access:public	signature:(const std::string& key)
+ServerList::OnServerAdded	ServerList.h	/^    ServerEvent OnServerAdded;$/;"	m	class:ServerList	access:public
+ServerList::OnServerRemoved	ServerList.h	/^    ServerEvent OnServerRemoved;$/;"	m	class:ServerList	access:public
+ServerList::Remove	ServerList.cpp	/^void ServerList::Remove(const std::string& host)$/;"	f	class:ServerList	signature:(const std::string& host)
+ServerList::Remove	ServerList.h	/^    void Remove(const std::string& host);$/;"	p	class:ServerList	access:public	signature:(const std::string& host)
+ServerList::ServerEvent	ServerList.h	/^    typedef signals2::signal<function<void (const ServerItem&)> > ServerEvent;$/;"	t	class:ServerList	access:public
+ServerList::mServers	ServerList.h	/^    unordered_map<std::string,ServerItem> mServers;$/;"	m	class:ServerList	access:private
+Servers	MemcachedClient.h	/^    ServerList Servers;$/;"	m	class:MemcachedClient	access:public
+SetResult	MemResult.cpp	/^void MemResult::SetResult(void* result)$/;"	f	class:MemResult	signature:(void* result)
+SetResult	MemResult.h	/^    void SetResult(void* result);$/;"	p	class:MemResult	access:public	signature:(void* result)
+SharedBuffer	SharedBuffer.h	/^    SharedBuffer(const void* data,size_t size,D d = DefaultD)$/;"	f	class:SharedBuffer	access:public	signature:(const void* data,size_t size,D d = DefaultD)
+SharedBuffer	SharedBuffer.h	/^class SharedBuffer$/;"	c
+SharedBuffer::D	SharedBuffer.h	/^    typedef boost::function<void (const void* data)> D;$/;"	t	class:SharedBuffer	access:public
+SharedBuffer::DefaultD	SharedBuffer.h	/^    static void DefaultD(const void* data) {}$/;"	f	class:SharedBuffer	access:private	signature:(const void* data)
+SharedBuffer::Free	SharedBuffer.h	/^    static void Free(const_buffer* pBuffer,D d)$/;"	f	class:SharedBuffer	access:private	signature:(const_buffer* pBuffer,D d)
+SharedBuffer::GetBody	SharedBuffer.h	/^    void* GetBody( void )$/;"	f	class:SharedBuffer	access:public	signature:( void )
+SharedBuffer::GetHeader	SharedBuffer.h	/^    T& GetHeader( void )$/;"	f	class:SharedBuffer	access:public	signature:( void )
+SharedBuffer::SharedBuffer	SharedBuffer.h	/^    SharedBuffer(const void* data,size_t size,D d = DefaultD)$/;"	f	class:SharedBuffer	access:public	signature:(const void* data,size_t size,D d = DefaultD)
+SharedBuffer::begin	SharedBuffer.h	/^    const value_type* begin() const { return mData.get();}$/;"	f	class:SharedBuffer	access:public	signature:() const
+SharedBuffer::const_iterator	SharedBuffer.h	/^    typedef const boost::asio::const_buffer* const_iterator;$/;"	t	class:SharedBuffer	access:public
+SharedBuffer::end	SharedBuffer.h	/^    const value_type* end() const { return mData.get() + 1;}$/;"	f	class:SharedBuffer	access:public	signature:() const
+SharedBuffer::gBufferPool	SharedBuffer.h	/^    static boost::object_pool<const_buffer> gBufferPool;$/;"	m	class:SharedBuffer	access:private
+SharedBuffer::mData	SharedBuffer.h	/^    boost::shared_ptr<const_buffer> mData;$/;"	m	class:SharedBuffer	access:private
+SharedBuffer::value_type	SharedBuffer.h	/^    typedef const_buffer value_type;$/;"	t	class:SharedBuffer	access:public
+TcpClient	TcpClient.cpp	/^TcpClient::TcpClient(boost::asio::io_service& ioService)$/;"	f	class:TcpClient	signature:(boost::asio::io_service& ioService)
+TcpClient	TcpClient.h	/^    TcpClient(boost::asio::io_service& ioService);$/;"	p	class:TcpClient	access:public	signature:(boost::asio::io_service& ioService)
+TcpClient	TcpClient.h	/^class TcpClient:noncopyable$/;"	c	inherits:noncopyable
+TcpClient::BodayReadedEvent	TcpClient.h	/^    typedef signals2::signal<function<void (const SharedBuffer& boday)> > BodayReadedEvent;$/;"	t	class:TcpClient	access:public
+TcpClient::Close	TcpClient.cpp	/^void TcpClient::Close( void )$/;"	f	class:TcpClient	signature:( void )
+TcpClient::Close	TcpClient.h	/^    void Close( void );$/;"	p	class:TcpClient	access:public	signature:( void )
+TcpClient::CloseEvent	TcpClient.h	/^    typedef signals2::signal<function<void ( void )> > CloseEvent;$/;"	t	class:TcpClient	access:public
+TcpClient::Connect	TcpClient.cpp	/^void TcpClient::Connect(const std::string& host,int port)$/;"	f	class:TcpClient	signature:(const std::string& host,int port)
+TcpClient::Connect	TcpClient.h	/^    void Connect(const std::string& host,int port);$/;"	p	class:TcpClient	access:public	signature:(const std::string& host,int port)
+TcpClient::ErrorEvent	TcpClient.h	/^    typedef signals2::signal<function<void (const system::error& error)> > ErrorEvent;$/;"	t	class:TcpClient	access:public
+TcpClient::HeaderReadedEvent	TcpClient.h	/^    typedef signals2::signal<function<bool (const SharedBuffer& header,SharedBuffer*& body)> > HeaderReadedEvent;$/;"	t	class:TcpClient	access:public
+TcpClient::OnBoday	TcpClient.h	/^    BodayReadedEvent OnBoday;$/;"	m	class:TcpClient	access:public
+TcpClient::OnClosed	TcpClient.h	/^    CloseEvent OnClosed;$/;"	m	class:TcpClient	access:public
+TcpClient::OnError	TcpClient.h	/^    ErrorEvent OnError;$/;"	m	class:TcpClient	access:public
+TcpClient::OnHeader	TcpClient.h	/^    HeaderReadedEvent OnHeader;$/;"	m	class:TcpClient	access:public
+TcpClient::Send	TcpClient.cpp	/^void TcpClient::Send(const SharedBuffer& buf)$/;"	f	class:TcpClient	signature:(const SharedBuffer& buf)
+TcpClient::Send	TcpClient.h	/^    void Send(const SharedBuffer& buf);$/;"	p	class:TcpClient	access:public	signature:(const SharedBuffer& buf)
+TcpClient::TcpClient	TcpClient.cpp	/^TcpClient::TcpClient(boost::asio::io_service& ioService)$/;"	f	class:TcpClient	signature:(boost::asio::io_service& ioService)
+TcpClient::TcpClient	TcpClient.h	/^    TcpClient(boost::asio::io_service& ioService);$/;"	p	class:TcpClient	access:public	signature:(boost::asio::io_service& ioService)
+TcpClient::mPendingBuffers	TcpClient.h	/^    std::vector<SharedBuffer> mPendingBuffers;$/;"	m	class:TcpClient	access:private
+TcpClient::mSocket	TcpClient.h	/^    asio::socket mSocket;$/;"	m	class:TcpClient	access:private
+TcpClient::mWritingBuffers	TcpClient.h	/^    std::vector<SharedBuffer> mWritingBuffers;$/;"	m	class:TcpClient	access:private
+Weight	ServerItem.h	/^    int Weight( void ) const { return mWeight; }$/;"	f	class:ServerItem	access:public	signature:( void ) const
+_MEMCACHEDCLIENT_H	MemcachedClient.h	2;"	d
+_MEMCACHEDCOMMON_H	MemcachedCommon.h	2;"	d
+_MEMRESULT_H	MemResult.h	2;"	d
+_SERVERITEM_H	ServerItem.h	2;"	d
+_SERVERLIST_H	ServerList.h	2;"	d
+_SHAREDBUFFER_H	SharedBuffer.h	2;"	d
+_TCPCLIENT_H	TcpClient.h	2;"	d
+begin	SharedBuffer.h	/^    const value_type* begin() const { return mData.get();}$/;"	f	class:SharedBuffer	access:public	signature:() const
+const_iterator	SharedBuffer.h	/^    typedef const boost::asio::const_buffer* const_iterator;$/;"	t	class:SharedBuffer	access:public
+end	SharedBuffer.h	/^    const value_type* end() const { return mData.get() + 1;}$/;"	f	class:SharedBuffer	access:public	signature:() const
+gBufferPool	SharedBuffer.h	/^    static boost::object_pool<const_buffer> gBufferPool;$/;"	m	class:SharedBuffer	access:private
+internal	MemcachedCommon.h	5;"	d
+internal	MemcachedCommon.h	7;"	d
+mData	SharedBuffer.h	/^    boost::shared_ptr<const_buffer> mData;$/;"	m	class:SharedBuffer	access:private
+mErrorCode	MemResult.h	/^    int mErrorCode;$/;"	m	class:MemResult	access:private
+mFinishCond	MemResult.h	/^    condition_variable mFinishCond;$/;"	m	class:MemResult	access:private
+mFinishMut	MemResult.h	/^    shared_mutex mFinishMut;$/;"	m	class:MemResult	access:private
+mHost	ServerItem.h	/^    std::string mHost;$/;"	m	class:ServerItem	access:private
+mInWorkingResult	MemcachedClient.h	/^    boost::unordered_map<std::string,MemResult> mInWorkingResult;$/;"	m	class:MemcachedClient	access:private
+mPendingBuffers	TcpClient.h	/^    std::vector<SharedBuffer> mPendingBuffers;$/;"	m	class:TcpClient	access:private
+mPort	ServerItem.h	/^    int mPort;$/;"	m	class:ServerItem	access:private
+mRequestPool	MemcachedClient.h	/^    boost::pool<> mRequestPool;$/;"	m	class:MemcachedClient	access:private
+mResult	MemResult.h	/^    void* mResult;$/;"	m	class:MemResult	access:private
+mResultPool	MemcachedClient.h	/^    boost::object_pool<MemResult> mResultPool;$/;"	m	class:MemcachedClient	access:private
+mServers	ServerList.h	/^    unordered_map<std::string,ServerItem> mServers;$/;"	m	class:ServerList	access:private
+mSocket	ServerItem.h	/^    TcpClient mSocket;$/;"	m	class:ServerItem	access:private
+mSocket	TcpClient.h	/^    asio::socket mSocket;$/;"	m	class:TcpClient	access:private
+mWeight	ServerItem.h	/^    int mWeight;$/;"	m	class:ServerItem	access:private
+mWritingBuffers	TcpClient.h	/^    std::vector<SharedBuffer> mWritingBuffers;$/;"	m	class:TcpClient	access:private
+operator ->	ServerItem.h	/^    TcpClient* operator-> () { return mSocket; }$/;"	f	class:ServerItem	access:public	signature:()
+value_type	SharedBuffer.h	/^    typedef const_buffer value_type;$/;"	t	class:SharedBuffer	access:public
