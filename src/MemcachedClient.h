@@ -35,7 +35,7 @@ private:
 
     std::atomic_int mNextRequestId;
 
-    typedef std::unordered_map<int,RequestItem::Ptr> RequestMap;
+    typedef std::unordered_map<int,RequestItem> RequestMap;
     RequestMap mRequests;
 
     std::mutex mSyncRequest;

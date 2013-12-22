@@ -46,6 +46,7 @@ private:
     void Close4Error(ESocketError type,const system::error_code err);
 
     VBuffer mWriteBuffers;
+    VBuffer mPendingBuffers;
     VBuffer mReadBuffers;
 
     bool mIsInWriting;

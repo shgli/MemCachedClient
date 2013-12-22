@@ -118,8 +118,7 @@ const MemGetResult::Ptr MemcachedClient::Get(const std::string& key,const Shared
     size_t requestSize = sizeof(protocol_binary_request_get) + key.size();
 
     auto result = std::make_shared<MemGetResult>(key,buf);
-    auto requestItem = std::make_shared<RequestItem>(callback,result);
-    mRequests.insert(requestId,requestItem);
+    mRequests.insert(std::make_pair(requestId,RequestItem(callback,result)));
 
     SharedBuffer buf(mRequestPool.malloc(requestSize),requestSize
 		,[](const void* pData)
@@ -129,17 +128,17 @@ const MemGetResult::Ptr MemcachedClient::Get(const std::string& key,const Shared
 			mRequestPool.free(pData);
 		    }
 		});
-    auto& request = buf.GetHeader<protocol_binary_request_get>();
-    request.request.magic = PROTOCOL_BINARY_REQ;
-    request.request.opcode = PROTOCOL_BINARY_CMD_GET;
-    request.request.keylen = key.size();
-    request.request.extlen = 0;
-    request.request.datatype = 0;
-    request.request.reserved = 0;
-    request.request.bodylen = key.size();
-    request.request.opaque = requestId;
-    request.request.cas = 0;
-    AdjustEndian(&request.request);
+    auto& request = buf.GetHeader<protocol_binary_request_get>().request;
+    request.magic = PROTOCOL_BINARY_REQ;
+    request.opcode = PROTOCOL_BINARY_CMD_GET;
+    request.keylen = key.size();
+    request.extlen = 0;
+    request.datatype = 0;
+    request.reserved = 0;
+    request.bodylen = key.size();
+    request.opaque = requestId;
+    request.cas = 0;
+    AdjustEndian(&request);
 
     memcpy(buf.GetBody<protocol_binary_request_get>(),key.c_str(),key.size());
     server.SendRequest(requestId,request.request.opaque,buf);

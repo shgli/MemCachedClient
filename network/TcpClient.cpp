@@ -81,36 +81,36 @@ void TcpClient::Send(const SharedBuffer& buf)
     mSocket.get_io_service().post(
         [this,buf]()
         {
-            mWriteBuffers.push_back(buf);
-            Send();
+            mPendingBuffers.push_back(buf);
+
+	    if(mWriteBuffers.empty())
+	    {
+                Send();
+	    }
         }
 }
 
 void TcpClient::Send()
 {
-    if(!mIsInWriting)
-    {
-        mIsInWriting = true;
-
-	asio::async_write(mSocket,
-		mWriteBuffers,
-		[this](system::error_code ec,std::size_t len)
+    mPendingBuffers.swap(mWriteBuffers);
+    asio::async_write(mSocket,
+        mWriteBuffers,
+	[this](system::error_code ec,std::size_t len)
+	{
+	    mWriteBuffers.clear();
+	    if(!ec)
+	    {
+		if(!mPendingBuffers.empty())
 		{
-		    mIsInWriting = false;
-
-		    if(!ec)
-		    {
-		        if(0 != mWriteBuffers.size())
-		        {
-			    Send();
-		        }
-		    } 
-		    else
-		    {
-		        Close4Error(ESocket_Send,ec);
-		    }
-		});
-    }
+		    Send();
+		}
+	    } 
+	    else
+	    {
+	        Close4Error(ESocket_Send,ec);
+	    }
+	}
+    );
 }
 
 void TcpClient::Close( void )
