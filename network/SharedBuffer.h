@@ -34,8 +34,7 @@ public:
     template<typename T>
     void* GetBody( void )
     {
-	return const_cast<void*>(buffer_cast<const void*>(*mData.get()) + sizeof(T));
-
+	return const_cast<char*>(buffer_cast<const char*>(*mData.get()) + sizeof(T));
     }
 
     bool IsNull( void ) const { return nullptr == mData.get();}
@@ -43,7 +42,7 @@ public:
 private:
     static void Free(value_type* pBuffer,D d)
     {
-	d(buffer_cast<const void*>(*pBuffer));
+	d(const_cast<void*>(buffer_cast<const void*>(*pBuffer)));
 	gBufferPool.destroy(pBuffer);
     }
 

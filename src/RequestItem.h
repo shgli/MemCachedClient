@@ -11,9 +11,9 @@ class RequestItem
     MemResult::Ptr mResult;
     Callback mCallback;
 public:
-    explicit RequestItem(Callback callback,MemResult::Ptr& result);
+    explicit RequestItem(Callback callback,const MemResult::Ptr& result);
 
-    void FillReceiveBuffer(VBuffer& bufs,int valueLen) { mResult->FillReceiveBuffer(bufs,valueLen); }
+    bool FillReceiveBuffer(VBuffer& bufs,int valueLen) { return mResult->FillReceiveBuffer(bufs,valueLen); }
 
     void Notify(ERequestStatus status);
 };

@@ -17,15 +17,15 @@ public:
     ServerList Servers;
 
 
-    const MemGetResult::Ptr Get(const std::string& key,Callback callback = DefaultCallback);
-    const MemGetResult::Ptr Get(const std::string& key,const Buffer& buf,Callback callback = DefaultCallback);
+    MemGetResult::Ptr Get(const std::string& key,Callback callback = DefaultCallback);
+    MemGetResult::Ptr Get(const std::string& key,const Buffer& buf,Callback callback = DefaultCallback);
 
 private:
     typedef std::unordered_map<int,RequestItem> RequestMap;
 
     void OnServerAdded(const ServerItem::Ptr& item);
     void OnServerRemoved(const ServerItem::Ptr& item);
-    int  OnHeaderReaded(const void* header,VBuffer& body);
+    bool OnHeaderReaded(const void* header,VBuffer& body);
     void OnBodayReaded(const void* header,const VBuffer& boday);
     void FinishRequest(RequestMap::iterator,ERequestStatus err);
 
@@ -35,10 +35,8 @@ private:
 private:
 
     boost::asio::io_service& mIoService;
-    boost::pool<> mRequestPool;
 
     std::atomic_int mNextRequestId;
-
 
     RequestMap mRequests;
 

@@ -18,13 +18,12 @@ void ModuloDistri::Remove(ServerItem::Ptr& pServer)
     }
 }
 
-ServerItem::Ptr ModuloDistri::Get(hash_t hash)
+ServerItem::Ptr& ModuloDistri::Get(hash_t hash)
 {
+    assert(0 != mServers.size());
     if(0 != mServers.size())
     {
         return mServers[hash % mServers.size()];
     }
-
-    return nullptr;
 }
 

@@ -41,6 +41,7 @@ ServerItem::Ptr& MemoDistri::Get(hash_t hash)
     auto const itServer = mKeyServerMapping.find(hash);
     if(itServer == mKeyServerMapping.end())
     {
+	assert(0 != mBalanceInfos.size());
 	if(mBalanceInfos.size() > 0)
 	{
 	    auto& result = mBalanceInfos.front().Server;
@@ -57,8 +58,6 @@ ServerItem::Ptr& MemoDistri::Get(hash_t hash)
 	    mKeyServerMapping[hash] = result;
             return result;
 	}
-
-        return nullptr;
     }
     else
     {

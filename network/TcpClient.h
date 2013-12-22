@@ -19,7 +19,7 @@ public:
     };
 
 
-    typedef std::function<int (const void *,VBuffer& )> HeaderReadedEvent;
+    typedef std::function<bool (const void *,VBuffer& )> HeaderReadedEvent;
     typedef std::function<void (const void* ,const VBuffer& )> BodyReadedEvent;
     typedef signals2::signal<void (ESocketError,const system::error_code&)> ErrorEvent;
     typedef signals2::signal<void ( void )> ClosedEvent;

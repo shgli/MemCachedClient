@@ -7,9 +7,9 @@
 #include <boost/signals2.hpp>
 #include <boost/asio/io_service.hpp>
 #include "ServerItem.h"
+#include "DistributeAlgorithm.h"
 
 typedef size_t hash_t;
-class DistributeAlgorithm;
 using namespace boost;
 class ServerList
 {

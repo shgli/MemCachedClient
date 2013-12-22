@@ -50,8 +50,10 @@ memc=/home/shgli/src/MemCachedClient CD=build filter="*.h *.cpp *.txt" {
  cmake=cmake {
  }
  network=network {
+  HostNetConversion.h
   SharedBuffer.h
   TcpClient.h
+  HostNetConversion.cpp
   SharedBuffer.cpp
   TcpClient.cpp
   CMakeLists.txt
@@ -65,6 +67,7 @@ memc=/home/shgli/src/MemCachedClient CD=build filter="*.h *.cpp *.txt" {
   ServerList.h
   ConsistentHashDistri.cpp
   MemoDistri.cpp
+  ModuloDistri.cpp
   ServerItem.cpp
   ServerList.cpp
   CMakeLists.txt

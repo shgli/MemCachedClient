@@ -26,7 +26,6 @@ enum ERequestStatus
 
 class MemResult
 {
-    static boost::pool<> gValuePool;
     std::string mKey;
     int mErrorCode;
 
@@ -44,12 +43,12 @@ public:
 
     const std::string& Key( void ) const { return mKey; }
 
-    int Finish( void ) const;
+    int Finish( void );
 
     static const std::string StrError(int error);
 
 //internal:
-    virtual void FillReceiveBuffer(VBuffer& bufs,int valueLen);
+    virtual bool FillReceiveBuffer(VBuffer& bufs,int valueLen);
     void Notify(ERequestStatus err);
 };
 
@@ -63,7 +62,7 @@ public:
 
     int Flag( void ) const { return mFlag; }
 
-    virtual void FillReceiveBuffer(VBuffer& bufs,int valueLen);
+    virtual bool FillReceiveBuffer(VBuffer& bufs,int valueLen);
 };
 #endif
  

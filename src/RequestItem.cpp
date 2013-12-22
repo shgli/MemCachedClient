@@ -1,5 +1,5 @@
 #include "RequestItem.h"
-RequestItem::RequestItem(Callback callback,MemResult::Ptr& result)
+RequestItem::RequestItem(Callback callback,const MemResult::Ptr& result)
     :mResult(result)
     ,mCallback(callback)
 {}
