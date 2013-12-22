@@ -27,7 +27,7 @@ enum ERequestStatus
 class MemResult
 {
     std::string mKey;
-    int mErrorCode;
+    ERequestStatus mErrorCode;
 
     std::mutex mSyncMut;
     std::condition_variable mSyncEvent;
@@ -43,7 +43,7 @@ public:
 
     const std::string& Key( void ) const { return mKey; }
 
-    int Finish( void );
+    ERequestStatus Finish( void );
 
     static const std::string StrError(int error);
 

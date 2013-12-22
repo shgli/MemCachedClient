@@ -3,6 +3,7 @@ memc=/home/shgli/src/MemCachedClient CD=build filter="*.h *.cpp *.txt" {
  CMakeLists.txt
  build=build {
   CMakeCache.txt
+  install_manifest.txt
   CMakeFiles=CMakeFiles {
    TargetDirectories.txt
    2.8.11.2=2.8.11.2 {
@@ -13,9 +14,6 @@ memc=/home/shgli/src/MemCachedClient CD=build filter="*.h *.cpp *.txt" {
     }
    }
    CMakeTmp=CMakeTmp {
-   }
-   Progress=Progress {
-    count.txt
    }
   }
   network=network {
@@ -46,8 +44,19 @@ memc=/home/shgli/src/MemCachedClient CD=build filter="*.h *.cpp *.txt" {
     }
    }
   }
+  utils=utils {
+   CMakeFiles=CMakeFiles {
+    utils.dir=utils.dir {
+     link.txt
+    }
+   }
+  }
  }
  cmake=cmake {
+ }
+ example=example {
+  SyncGet.cpp
+  CMakeLists.txt
  }
  network=network {
   HostNetConversion.h

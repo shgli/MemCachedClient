@@ -30,7 +30,7 @@ public:
     void SendRequest(int requestId,const ConstBuffer& buf);
     void SendRequest(int requestId,const VConstBuffer& bufs);
 
-    const std::vector<int> PendingRequests() const { return mPendingRequests; }
+    const std::vector<int>& PendingRequests() const { return mPendingRequests; }
 
 private:
     TcpClient mSocket;

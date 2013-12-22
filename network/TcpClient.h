@@ -26,6 +26,7 @@ public:
     typedef signals2::signal<void ()> ConnectedEvent;
 
     TcpClient(boost::asio::io_service& ioService,size_t nHeaderLen);
+    ~TcpClient();
 
     ConnectedEvent OnConnected;
     HeaderReadedEvent OnHeader;

@@ -4,7 +4,7 @@
 #ifdef _MEMCACHED_CLIENT_COMPILE
 //#define internal public
 #else
-#define internal private
+//#define internal private
 #endif
 
 typedef size_t hash_t;

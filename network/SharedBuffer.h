@@ -51,6 +51,10 @@ private:
     std::shared_ptr<value_type> mData;
     static boost::object_pool<value_type> gBufferPool;
 };
+
+template<typename value_type>
+boost::object_pool<value_type> SharedBuffer<value_type>::gBufferPool(64);
+
 typedef SharedBuffer<mutable_buffer> Buffer;
 typedef SharedBuffer<const_buffer> ConstBuffer;
 typedef std::vector<Buffer> VBuffer;

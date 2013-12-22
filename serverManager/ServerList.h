@@ -29,7 +29,7 @@ public:
     ServerItem::Ptr& Get(const std::string& key);
     size_t Count( void ) { return mServers.size(); }
 
-    void SetDistributeAlgorithm(std::unique_ptr<DistributeAlgorithm> algorithm);
+    void SetDistributeAlgorithm(DistributeAlgorithm* algorithm);
     void SetHashAlogrithm(HashFunc hFunc) { mHashFunc = hFunc; }
 
     const std::unordered_map<std::string,ServerItem::Ptr> Items( void ) const { return mServers; }

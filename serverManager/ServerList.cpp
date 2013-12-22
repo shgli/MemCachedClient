@@ -26,6 +26,7 @@ bool ServerList::Add(const std::string& host,int port,boost::asio::io_service& i
 		    }
 		    );
 	    mDistributeAlgorithm->Add(serverItem);
+	    (*serverItem)->Connect(host,port);
 	    OnServerAdded(serverItem);
 	    return true;
 	}
@@ -52,10 +53,10 @@ ServerItem::Ptr& ServerList::Get(const std::string& key)
     return mDistributeAlgorithm->Get(mHashFunc(key));
 }
 
-void ServerList::SetDistributeAlgorithm(std::unique_ptr<DistributeAlgorithm> algorithm)
+void ServerList::SetDistributeAlgorithm(DistributeAlgorithm* algorithm)
 {
     assert(nullptr != algorithm);
-    mDistributeAlgorithm = std::move(algorithm);
+    mDistributeAlgorithm.reset(algorithm);
     for(auto& serverPair : mServers)
     {
 	mDistributeAlgorithm->Add(serverPair.second);

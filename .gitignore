@@ -1,2 +1,5 @@
 cscope.*
 build/*
+lib/*
+bin/*
+install/*

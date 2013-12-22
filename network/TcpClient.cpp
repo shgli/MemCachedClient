@@ -7,8 +7,14 @@ TcpClient::TcpClient(boost::asio::io_service& ioService,size_t nHeaderLen)
     :mIsInWriting(false)
     ,mSocket(ioService)
     ,mHeaderLength(nHeaderLen)
-    ,mHeaderBuffer(new char(nHeaderLen))
+    ,mHeaderBuffer(new char[nHeaderLen])
 {
+}
+
+TcpClient::~TcpClient()
+{
+    mSocket.close();
+    delete[] mHeaderBuffer;
 }
 
 void TcpClient::Connect(const std::string& host,int port)
@@ -34,7 +40,7 @@ void TcpClient::Connect(const std::string& host,int port)
 void TcpClient::ReadHeader()
 {
     asio::async_read(mSocket,
-	    asio::buffer(mHeaderBuffer,mHeaderLength),
+	    asio::buffer(mHeaderBuffer,4),
 	    [this](const system::error_code& ec,std::size_t len)
 	    {
 	       if(!ec && ((len = OnHeader(static_cast<void*const>(mHeaderBuffer),mReadBuffers)) >= 0) && 0 != mReadBuffers.size())
