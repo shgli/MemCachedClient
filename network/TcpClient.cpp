@@ -1,20 +1,23 @@
 #include <boost/lexical_cast.hpp>
+#include <boost/asio/connect.hpp>
+#include <boost/asio/read.hpp>
+#include <boost/asio/write.hpp>
 #include "TcpClient.h"
-TcpClient::TcpClient(boost::asio::io_service& ioService,size_t nHeaderLen,HeaderReadedEvent onHeader)
+TcpClient::TcpClient(boost::asio::io_service& ioService,size_t nHeaderLen)
     :mIsInWriting(false)
     ,mSocket(ioService)
     ,mHeaderLength(nHeaderLen)
     ,mHeaderBuffer(new char(nHeaderLen))
-    ,OnHeader(onHeader)
 {
 }
 
 void TcpClient::Connect(const std::string& host,int port)
 {
+    using namespace boost::asio::ip;
     ip::tcp::resolver resolver(mSocket.get_io_service());
-    auto endpointIt= resolver.resolve(host,lexical_cast<std::string>(port));
+    auto endpointIt= resolver.resolve({host,lexical_cast<std::string>(port)});
     asio::async_connect(mSocket,endpointIt,
-	    [this](system::error_code ec,tcp::resolver::iterator)
+	    [this](const system::error_code& ec,tcp::resolver::iterator)
 	    {
 	        if(!ec)
 		{
@@ -32,7 +35,7 @@ void TcpClient::ReadHeader()
 {
     asio::async_read(mSocket,
 	    asio::buffer(mHeaderBuffer,mHeaderLength),
-	    [this](system::error_code ec,std::size_t len)
+	    [this](const system::error_code& ec,std::size_t len)
 	    {
 	       if(!ec && ((len = OnHeader(static_cast<void*const>(mHeaderBuffer),mReadBuffers)) >= 0) && 0 != mReadBuffers.size())
 	       {
@@ -63,7 +66,7 @@ void TcpClient::ReadBody()
 {
     asio::async_read(mSocket,
 	    mReadBuffers,
-	    [this](system::error_code ec,std::size_t len)
+	    [this](const system::error_code& ec,std::size_t len)
 	    {
 	        if(!ec)
 		{
@@ -76,7 +79,7 @@ void TcpClient::ReadBody()
 	    });
 }
 
-void TcpClient::Send(const SharedBuffer& buf)
+void TcpClient::Send(const ConstBuffer& buf)
 {
     mSocket.get_io_service().post(
         [this,buf]()
@@ -87,7 +90,22 @@ void TcpClient::Send(const SharedBuffer& buf)
 	    {
                 Send();
 	    }
-        }
+        });
+}
+
+void TcpClient::Send(const VConstBuffer& vbuf)
+{
+     mSocket.get_io_service().post(
+        [this,vbuf]()
+        {
+            mPendingBuffers.insert(mPendingBuffers.end(),vbuf.begin(),vbuf.end());
+
+	    if(mWriteBuffers.empty())
+	    {
+                Send();
+	    }
+        });
+   
 }
 
 void TcpClient::Send()
@@ -95,7 +113,7 @@ void TcpClient::Send()
     mPendingBuffers.swap(mWriteBuffers);
     asio::async_write(mSocket,
         mWriteBuffers,
-	[this](system::error_code ec,std::size_t len)
+	[this](const system::error_code& ec,std::size_t len)
 	{
 	    mWriteBuffers.clear();
 	    if(!ec)
@@ -109,14 +127,17 @@ void TcpClient::Send()
 	    {
 	        Close4Error(ESocket_Send,ec);
 	    }
-	}
-    );
+	});
 }
 
 void TcpClient::Close( void )
 {
-    mSocket.close();
-    OnClosed();
+    mSocket.get_io_service().post(
+	[this]
+	{
+	    mSocket.close();
+	    OnClosed();
+        });
 }
 
 void TcpClient::Close4Error(ESocketError type,const system::error_code err)

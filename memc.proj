@@ -1,0 +1,92 @@
+
+memc=/home/shgli/src/MemCachedClient CD=build filter="*.h *.cpp *.txt" {
+ CMakeLists.txt
+ build=build {
+  CMakeCache.txt
+  CMakeFiles=CMakeFiles {
+   TargetDirectories.txt
+   2.8.11.2=2.8.11.2 {
+    CompilerIdC=CompilerIdC {
+    }
+    CompilerIdCXX=CompilerIdCXX {
+     CMakeCXXCompilerId.cpp
+    }
+   }
+   CMakeTmp=CMakeTmp {
+   }
+   Progress=Progress {
+    count.txt
+   }
+  }
+  network=network {
+   CMakeFiles=CMakeFiles {
+    network.dir=network.dir {
+     link.txt
+    }
+   }
+  }
+  serverManager=serverManager {
+   CMakeFiles=CMakeFiles {
+    serverManager.dir=serverManager.dir {
+     link.txt
+    }
+   }
+  }
+  src=src {
+   CMakeFiles=CMakeFiles {
+    memclient.dir=memclient.dir {
+     link.txt
+    }
+   }
+  }
+  test=test {
+   CMakeFiles=CMakeFiles {
+    memtest.dir=memtest.dir {
+     link.txt
+    }
+   }
+  }
+ }
+ cmake=cmake {
+ }
+ network=network {
+  SharedBuffer.h
+  TcpClient.h
+  SharedBuffer.cpp
+  TcpClient.cpp
+  CMakeLists.txt
+ }
+ serverManager=serverManager {
+  ConsistentHashDistri.h
+  DistributeAlgorithm.h
+  MemoDistri.h
+  ModuloDistri.h
+  ServerItem.h
+  ServerList.h
+  ConsistentHashDistri.cpp
+  MemoDistri.cpp
+  ServerItem.cpp
+  ServerList.cpp
+  CMakeLists.txt
+ }
+ src=src {
+  MemLog.h
+  MemResult.h
+  MemcachedClient.h
+  MemcachedCommon.h
+  RequestItem.h
+  MemResult.cpp
+  MemcachedClient.cpp
+  RequestItem.cpp
+  CMakeLists.txt
+ }
+ test=test {
+  SharedBufferTest.cpp
+  CMakeLists.txt
+ }
+ utils=utils {
+  md5.h
+  md5.cpp
+  CMakeLists.txt
+ }
+}

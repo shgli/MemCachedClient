@@ -1,30 +1,31 @@
 #ifndef _SHAREDBUFFER_H
 #define _SHAREDBUFFER_H
-#include <functionl>
+#include <functional>
 #include <memory>
 #include <boost/asio/buffer.hpp>
 #include <boost/pool/object_pool.hpp>
 using namespace boost;
 using namespace boost::asio;
-
+template<typename value_type>
 class SharedBuffer
 {
 public:
-    typedef std::function<void (const void* data)> D;
+    typedef std::function<void (void* data)> D;
 
-    SharedBuffer(const void* data,size_t size,D d = DefaultD)
-	:mData(gBufferPool.construct(data,size),boost::bind(Free,_1,d))
+    SharedBuffer(void* data,size_t size,D d = DefaultD)
+	:mData(gBufferPool.construct(data,size),std::bind(Free,std::placeholders::_1,d))
     {}
 
-    SharedBuffer();
+    SharedBuffer(){}
 
-    typedef const_buffer value_type;
+    operator const value_type& () const{ return *mData; }
 
-    operator value_type& () { return *mData; }
+    void Reset(void* data,size_t size,D d = DefaultD)
+    {
+          mData.reset(gBufferPool.construct(data,size),std::bind(Free,std::placeholders::_1,d));
+    }
 
-    void Reset(const void* data,size_t size,D d = DefaultD);
-
-    template<T>
+    template<typename T>
     T& GetHeader( void )
     {
 	return const_cast<T&>(*buffer_cast<const T*>(*mData.get()));
@@ -37,10 +38,10 @@ public:
 
     }
 
-    bool IsNull( void ) const { return nullptr == mData->get();}
+    bool IsNull( void ) const { return nullptr == mData.get();}
 
 private:
-    static void Free(const_buffer* pBuffer,D d)
+    static void Free(value_type* pBuffer,D d)
     {
 	d(buffer_cast<const void*>(*pBuffer));
 	gBufferPool.destroy(pBuffer);
@@ -48,10 +49,13 @@ private:
 
     static void DefaultD(const void* data) {}
 
-    std::shared_ptr<const_buffer> mData;
-    static boost::object_pool<const_buffer> gBufferPool;
+    std::shared_ptr<value_type> mData;
+    static boost::object_pool<value_type> gBufferPool;
 };
-typedef SharedBuffer Buffer;
+typedef SharedBuffer<mutable_buffer> Buffer;
+typedef SharedBuffer<const_buffer> ConstBuffer;
 typedef std::vector<Buffer> VBuffer;
+typedef std::vector<ConstBuffer> VConstBuffer;
+
 #endif
  

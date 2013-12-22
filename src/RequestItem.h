@@ -5,6 +5,7 @@
 #include <string>
 #include "MemResult.h"
 
+typedef std::function<void (const MemResult::Ptr&)> Callback;
 class RequestItem
 {
     MemResult::Ptr mResult;

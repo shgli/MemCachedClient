@@ -1,10 +1,12 @@
 #ifndef _MEMRESULT_H
 #define _MEMRESULT_H
-#include <thread>
+#include <mutex>
+#include <condition_variable>
 #include <memory>
 #include <boost/pool/pool.hpp>
 #include <memcached/protocol_binary.h>
 #include "MemcachedCommon.h"
+#include "SharedBuffer.h"
 enum ERequestStatus
 {
     ERequest_SUCCESS = 0x00,
@@ -30,13 +32,13 @@ class MemResult
 
     std::mutex mSyncMut;
     std::condition_variable mSyncEvent;
-    SharedBuffer mValue;
+    Buffer mValue;
 public:
     typedef std::shared_ptr<MemResult> Ptr;
 
-    MemResult(const std::string& key,const SharedBuffer& buffer);
+    MemResult(const std::string& key,const Buffer& buffer);
 
-    const SharedBuffer& Value() const { return mValue; }
+    const Buffer& Value() const { return mValue; }
 
     int ErrorCode( void ) const { return mErrorCode; }
 
@@ -46,9 +48,9 @@ public:
 
     static const std::string StrError(int error);
 
-internal:
+//internal:
     virtual void FillReceiveBuffer(VBuffer& bufs,int valueLen);
-    void Notify(Request_Status err);
+    void Notify(ERequestStatus err);
 };
 
 class MemGetResult:public MemResult
@@ -57,9 +59,9 @@ class MemGetResult:public MemResult
     int mFlag;
 public:
     typedef std::shared_ptr<MemGetResult> Ptr;
-    MemGetResult(const std::string& key,const SharedBuffer& buffer);
+    MemGetResult(const std::string& key,const Buffer& buffer);
 
-    int Flag( void ) const { return mFlag }
+    int Flag( void ) const { return mFlag; }
 
     virtual void FillReceiveBuffer(VBuffer& bufs,int valueLen);
 };

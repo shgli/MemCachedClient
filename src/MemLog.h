@@ -15,7 +15,7 @@ enum SeverityLevel
     Warn,
     Error,
     Fatal
-}
+};
 
 typedef Src::severity_logger_mt<SeverityLevel> MemLog;
 

@@ -3,17 +3,19 @@
 #include <string>
 #include <memory>
 #include <unordered_map>
-#include <function>
+#include <functional>
 #include <boost/signals2.hpp>
 #include <boost/asio/io_service.hpp>
-#include "MemcachedCommon.h"
+#include "ServerItem.h"
+
+typedef size_t hash_t;
+class DistributeAlgorithm;
 using namespace boost;
-class ServerItem;
 class ServerList
 {
 public:
     typedef std::function<hash_t (const std::string&)> HashFunc;
-    typedef signals2::signal<void (const ServerItem&)> ServerEvent;
+    typedef signals2::signal<void (const ServerItem::Ptr&)> ServerEvent;
 
     ServerEvent OnServerAdded;
     ServerEvent OnServerRemoved;
@@ -24,7 +26,7 @@ public:
     bool Add(const std::string& host,int port,boost::asio::io_service& ioService);
     bool Remove(const std::string& host,int port);
 
-    ServerItem::Ptr pServer Get(const std::string& key);
+    ServerItem::Ptr& Get(const std::string& key);
     size_t Count( void ) { return mServers.size(); }
 
     void SetDistributeAlgorithm(std::unique_ptr<DistributeAlgorithm> algorithm);

@@ -1,10 +1,13 @@
 #include <boost/lexical_cast.hpp>
 #include "ConsistentHashDistri.h"
 #include "md5.h"
+ConsistentHashDistri::ConsistentHashDistri(int replis)
+    :mReplications(replis)
+{}
 
-void ConsistentHashDistri::Add(ServerItem::Ptr pServer)
+void ConsistentHashDistri::Add(ServerItem::Ptr& pServer)
 {
-    int totalReplications = pServer->Weight() & 0x8FFFFFF4;
+    int totalReplications = (mReplications*pServer->Weight()) & 0x8FFFFFF4;
     for(int i = 0; i < totalReplications / 4; ++i)
     {
 	MD5 md5(pServer->ToString() + boost::lexical_cast<std::string>(i));
@@ -24,13 +27,15 @@ hash_t ConsistentHashDistri::Hash(const std::string& md5Value,int offset)
     return (md5Value[0 + startIndex] & 0xFF)
 	| ((md5Value[1 + startIndex] & 0xFF) << 8)
 	| ((md5Value[2 + startIndex] & 0xFF) << 16)
-	| ((md5Value[3 + startIndex] & 0xFF) << 24)
+	| ((md5Value[3 + startIndex] & 0xFF) << 24);
 }
 
-void ConsistentHashDistri::Remove(ServerItem::Ptr pServer)
+void ConsistentHashDistri::Remove(ServerItem::Ptr& pServer)
 {
     std::vector<CycleType::const_iterator> needRemoveList;
-    for(auto const it : mCircle)
+    for(auto it = mCircle.begin();
+	    it != mCircle.end();
+	    ++it)
     {
 	if(it->second == pServer)
         {
@@ -44,17 +49,17 @@ void ConsistentHashDistri::Remove(ServerItem::Ptr pServer)
     }
 }
 
-ServerItem::Ptr ConsistentHashDistri::Get(hash_t hash)
+ServerItem::Ptr& ConsistentHashDistri::Get(hash_t hash)
 {
     auto result = mCircle.find(hash);
     if(result == mCircle.end())
     {
 	result = mCircle.upper_bound(hash);
-	if(result == mCire.end())
+	if(result == mCircle.end())
 	{
 	    result = mCircle.begin();
 	}
     }
-    return *result;
+    return result->second;
 }
 

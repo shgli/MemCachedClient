@@ -1,14 +1,14 @@
 #include "ModuloDistri.h"
-void ModuloDistri::Add(ServerItem::Ptr pServer)
+void ModuloDistri::Add(ServerItem::Ptr& pServer)
 {
     mServers.push_back(pServer);
 }
 
-void ModuloDistri::Remove(ServerItem::Ptr pServer)
+void ModuloDistri::Remove(ServerItem::Ptr& pServer)
 {
     auto itRm = std::find_if(mServers.begin()
 	    ,mServers.end()
-	    ,[](ServerItem::Ptr server)
+	    ,[pServer](ServerItem::Ptr server)
 	    {
 	        return server == pServer;
 	    });

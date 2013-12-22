@@ -14,7 +14,7 @@ public:
 	,mWeight(weight)
     {}
 
-    TcpClient* operator-> () { return mSocket; }
+    TcpClient* operator-> () { return &mSocket; }
 
     const std::string& Host( void ) const { return mHost; }
     int Port( void ) const { return mPort; }
@@ -25,10 +25,10 @@ public:
        	return host + boost::lexical_cast<std::string>(port);
     }
 
-    std::string ToString( void ) const { return ToString(mHost,port);}
+    std::string ToString( void ) const { return ToString(mHost,mPort);}
 
-    void SendRequest(int requestId,const TcpClient::Buffer& buf);
-    void SendRequest(int requestId,const VBuffer& bufs);
+    void SendRequest(int requestId,const ConstBuffer& buf);
+    void SendRequest(int requestId,const VConstBuffer& bufs);
 
     const std::vector<int> PendingRequests() const { return mPendingRequests; }
 

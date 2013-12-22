@@ -1,10 +1,12 @@
+#include <memory>
 #include "ServerList.h"
+#include "DistributeAlgorithm.h"
 ServerList::ServerList(uint32_t replication)
     :mHashFunc(std::hash<std::string>())	
     ,mReplications(replication)
 {}
 
-bool ServerList::Add(const std::string& host,int port,boost::io_service& ioService)
+bool ServerList::Add(const std::string& host,int port,boost::asio::io_service& ioService)
 {
     std::string key = ServerItem::ToString(host,port);
     auto findResult = mServers.find(key);
@@ -14,16 +16,17 @@ bool ServerList::Add(const std::string& host,int port,boost::io_service& ioServi
     }
     else
     {
-	auto itNewServer = mServers.insert(std::make_pair(key,std::make_shared(new ServerItem(ioService,host,port))));
-	if(itNewServer->second)
+	auto itNewServer = mServers.insert(std::make_pair(key,std::make_shared<ServerItem>(ioService,host,port)));
+	if(itNewServer.second)
 	{
-	    itNewServer->OnError.connect([](TcpSocket::ESocketError type,system::error_code ec)
+	    auto& serverItem = itNewServer.first->second;
+	    (*serverItem)->OnError.connect([this,serverItem](TcpClient::ESocketError type,const system::error_code& ec)
 		    {
-		        Remove(itNewServer->second->Host(),itNewServer->second.Port());
+		        Remove(serverItem->Host(),serverItem->Port());
 		    }
 		    );
-	    mDistributeAlgorithm->Add(*itNewServer->second);
-	    OnServerAdded(*itNewServer->first);
+	    mDistributeAlgorithm->Add(serverItem);
+	    OnServerAdded(serverItem);
 	    return true;
 	}
 	return false;
@@ -37,14 +40,14 @@ bool ServerList::Remove(const std::string& host,int port)
     if(findResult != mServers.end())
     {
 	mServers.erase(findResult);
-	mDistributeAlgorithm->Remove(*findResult);
-	OnServerRemoved(*findResult);
+	mDistributeAlgorithm->Remove(findResult->second);
+	OnServerRemoved(findResult->second);
 	return true;
     }
     return false;
 }
 
-ServerItem& ServerList::Get(const std::string& key)
+ServerItem::Ptr& ServerList::Get(const std::string& key)
 {
     return mDistributeAlgorithm->Get(mHashFunc(key));
 }
@@ -53,9 +56,9 @@ void ServerList::SetDistributeAlgorithm(std::unique_ptr<DistributeAlgorithm> alg
 {
     assert(nullptr != algorithm);
     mDistributeAlgorithm = std::move(algorithm);
-    for(auto itServerPair : mServers.begin())
+    for(auto& serverPair : mServers)
     {
-	mDistributeAlgorithm->Add(itServerPair->second);
+	mDistributeAlgorithm->Add(serverPair.second);
     }
 }
 

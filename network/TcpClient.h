@@ -1,14 +1,12 @@
 #ifndef _TCPCLIENT_H
 #define _TCPCLIENT_H
 #include <boost/asio/io_service.hpp>
-#include <boost/asio/buffer.hpp>
+#include <boost/asio/ip/tcp.hpp>
 #include <boost/signals2/signal.hpp>
-#include <boost/function.hpp>
-#include <boost/thread/mutex.hpp>
 #include <boost/noncopyable.hpp>
 #include <SharedBuffer.h>
-using namespace boost;
-class TcpClient:noncopyable
+
+class TcpClient:boost::noncopyable
 {
 public:
     enum ESocketError
@@ -21,9 +19,9 @@ public:
     };
 
 
-    typedef signals2::signal<int (void* const header,VBuffer& body)> HeaderReadedEvent;
-    typedef signals2::signal<void (void* const header,const VBuffer& boday)> BodyReadedEvent;
-    typedef signals2::signal<void (ESocketError type,const system::error_code err)> ErrorEvent;
+    typedef std::function<int (const void *,VBuffer& )> HeaderReadedEvent;
+    typedef std::function<void (const void* ,const VBuffer& )> BodyReadedEvent;
+    typedef signals2::signal<void (ESocketError,const system::error_code&)> ErrorEvent;
     typedef signals2::signal<void ( void )> ClosedEvent;
     typedef signals2::signal<void ()> ConnectedEvent;
 
@@ -36,21 +34,22 @@ public:
     ClosedEvent OnClosed;
 public:
     void Connect(const std::string& host,int port);
-    void Send(const Buffer& buf);
-    void Send(const VBuffer& vbuf);
+    void Send(const ConstBuffer& buf);
+    void Send(const VConstBuffer& vbuf);
     void Close( void );
 
 private:
-    void ReadHeader();
-    void ReadBody(const Buffer& bodyBuf);
+    void Send();
+    void ReadHeader( void );
+    void ReadBody( void );
     void Close4Error(ESocketError type,const system::error_code err);
 
-    VBuffer mWriteBuffers;
-    VBuffer mPendingBuffers;
+    VConstBuffer mWriteBuffers;
+    VConstBuffer mPendingBuffers;
     VBuffer mReadBuffers;
 
     bool mIsInWriting;
-    asio::ip::tcp::socket mSocket;
+    boost::asio::ip::tcp::socket mSocket;
     size_t mHeaderLength;
     char* const mHeaderBuffer;
 };
