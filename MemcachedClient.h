@@ -1,27 +1,46 @@
 #ifndef _MEMCACHEDCLIENT_H
 #define _MEMCACHEDCLIENT_H
-#include <boost/function.hpp>
+#include <functionl>
+#include <atomic>
 #include <boost/noncopyable.hpp>
 #include <boost/pool/object_pool.hpp>
-#include <boost/unordered/unordered_map.hpp>
+#include "RequestItem.h"
+#include "MemLog.h"
 class MemcachedClient
     :boost::noncopyable
 {
 public:
-    MemcachedClient();
+    explicit MemcachedClient(boost::asio::io_service& ioService);
 
     ServerList Servers;
 
-    typedef boost::function<void (const MemResult)> Callback;
+    typedef std::function<void (const MemResult::Ptr&)> Callback;
 
-    const MemResult& Get(const std::string& key,Callback callback = DefaultCallback);
-    
+    const MemGetResult::Ptr Get(const std::string& key,Callback callback = DefaultCallback);
+    const MemGetResult::Ptr Get(const std::string& key,const SharedBuffer& buf,Callback callback = DefaultCallback);
+
 private:
-    static void DefaultCallback(const MemResult&){}
+    void OnServerAdded(const ServerItem& item);
+    void OnServerRemoved(const ServerItem& item);
+    int  OnHeaderReaded(void* const header,std::vector<SharedBuffer>& body);
+    void OnBodayReaded(void* const header,const std::vector<SharedBuffer>& boday);
+    void FinishRequest(RequestMap::iterator,ERequestStatus err);
 
-    boost::object_pool<MemResult> mResultPool;
+    static void DefaultCallback(const MemResult::Ptr&){}
+
+private:
+
+    boost::asio::io_service& mIoService;
     boost::pool<> mRequestPool;
-    boost::unordered_map<std::string,MemResult> mInWorkingResult;
+
+    std::atomic_int mNextRequestId;
+
+    typedef std::unordered_map<int,RequestItem::Ptr> RequestMap;
+    RequestMap mRequests;
+
+    std::mutex mSyncRequest;
+
+    MemLog mLog;
 };
 #endif
  

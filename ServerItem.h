@@ -27,11 +27,18 @@ public:
 
     std::string ToString( void ) const { return ToString(mHost,port);}
 
+    void SendRequest(int requestId,const TcpClient::Buffer& buf);
+    void SendRequest(int requestId,const VBuffer& bufs);
+
+    const std::vector<int> PendingRequests() const { return mPendingRequests; }
+
 private:
     TcpClient mSocket;
     std::string mHost;
     int mPort;
     int mWeight;
+
+    std::vector<int> mPendingRequests;
 };
 #endif
  

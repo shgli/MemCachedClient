@@ -1,24 +1,27 @@
 
 mem=/home/shgli/src/MemCachedClient CD=. filter="*.h *.cpp" {
- DistributeAlgorithm.h
  ConsistentHashDistri.h
- ConsistentHashDistri.cpp
- MemoDistri.h
- MemoDistri.cpp
- ModuloDistri.h
- ModuloDistri.cpp
+ DistributeAlgorithm.h
  MemResult.h
+ MemLog.h
  MemcachedClient.h
  MemcachedCommon.h
+ MemoDistri.h
+ ModuloDistri.h
+ RequestItem.h
  ServerItem.h
  ServerList.h
  SharedBuffer.h
  TcpClient.h
  md5.h
+ ConsistentHashDistri.cpp
  MemResult.cpp
  MemcachedClient.cpp
+ MemoDistri.cpp
+ RequestItem.cpp
  ServerList.cpp
  SharedBuffer.cpp
+ ServerItem.cpp
  TcpClient.cpp
  md5.cpp
 }

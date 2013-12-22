@@ -8,7 +8,6 @@
 #include <boost/noncopyable.hpp>
 #include <SharedBuffer.h>
 using namespace boost;
-class Buffer;
 class TcpClient:noncopyable
 {
 public:
@@ -21,8 +20,6 @@ public:
 	ESocket_BodyBuffer
     };
 
-    typedef SharedBuffer Buffer;
-    typedef std::vector<Buffer> VBuffer;
 
     typedef signals2::signal<int (void* const header,VBuffer& body)> HeaderReadedEvent;
     typedef signals2::signal<void (void* const header,const VBuffer& boday)> BodyReadedEvent;
