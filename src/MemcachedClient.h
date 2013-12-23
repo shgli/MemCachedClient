@@ -20,6 +20,17 @@ public:
     MemGetResult::Ptr Get(const std::string& key,Callback callback = DefaultCallback);
     MemGetResult::Ptr Get(const std::string& key,const Buffer& buf,Callback callback = DefaultCallback);
 
+    MemSetResult::Ptr Set(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback = DefaultCallback);
+    MemAddResult::Ptr Add(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback = DefaultCallback);
+    MemReplaceResult::Ptr Replace(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback = DefaultCallback);
+    MemDeleteResult::Ptr Delete(const std::string& key,Callback callback = DefaultCallback);
+
+    MemIncResult::Ptr Increment(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry = 0xffffffff,Callback callback = DefaultCallback);
+    MemDecResult::Ptr Decrement(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry = 0xffffffff,Callback callback = DefaultCallback);
+
+    MemFlushResult::Ptr Flush(uint32_t expiry,Callback callback = DefaultCallback);
+
+    MemVersionResult::Ptr Version();;
 private:
     typedef boost::unordered_map<int,RequestItem> RequestMap;
 
@@ -28,6 +39,9 @@ private:
     bool OnHeaderReaded(void* header,VBuffer& body);
     void OnBodayReaded(const void* header,const VBuffer& boday);
     void FinishRequest(RequestMap::iterator,ERequestStatus err);
+
+    MemResult::Ptr Store(uint8_t cmd,const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback);
+    MemIncResult::Ptr SelfOp(uint8_t cmd,const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry,Callback callback);
 
     static void DefaultCallback(const MemResult::Ptr&){}
     static void AdjustEndian(protocol_binary_response_header* response);

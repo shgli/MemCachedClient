@@ -63,5 +63,24 @@ public:
 
     virtual bool FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen);
 };
+
+typedef MemResult MemSetResult;
+typedef MemResult MemAddResult;
+typedef MemResult MemDeleteResult;
+
+class MemIncResult:public MemResult
+{
+    typedef MemResult Base;
+    uint64_t mValue;
+public:
+    typedef boost::shared_ptr<MemIncResult> Ptr;
+
+    MemIncResult(const std::string& key);
+
+    uint64_t Value(int i = 0) const { return mValue; }
+    virtual bool FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen);
+};
+
+typedef MemIncResult MemDecResult;
 #endif
  
