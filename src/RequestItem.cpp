@@ -7,7 +7,7 @@ RequestItem::RequestItem(Callback callback,const MemResult::Ptr& result)
 void RequestItem::Notify(ERequestStatus status)
 {
     mResult->Notify(status);
-    if(mCallback)
+    if(!mCallback.empty())
     {
 	mCallback(mResult);
     }

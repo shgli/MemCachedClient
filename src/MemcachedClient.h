@@ -25,7 +25,7 @@ private:
 
     void OnServerAdded(const ServerItem::Ptr& item);
     void OnServerRemoved(const ServerItem::Ptr& item);
-    bool OnHeaderReaded(const void* header,VBuffer& body);
+    bool OnHeaderReaded(void* header,VBuffer& body);
     void OnBodayReaded(const void* header,const VBuffer& boday);
     void FinishRequest(RequestMap::iterator,ERequestStatus err);
 

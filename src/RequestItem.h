@@ -1,7 +1,6 @@
 #ifndef _REQUESTITEM_H
 #define _REQUESTITEM_H
 #include <vector>
-#include <thread>
 #include <string>
 #include "MemResult.h"
 

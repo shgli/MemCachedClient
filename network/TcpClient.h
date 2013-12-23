@@ -19,7 +19,7 @@ public:
     };
 
 
-    typedef boost::function<bool (const void *,VBuffer& )> HeaderReadedEvent;
+    typedef boost::function<bool (void *,VBuffer& )> HeaderReadedEvent;
     typedef boost::function<void (const void* ,const VBuffer& )> BodyReadedEvent;
     typedef signals2::signal<void (ESocketError,const system::error_code&)> ErrorEvent;
     typedef signals2::signal<void ( void )> ClosedEvent;

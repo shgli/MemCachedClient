@@ -26,12 +26,13 @@ void MemcachedClient::OnServerRemoved(const ServerItem::Ptr& item)
     }
 }
 
-bool MemcachedClient::OnHeaderReaded(const void* header,VBuffer& body)
+bool MemcachedClient::OnHeaderReaded(void* header,VBuffer& body)
 {
-    const protocol_binary_response_header* pHeader = static_cast<const protocol_binary_response_header*>(header);
+    protocol_binary_response_header* pHeader = static_cast<protocol_binary_response_header*>(header);
     assert(nullptr != pHeader);
     if(nullptr != pHeader)
     {
+	AdjustEndian(pHeader);
 	int requestId = pHeader->response.opaque;
 	int valueLen = pHeader->response.bodylen - pHeader->response.extlen;
 
@@ -88,10 +89,10 @@ void MemcachedClient::OnBodayReaded(const void* header,const VBuffer& boday)
 
 void MemcachedClient::FinishRequest(RequestMap::iterator requestIt,ERequestStatus err)
 {
-    mRequests.erase(requestIt);
-    mIoService.post([requestIt,err]()
+    mIoService.post([this,requestIt,err]()
 	    {
 	        requestIt->second.Notify(err);
+                mRequests.erase(requestIt);
 	    });
 }
 

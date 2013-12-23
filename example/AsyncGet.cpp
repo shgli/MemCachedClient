@@ -13,7 +13,7 @@ int main(int argc,char** argv)
 	("help","print this help information.")
 	("host,h",value<std::string>(),"host name")
 	("port,p",value<int>(),"port.")
-	("key,k",value<int>(),"key"); 
+	("key,k",value<std::string>(),"key"); 
 
     variables_map vm;
     store(parse_command_line(argc,argv,opts),vm);
