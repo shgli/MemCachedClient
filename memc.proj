@@ -56,6 +56,7 @@ memc=/home/shgli/src/MemCachedClient CD=build filter="*.h *.cpp *.txt" {
  }
  example=example {
   SyncGet.cpp
+  AsyncGet.cpp
   CMakeLists.txt
  }
  network=network {

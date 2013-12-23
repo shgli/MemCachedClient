@@ -20,7 +20,7 @@ bool ServerList::Add(const std::string& host,int port,boost::asio::io_service& i
 	if(itNewServer.second)
 	{
 	    auto& serverItem = itNewServer.first->second;
-	    (*serverItem)->OnError.connect([this,serverItem](TcpClient::ESocketError type,const system::error_code& ec)
+	    (*serverItem)->OnError.connect([this,&serverItem](TcpClient::ESocketError type,const system::error_code& ec)
 		    {
 		        Remove(serverItem->Host(),serverItem->Port());
 		    }
@@ -40,9 +40,9 @@ bool ServerList::Remove(const std::string& host,int port)
     auto findResult = mServers.find(key);
     if(findResult != mServers.end())
     {
-	mServers.erase(findResult);
 	mDistributeAlgorithm->Remove(findResult->second);
 	OnServerRemoved(findResult->second);
+	mServers.erase(findResult);
 	return true;
     }
     return false;

@@ -11,7 +11,7 @@ void MemoDistri::Remove(ServerItem::Ptr& pServer)
 {
     auto const itServer = std::find_if(mBalanceInfos.begin()
 	    ,mBalanceInfos.end()
-	    ,[pServer](const ServerBalanceInfo& info)
+	    ,[&pServer](const ServerBalanceInfo& info)
 	    {
 	        return info.Server == pServer;
 	    });

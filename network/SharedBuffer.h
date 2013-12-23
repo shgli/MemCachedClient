@@ -39,6 +39,15 @@ public:
 
     bool IsNull( void ) const { return nullptr == mData.get();}
 
+    std::string ToString( void ) const 
+    {
+	std::string strValue;
+	strValue.resize(buffer_size(*mData));
+	memcpy(const_cast<void*>((const void*)strValue.c_str()),buffer_cast<void *>(*mData.get()),strValue.size());
+
+	return strValue;
+    }
+
 private:
     static void Free(value_type* pBuffer,D d)
     {

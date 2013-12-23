@@ -40,10 +40,10 @@ void TcpClient::Connect(const std::string& host,int port)
 void TcpClient::ReadHeader()
 {
     asio::async_read(mSocket,
-	    asio::buffer(mHeaderBuffer,4),
+	    asio::buffer(mHeaderBuffer,mHeaderLength),
 	    [this](const system::error_code& ec,std::size_t len)
 	    {
-	       if(!ec && ((len = OnHeader(static_cast<void*const>(mHeaderBuffer),mReadBuffers)) >= 0) && 0 != mReadBuffers.size())
+	       if(!ec && OnHeader(static_cast<void*const>(mHeaderBuffer),mReadBuffers) && 0 != mReadBuffers.size())
 	       {
 	           if(0 != len)
 		   {
@@ -102,7 +102,7 @@ void TcpClient::Send(const ConstBuffer& buf)
 void TcpClient::Send(const VConstBuffer& vbuf)
 {
      mSocket.get_io_service().post(
-        [this,vbuf]()
+        [this,&vbuf]()
         {
             mPendingBuffers.insert(mPendingBuffers.end(),vbuf.begin(),vbuf.end());
 

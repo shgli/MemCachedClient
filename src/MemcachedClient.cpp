@@ -5,6 +5,7 @@
 
 MemcachedClient::MemcachedClient(boost::asio::io_service& ioService)
     :mIoService(ioService)
+    ,mNextRequestId(0)
 {
     Servers.OnServerAdded.connect(std::bind(&MemcachedClient::OnServerAdded,this,std::placeholders::_1));
     Servers.OnServerRemoved.connect(std::bind(&MemcachedClient::OnServerRemoved,this,std::placeholders::_1));
