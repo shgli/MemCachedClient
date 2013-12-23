@@ -40,6 +40,11 @@ public:
 
     bool IsNull( void ) const { return nullptr == mData.get();}
 
+    size_t Size( void )
+    {
+	return buffer_size(*mData.get());
+    }
+
     std::string ToString( void ) const 
     {
 	std::string strValue;
