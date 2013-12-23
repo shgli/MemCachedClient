@@ -47,7 +47,7 @@ public:
     static const std::string StrError(int error);
 
 //internal:
-    virtual bool FillReceiveBuffer(VBuffer& bufs,int valueLen);
+    virtual bool FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen);
     void Notify(ERequestStatus err);
 };
 
@@ -61,7 +61,7 @@ public:
 
     int Flag( void ) const { return mFlag; }
 
-    virtual bool FillReceiveBuffer(VBuffer& bufs,int valueLen);
+    virtual bool FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen);
 };
 #endif
  

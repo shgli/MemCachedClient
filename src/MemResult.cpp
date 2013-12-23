@@ -21,7 +21,7 @@ ERequestStatus MemResult::Finish( void )
 }
 
 
-bool MemResult::FillReceiveBuffer(VBuffer& bufs,int valueLen)
+bool MemResult::FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen)
 {
     if(mValue.IsNull())
     {
@@ -40,8 +40,11 @@ MemGetResult::MemGetResult(const std::string& key,const Buffer& buffer)
     :Base(key,buffer)
 {}
 
-bool MemGetResult::FillReceiveBuffer(VBuffer& bufs,int valueLen)
+bool MemGetResult::FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen)
 {
-    bufs.push_back(Buffer(&mFlag,4));
-    return Base::FillReceiveBuffer(bufs,valueLen);
+    if(ERequest_SUCCESS == status)
+    {
+        bufs.push_back(Buffer(&mFlag,4));
+    }
+    return Base::FillReceiveBuffer(status,bufs,valueLen);
 }

@@ -46,7 +46,7 @@ bool MemcachedClient::OnHeaderReaded(void* header,VBuffer& body)
 	    }
 	    else
 	    {
-	        return requestIt->second.FillReceiveBuffer(body,valueLen);
+	        return requestIt->second.FillReceiveBuffer((ERequestStatus)pHeader->response.status,body,valueLen);
 	    }
 	}
 	else
@@ -108,6 +108,7 @@ void MemcachedClient::FinishRequest(RequestMap::iterator requestIt,ERequestStatu
 {
     auto& response = header->response;
     response.keylen = ntohs(response.keylen);
+    response.status = ntohs(response.status);
     response.bodylen = ntohl(response.bodylen);
     response.cas = ntohll(response.cas);
     response.status = ntohs(response.status);
