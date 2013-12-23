@@ -1,9 +1,7 @@
 #ifndef _SERVERLIST_H
 #define _SERVERLIST_H
 #include <string>
-#include <memory>
-#include <unordered_map>
-#include <functional>
+#include <boost/unordered/unordered_map.hpp>
 #include <boost/signals2.hpp>
 #include <boost/asio/io_service.hpp>
 #include "ServerItem.h"
@@ -14,7 +12,7 @@ using namespace boost;
 class ServerList
 {
 public:
-    typedef std::function<hash_t (const std::string&)> HashFunc;
+    typedef boost::function<hash_t (const std::string&)> HashFunc;
     typedef signals2::signal<void (const ServerItem::Ptr&)> ServerEvent;
 
     ServerEvent OnServerAdded;
@@ -32,10 +30,10 @@ public:
     void SetDistributeAlgorithm(DistributeAlgorithm* algorithm);
     void SetHashAlogrithm(HashFunc hFunc) { mHashFunc = hFunc; }
 
-    const std::unordered_map<std::string,ServerItem::Ptr> Items( void ) const { return mServers; }
+    const boost::unordered_map<std::string,ServerItem::Ptr> Items( void ) const { return mServers; }
 private:
-    std::unordered_map<std::string,ServerItem::Ptr> mServers;
-    std::unique_ptr<DistributeAlgorithm> mDistributeAlgorithm;
+    boost::unordered_map<std::string,ServerItem::Ptr> mServers;
+    DistributeAlgorithm* mDistributeAlgorithm;
     HashFunc mHashFunc;
     uint32_t mReplications;
 };

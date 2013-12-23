@@ -1,19 +1,20 @@
 #ifndef _SHAREDBUFFER_H
 #define _SHAREDBUFFER_H
-#include <functional>
-#include <memory>
+#include <boost/smart_ptr/shared_ptr.hpp>
+#include <boost/function.hpp>
 #include <boost/asio/buffer.hpp>
 #include <boost/pool/object_pool.hpp>
+#include <boost/bind.hpp>
 using namespace boost;
 using namespace boost::asio;
 template<typename value_type>
 class SharedBuffer
 {
 public:
-    typedef std::function<void (void* data)> D;
+    typedef boost::function<void (void* data)> D;
 
     SharedBuffer(void* data,size_t size,D d = DefaultD)
-	:mData(gBufferPool.construct(data,size),std::bind(Free,std::placeholders::_1,d))
+	:mData(gBufferPool.construct(data,size),boost::bind(Free,_1,d))
     {}
 
     SharedBuffer(){}
@@ -22,7 +23,7 @@ public:
 
     void Reset(void* data,size_t size,D d = DefaultD)
     {
-          mData.reset(gBufferPool.construct(data,size),std::bind(Free,std::placeholders::_1,d));
+          mData.reset(gBufferPool.construct(data,size),boost::bind(Free,_1,d));
     }
 
     template<typename T>
@@ -57,7 +58,7 @@ private:
 
     static void DefaultD(const void* data) {}
 
-    std::shared_ptr<value_type> mData;
+    boost::shared_ptr<value_type> mData;
     static boost::object_pool<value_type> gBufferPool;
 };
 

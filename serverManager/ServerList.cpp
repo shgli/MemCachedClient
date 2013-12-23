@@ -1,4 +1,4 @@
-#include <memory>
+#include <boost/make_shared.hpp>
 #include "ServerList.h"
 #include "DistributeAlgorithm.h"
 ServerList::ServerList(uint32_t replication)
@@ -16,7 +16,7 @@ bool ServerList::Add(const std::string& host,int port,boost::asio::io_service& i
     }
     else
     {
-	auto itNewServer = mServers.insert(std::make_pair(key,std::make_shared<ServerItem>(ioService,host,port)));
+	auto itNewServer = mServers.insert(std::make_pair(key,boost::make_shared<ServerItem>(ioService,host,port)));
 	if(itNewServer.second)
 	{
 	    auto& serverItem = itNewServer.first->second;
@@ -56,7 +56,7 @@ ServerItem::Ptr& ServerList::Get(const std::string& key)
 void ServerList::SetDistributeAlgorithm(DistributeAlgorithm* algorithm)
 {
     assert(nullptr != algorithm);
-    mDistributeAlgorithm.reset(algorithm);
+    mDistributeAlgorithm =  algorithm;
     for(auto& serverPair : mServers)
     {
 	mDistributeAlgorithm->Add(serverPair.second);

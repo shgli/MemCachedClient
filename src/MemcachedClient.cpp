@@ -1,4 +1,5 @@
 #include <string.h>
+#include <boost/make_shared.hpp>
 #include "MemcachedClient.h"
 #include "HostNetConversion.h"
 #include <memcached/protocol_binary.h>
@@ -7,14 +8,14 @@ MemcachedClient::MemcachedClient(boost::asio::io_service& ioService)
     :mIoService(ioService)
     ,mNextRequestId(0)
 {
-    Servers.OnServerAdded.connect(std::bind(&MemcachedClient::OnServerAdded,this,std::placeholders::_1));
-    Servers.OnServerRemoved.connect(std::bind(&MemcachedClient::OnServerRemoved,this,std::placeholders::_1));
+    Servers.OnServerAdded.connect(boost::bind(&MemcachedClient::OnServerAdded,this,_1));
+    Servers.OnServerRemoved.connect(boost::bind(&MemcachedClient::OnServerRemoved,this,_1));
 }
 
 void MemcachedClient::OnServerAdded(const ServerItem::Ptr& item)
 {
-    (*item)->OnHeader = std::bind(&MemcachedClient::OnHeaderReaded,this,std::placeholders::_1,std::placeholders::_2);
-    (*item)->OnBody = std::bind(&MemcachedClient::OnBodayReaded,this,std::placeholders::_1,std::placeholders::_2);
+    (*item)->OnHeader = boost::bind(&MemcachedClient::OnHeaderReaded,this,_1,_2);
+    (*item)->OnBody = boost::bind(&MemcachedClient::OnBodayReaded,this,_1,_2);
 }
 
 void MemcachedClient::OnServerRemoved(const ServerItem::Ptr& item)
@@ -119,7 +120,7 @@ MemGetResult::Ptr MemcachedClient::Get(const std::string& key,const Buffer& buf,
 
     size_t requestSize = sizeof(protocol_binary_request_get) + key.size();
 
-    MemGetResult::Ptr result = std::make_shared<MemGetResult>(key,buf);
+    MemGetResult::Ptr result = boost::make_shared<MemGetResult>(key,buf);
     MemResult::Ptr baseResult = result;
     mRequests.insert(std::make_pair(requestId,RequestItem(callback,baseResult)));
 

@@ -1,7 +1,6 @@
 #ifndef _MEMODISTRI_H
 #define _MEMODISTRI_H
-#include <memory>
-#include <unordered_map>
+#include <boost/unordered/unordered_map.hpp>
 #include "DistributeAlgorithm.h"
 class MemoDistri:public DistributeAlgorithm
 {
@@ -11,7 +10,7 @@ public:
     virtual ServerItem::Ptr& Get(hash_t hash);
 
 private:
-    typedef std::unordered_map<long,ServerItem::Ptr> KeyServerMap;
+    typedef boost::unordered_map<long,ServerItem::Ptr> KeyServerMap;
     KeyServerMap mKeyServerMapping;
     struct ServerBalanceInfo
     {

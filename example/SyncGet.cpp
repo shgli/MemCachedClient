@@ -21,7 +21,7 @@ int main(int argc,char** argv)
     value.resize(13);
     auto result = client.Get("Test",Buffer((void*)value.c_str(),13));
 
-    std::thread t(std::bind(fun,&io));
+    std::thread t(boost::bind(fun,&io));
     if(ERequest_SUCCESS == result->Finish())
     {
 	std::cout<<value<<std::endl;

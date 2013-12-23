@@ -7,14 +7,14 @@ MemResult::MemResult(const std::string& key,const Buffer& buffer)
 
 void MemResult::Notify(ERequestStatus err)
 {
-    std::unique_lock<std::mutex> lock(mSyncMut);
+    boost::unique_lock<boost::mutex> lock(mSyncMut);
     mErrorCode = err;
     mSyncEvent.notify_all();
 }
 
 ERequestStatus MemResult::Finish( void )
 {
-    std::unique_lock<std::mutex> lock(mSyncMut);
+    boost::unique_lock<boost::mutex> lock(mSyncMut);
     mSyncEvent.wait(lock);
 
     return mErrorCode;

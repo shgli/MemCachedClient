@@ -21,7 +21,7 @@ public:
     MemGetResult::Ptr Get(const std::string& key,const Buffer& buf,Callback callback = DefaultCallback);
 
 private:
-    typedef std::unordered_map<int,RequestItem> RequestMap;
+    typedef boost::unordered_map<int,RequestItem> RequestMap;
 
     void OnServerAdded(const ServerItem::Ptr& item);
     void OnServerRemoved(const ServerItem::Ptr& item);
@@ -40,7 +40,7 @@ private:
 
     RequestMap mRequests;
 
-    std::mutex mSyncRequest;
+    boost::mutex mSyncRequest;
 
     MemLog mLog;
 };

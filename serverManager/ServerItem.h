@@ -5,7 +5,7 @@
 class ServerItem
 {
 public:
-    typedef std::shared_ptr<ServerItem> Ptr;
+    typedef boost::shared_ptr<ServerItem> Ptr;
 
     explicit ServerItem(boost::asio::io_service& ioService,const std::string& host,int port = 11211,int weight = 1)
 	:mSocket(ioService,24)

@@ -1,8 +1,7 @@
 #ifndef _MEMRESULT_H
 #define _MEMRESULT_H
-#include <mutex>
-#include <condition_variable>
-#include <memory>
+#include <boost/thread/mutex.hpp>
+#include <boost/thread/condition_variable.hpp>
 #include <boost/pool/pool.hpp>
 #include <memcached/protocol_binary.h>
 #include "MemcachedCommon.h"
@@ -29,11 +28,11 @@ class MemResult
     std::string mKey;
     ERequestStatus mErrorCode;
 
-    std::mutex mSyncMut;
-    std::condition_variable mSyncEvent;
+    boost::mutex mSyncMut;
+    boost::condition_variable mSyncEvent;
     Buffer mValue;
 public:
-    typedef std::shared_ptr<MemResult> Ptr;
+    typedef boost::shared_ptr<MemResult> Ptr;
 
     MemResult(const std::string& key,const Buffer& buffer);
 
@@ -57,7 +56,7 @@ class MemGetResult:public MemResult
     typedef MemResult Base;
     int mFlag;
 public:
-    typedef std::shared_ptr<MemGetResult> Ptr;
+    typedef boost::shared_ptr<MemGetResult> Ptr;
     MemGetResult(const std::string& key,const Buffer& buffer);
 
     int Flag( void ) const { return mFlag; }
