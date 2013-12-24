@@ -67,6 +67,7 @@ public:
 typedef MemResult MemSetResult;
 typedef MemResult MemAddResult;
 typedef MemResult MemDeleteResult;
+typedef MemResult MemReplaceResult;
 
 class MemIncResult:public MemResult
 {

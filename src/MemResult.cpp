@@ -49,11 +49,11 @@ bool MemGetResult::FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int val
     return Base::FillReceiveBuffer(status,bufs,valueLen);
 }
 
-bool MemcachedClient::FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen)
+bool MemIncResult::FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen)
 {
     if(ERequest_SUCCESS == status)
     {
-        bufs.push_back(&mValue,8);
+        bufs.push_back(Buffer(&mValue,8));
 	return true;
     }
     else
