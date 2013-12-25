@@ -40,7 +40,7 @@ public:
 
     bool IsNull( void ) const { return nullptr == mData.get();}
 
-    size_t Size( void )
+    size_t Size( void ) const
     {
 	return buffer_size(*mData.get());
     }

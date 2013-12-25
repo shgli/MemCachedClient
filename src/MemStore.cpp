@@ -1,3 +1,5 @@
+#include <cstdint>
+#include <boost/make_shared.hpp>
 #include <memcached/protocol_binary.h>
 #include "MemcachedClient.h"
 MemSetResult::Ptr MemcachedClient::Store(uint8_t cmd
@@ -12,7 +14,7 @@ MemSetResult::Ptr MemcachedClient::Store(uint8_t cmd
     auto server = Servers.Get(key);
 
 
-    MemSetResult::Ptr result = boost::make_shared<MemSetResult>(key,buf);
+    MemSetResult::Ptr result = boost::make_shared<MemSetResult>(key,Buffer());
     MemResult::Ptr baseResult = result;
     mRequests.insert(std::make_pair(requestId,RequestItem(callback,baseResult)));
 
@@ -41,10 +43,10 @@ MemSetResult::Ptr MemcachedClient::Store(uint8_t cmd
 
     memcpy(requestBuf.GetBody<protocol_binary_request_get>(),static_cast<const void*>(key.c_str()),key.size());
 
-    ConstVBuffer buf;
-    buf.push_back(requestBuf);
-    buf.push_back(buf);
-    server->SendRequest(requestId,buf);
+    VConstBuffer vbuf;
+    vbuf.push_back(requestBuf);
+    vbuf.push_back(buf);
+    server->SendRequest(requestId,vbuf);
 
     return result;
 }

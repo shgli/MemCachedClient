@@ -49,6 +49,10 @@ bool MemGetResult::FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int val
     return Base::FillReceiveBuffer(status,bufs,valueLen);
 }
 
+MemIncResult::MemIncResult(const std::string& key)
+    :MemResult(key,Buffer())
+{}
+
 bool MemIncResult::FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen)
 {
     if(ERequest_SUCCESS == status)

@@ -83,5 +83,8 @@ public:
 };
 
 typedef MemIncResult MemDecResult;
+
+typedef MemResult MemVersionResult;
+typedef MemResult MemFlushResult;
 #endif
  

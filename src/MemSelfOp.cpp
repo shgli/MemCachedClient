@@ -1,3 +1,5 @@
+#include <cstdint>
+#include <boost/make_shared.hpp>
 #include <memcached/protocol_binary.h>
 #include "HostNetConversion.h"
 #include "MemcachedClient.h"
@@ -8,7 +10,7 @@ MemIncResult::Ptr MemcachedClient::SelfOp(uint8_t cmd,const std::string& key,uin
     auto server = Servers.Get(key);
 
 
-    MemIncResult::Ptr result = boost::make_shared<MemIncResult>(key,buf);
+    MemIncResult::Ptr result = boost::make_shared<MemIncResult>(key);
     MemResult::Ptr baseResult = result;
     mRequests.insert(std::make_pair(requestId,RequestItem(callback,baseResult)));
 
@@ -43,12 +45,12 @@ MemIncResult::Ptr MemcachedClient::SelfOp(uint8_t cmd,const std::string& key,uin
 
 }
 
-MemIncResult::Ptr MemcachedClient::Increment(uint8_t cmd,const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry,Callback callback)
+MemIncResult::Ptr MemcachedClient::Increment(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry,Callback callback)
 {
     return SelfOp(PROTOCOL_BINARY_CMD_INCREMENT,key,delta,initValue,expiry,callback);
 }
 
-MemDecResult::Ptr MemcachedClient::Decrement(uint8_t cmd,const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry,Callback callback)
+MemDecResult::Ptr MemcachedClient::Decrement(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry,Callback callback)
 {
     return SelfOp(PROTOCOL_BINARY_CMD_DECREMENT,key,delta,initValue,expiry,callback);
 }

@@ -1,14 +1,16 @@
+#include <boost/make_shared.hpp>
+#include <cstdint>
 #include <memcached/protocol_binary.h>
 #include "MemcachedClient.h"
 
-MemDeleteResult::Ptr MemcachedClient::Delete(const std::string& key,Callback callback = DefaultCallback)
+MemDeleteResult::Ptr MemcachedClient::Delete(const std::string& key,Callback callback)
 {
     int requestId = mNextRequestId.fetch_add(1);
 
     auto server = Servers.Get(key);
 
 
-    MemDeleteResult::Ptr result = boost::make_shared<MemDeleteResult>(key,buf);
+    MemDeleteResult::Ptr result = boost::make_shared<MemDeleteResult>(key,Buffer());
     MemResult::Ptr baseResult = result;
     mRequests.insert(std::make_pair(requestId,RequestItem(callback,baseResult)));
 
