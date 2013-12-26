@@ -1,12 +1,13 @@
 #include <cstdint>
+#include <boost/make_shared.hpp>
 #include <memcached/protocol_binary.h>
 #include "MemcachedClient.h"
-MemVersionResult::Ptr MemcachedClient::Version(ServerItem::Ptr pServer)
+MemVersionResult::Ptr MemcachedClient::Version(ServerItem::Ptr pServer,Callback callback)
 {
     int requestId = mNextRequestId.fetch_add(1);
 
 
-    MemVersionResult::Ptr result = boost::make_shared<MemVersionResult>(key,ConstBuffer());
+    MemVersionResult::Ptr result = boost::make_shared<MemVersionResult>("version",Buffer());
     MemResult::Ptr baseResult = result;
     mRequests.insert(std::make_pair(requestId,RequestItem(callback,baseResult)));
 
@@ -29,7 +30,7 @@ MemVersionResult::Ptr MemcachedClient::Version(ServerItem::Ptr pServer)
     request.request.cas = 0;
     AdjustEndian(&request);
 
-    server->SendRequest(requestId,requestBuf);
+    pServer->SendRequest(requestId,requestBuf);
 
     return result;
 }

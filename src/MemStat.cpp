@@ -1,12 +1,13 @@
 #include <cstdint>
+#include <boost/make_shared.hpp>
 #include <memcached/protocol_binary.h>
 #include "MemcachedClient.h"
-MemStatResult::Ptr MemcachedClient::Stat(ServerItem::Ptr pServer,const std::string& key)
+MemStatResult::Ptr MemcachedClient::Stat(ServerItem::Ptr pServer,const std::string& key,Callback callback)
 {
     int requestId = mNextRequestId.fetch_add(1);
 
 
-    MemVersionResult::Ptr result = boost::make_shared<MemVersionResult>(key,ConstBuffer());
+    MemStatResult::Ptr result = boost::make_shared<MemStatResult>(key,Buffer());
     MemResult::Ptr baseResult = result;
     mRequests.insert(std::make_pair(requestId,RequestItem(callback,baseResult)));
 
@@ -30,7 +31,7 @@ MemStatResult::Ptr MemcachedClient::Stat(ServerItem::Ptr pServer,const std::stri
     AdjustEndian(&request);
 
     memcpy(requestBuf.GetBody<protocol_binary_request_stats>(),static_cast<const void*>(key.c_str()),key.size());
-    server->SendRequest(requestId,requestBuf);
+    pServer->SendRequest(requestId,requestBuf);
 
     return result;
 }

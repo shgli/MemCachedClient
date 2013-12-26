@@ -30,9 +30,9 @@ public:
 
     MemFlushResult::Ptr Flush(ServerItem::Ptr pServer,uint32_t expiry,Callback callback = DefaultCallback);
 
-    MemVersionResult::Ptr Version(ServerItem::Ptr pServer);;
+    MemVersionResult::Ptr Version(ServerItem::Ptr pServer,Callback callback = DefaultCallback);
 
-    MemStatResult::Ptr Stat(ServerItem::Ptr pServer,const std::string& key);
+    MemStatResult::Ptr Stat(ServerItem::Ptr pServer,const std::string& key,Callback callback = DefaultCallback);
 private:
     typedef boost::unordered_map<int,RequestItem> RequestMap;
 
