@@ -53,6 +53,18 @@ ServerItem::Ptr& ServerList::Get(const std::string& key)
     return mDistributeAlgorithm->Get(mHashFunc(key));
 }
 
+ServerItem::Ptr ServerList::Get(const std::string& host,int port)
+{
+    std::string key = ServerItem::ToString(host,port);
+    auto findResult = mServers.find(key);
+    if(findResult != mServers.end())
+    {
+	return findResult->second;
+    }
+
+    return nullptr;
+ }
+
 void ServerList::SetDistributeAlgorithm(DistributeAlgorithm* algorithm)
 {
     assert(nullptr != algorithm);

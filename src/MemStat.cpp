@@ -1,17 +1,16 @@
 #include <cstdint>
-#include <boost/make_shared.hpp>
 #include <memcached/protocol_binary.h>
 #include "MemcachedClient.h"
-MemFlushResult::Ptr MemcachedClient::Flush(ServerItem::Ptr server,uint32_t expiry,Callback callback)
+MemStatResult::Ptr MemcachedClient::Stat(ServerItem::Ptr pServer,const std::string& key)
 {
     int requestId = mNextRequestId.fetch_add(1);
 
 
-    MemFlushResult::Ptr result = boost::make_shared<MemFlushResult>("flush",Buffer());
+    MemVersionResult::Ptr result = boost::make_shared<MemVersionResult>(key,ConstBuffer());
     MemResult::Ptr baseResult = result;
     mRequests.insert(std::make_pair(requestId,RequestItem(callback,baseResult)));
 
-    size_t requestSize = sizeof(protocol_binary_request_flush);
+    size_t requestSize = sizeof(protocol_binary_request_stats);
     ConstBuffer requestBuf(malloc(requestSize)
 	    ,requestSize
 	    ,[this](void* pData)
@@ -20,8 +19,8 @@ MemFlushResult::Ptr MemcachedClient::Flush(ServerItem::Ptr server,uint32_t expir
 	    });
     auto& request = requestBuf.GetHeader<protocol_binary_request_header>();
     request.request.magic = PROTOCOL_BINARY_REQ;
-    request.request.opcode = PROTOCOL_BINARY_CMD_FLUSH;
-    request.request.keylen = 0;
+    request.request.opcode = PROTOCOL_BINARY_CMD_STAT;
+    request.request.keylen = key.size();
     request.request.extlen = 0;
     request.request.datatype = 0;
     request.request.reserved = 0;
@@ -30,10 +29,9 @@ MemFlushResult::Ptr MemcachedClient::Flush(ServerItem::Ptr server,uint32_t expir
     request.request.cas = 0;
     AdjustEndian(&request);
 
-    auto& flushRequest = requestBuf.GetHeader<protocol_binary_request_flush>();
-    flushRequest.message.body.expiration = htonl(expiry);
-
+    memcpy(requestBuf.GetBody<protocol_binary_request_stats>(),static_cast<const void*>(key.c_str()),key.size());
     server->SendRequest(requestId,requestBuf);
 
     return result;
 }
+

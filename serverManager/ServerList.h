@@ -25,6 +25,7 @@ public:
     bool Remove(const std::string& host,int port);
 
     ServerItem::Ptr& Get(const std::string& key);
+    ServerItem::Ptr Get(const std::string& host,int port);
     size_t Count( void ) { return mServers.size(); }
 
     void SetDistributeAlgorithm(DistributeAlgorithm* algorithm);

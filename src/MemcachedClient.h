@@ -28,9 +28,11 @@ public:
     MemIncResult::Ptr Increment(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry = 0xffffffff,Callback callback = DefaultCallback);
     MemDecResult::Ptr Decrement(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry = 0xffffffff,Callback callback = DefaultCallback);
 
-    MemFlushResult::Ptr Flush(uint32_t expiry,Callback callback = DefaultCallback);
+    MemFlushResult::Ptr Flush(ServerItem::Ptr pServer,uint32_t expiry,Callback callback = DefaultCallback);
 
-    MemVersionResult::Ptr Version();;
+    MemVersionResult::Ptr Version(ServerItem::Ptr pServer);;
+
+    MemStatResult::Ptr Stat(ServerItem::Ptr pServer,const std::string& key);
 private:
     typedef boost::unordered_map<int,RequestItem> RequestMap;
 

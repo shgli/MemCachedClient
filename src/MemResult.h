@@ -86,5 +86,6 @@ typedef MemIncResult MemDecResult;
 
 typedef MemResult MemVersionResult;
 typedef MemResult MemFlushResult;
+typedef MemResult MemStatResult;
 #endif
  

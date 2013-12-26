@@ -20,11 +20,6 @@ ARCHITECTURE_ID	build/CMakeFiles/2.8.11.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	2
 ARCHITECTURE_ID	build/CMakeFiles/2.8.11.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	301;"	d	file:
 ARCHITECTURE_ID	build/CMakeFiles/2.8.11.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	304;"	d	file:
 ARCHITECTURE_ID	build/CMakeFiles/2.8.11.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	308;"	d	file:
-Add	install/include/serverManager/ConsistentHashDistri.h	/^    virtual void Add(ServerItem::Ptr& pServer);$/;"	p	class:ConsistentHashDistri	access:public	signature:(ServerItem::Ptr& pServer)
-Add	install/include/serverManager/DistributeAlgorithm.h	/^    virtual void Add(ServerItem::Ptr& pServer) = 0;$/;"	p	class:DistributeAlgorithm	access:public	signature:(ServerItem::Ptr& pServer)
-Add	install/include/serverManager/MemoDistri.h	/^    virtual void Add(ServerItem::Ptr& pServer);$/;"	p	class:MemoDistri	access:public	signature:(ServerItem::Ptr& pServer)
-Add	install/include/serverManager/ModuloDistri.h	/^    virtual void Add(ServerItem::Ptr& pServer);$/;"	p	class:ModuloDistri	access:public	signature:(ServerItem::Ptr& pServer)
-Add	install/include/serverManager/ServerList.h	/^    bool Add(const std::string& host,int port,boost::asio::io_service& ioService);$/;"	p	class:ServerList	access:public	signature:(const std::string& host,int port,boost::asio::io_service& ioService)
 Add	serverManager/ConsistentHashDistri.cpp	/^void ConsistentHashDistri::Add(ServerItem::Ptr& pServer)$/;"	f	class:ConsistentHashDistri	signature:(ServerItem::Ptr& pServer)
 Add	serverManager/ConsistentHashDistri.h	/^    virtual void Add(ServerItem::Ptr& pServer);$/;"	p	class:ConsistentHashDistri	access:public	signature:(ServerItem::Ptr& pServer)
 Add	serverManager/DistributeAlgorithm.h	/^    virtual void Add(ServerItem::Ptr& pServer) = 0;$/;"	p	class:DistributeAlgorithm	access:public	signature:(ServerItem::Ptr& pServer)
@@ -34,8 +29,8 @@ Add	serverManager/ModuloDistri.cpp	/^void ModuloDistri::Add(ServerItem::Ptr& pSe
 Add	serverManager/ModuloDistri.h	/^    virtual void Add(ServerItem::Ptr& pServer);$/;"	p	class:ModuloDistri	access:public	signature:(ServerItem::Ptr& pServer)
 Add	serverManager/ServerList.cpp	/^bool ServerList::Add(const std::string& host,int port,boost::asio::io_service& ioService)$/;"	f	class:ServerList	signature:(const std::string& host,int port,boost::asio::io_service& ioService)
 Add	serverManager/ServerList.h	/^    bool Add(const std::string& host,int port,boost::asio::io_service& ioService);$/;"	p	class:ServerList	access:public	signature:(const std::string& host,int port,boost::asio::io_service& ioService)
-AdjustEndian	install/include/memclient/MemcachedClient.h	/^    static void AdjustEndian(protocol_binary_request_header* request);$/;"	p	class:MemcachedClient	access:private	signature:(protocol_binary_request_header* request)
-AdjustEndian	install/include/memclient/MemcachedClient.h	/^    static void AdjustEndian(protocol_binary_response_header* response);$/;"	p	class:MemcachedClient	access:private	signature:(protocol_binary_response_header* response)
+Add	src/MemStore.cpp	/^MemAddResult::Ptr MemcachedClient::Add(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback)$/;"	f	class:MemcachedClient	signature:(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback)
+Add	src/MemcachedClient.h	/^    MemAddResult::Ptr Add(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback = DefaultCallback)
 AdjustEndian	src/MemcachedClient.cpp	/^\/*static*\/void MemcachedClient::AdjustEndian(protocol_binary_request_header* header)$/;"	f	class:MemcachedClient	signature:(protocol_binary_request_header* header)
 AdjustEndian	src/MemcachedClient.cpp	/^\/*static*\/void MemcachedClient::AdjustEndian(protocol_binary_response_header* header)$/;"	f	class:MemcachedClient	signature:(protocol_binary_response_header* header)
 AdjustEndian	src/MemcachedClient.h	/^    static void AdjustEndian(protocol_binary_request_header* request);$/;"	p	class:MemcachedClient	access:private	signature:(protocol_binary_request_header* request)
@@ -43,13 +38,10 @@ AdjustEndian	src/MemcachedClient.h	/^    static void AdjustEndian(protocol_binar
 BOOST_AUTO_TEST_CASE	test/SharedBufferTest.cpp	/^    BOOST_AUTO_TEST_CASE(Test1)$/;"	f	signature:(Test1)
 BOOST_TEST_DYN_LINK	test/SharedBufferTest.cpp	1;"	d	file:
 BOOST_TEST_MODULE	test/SharedBufferTest.cpp	2;"	d	file:
-BUFFER_SIZE	install/include/utils/md5.h	/^	enum { BUFFER_SIZE = 1024 };$/;"	e	enum:MD5::__anon1
-BUFFER_SIZE	utils/md5.h	/^	enum { BUFFER_SIZE = 1024 };$/;"	e	enum:MD5::__anon2
-Base	install/include/memclient/MemResult.h	/^    typedef MemResult Base;$/;"	t	class:MemGetResult	access:private
+BUFFER_SIZE	utils/md5.h	/^	enum { BUFFER_SIZE = 1024 };$/;"	e	enum:MD5::__anon1
 Base	src/MemResult.h	/^    typedef MemResult Base;$/;"	t	class:MemGetResult	access:private
-BodyReadedEvent	install/include/network/TcpClient.h	/^    typedef std::function<void (const void* ,const VBuffer& )> BodyReadedEvent;$/;"	t	class:TcpClient	access:public
-BodyReadedEvent	network/TcpClient.h	/^    typedef std::function<void (const void* ,const VBuffer& )> BodyReadedEvent;$/;"	t	class:TcpClient	access:public
-Buffer	install/include/network/SharedBuffer.h	/^typedef SharedBuffer<mutable_buffer> Buffer;$/;"	t
+Base	src/MemResult.h	/^    typedef MemResult Base;$/;"	t	class:MemIncResult	access:private
+BodyReadedEvent	network/TcpClient.h	/^    typedef boost::function<void (const void* ,const VBuffer& )> BodyReadedEvent;$/;"	t	class:TcpClient	access:public
 Buffer	network/SharedBuffer.h	/^typedef SharedBuffer<mutable_buffer> Buffer;$/;"	t
 CMAKE_BINARY_DIR	build/Makefile	/^CMAKE_BINARY_DIR = \/home\/shgli\/src\/MemCachedClient\/build$/;"	m
 CMAKE_BINARY_DIR	build/example/Makefile	/^CMAKE_BINARY_DIR = \/home\/shgli\/src\/MemCachedClient\/build$/;"	m
@@ -249,72 +241,48 @@ COMPILER_VERSION_TWEAK	build/CMakeFiles/2.8.11.2/CompilerIdC/CMakeCCompilerId.c	
 COMPILER_VERSION_TWEAK	build/CMakeFiles/2.8.11.2/CompilerIdC/CMakeCCompilerId.c	20;"	d	file:
 COMPILER_VERSION_TWEAK	build/CMakeFiles/2.8.11.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	149;"	d	file:
 COMPILER_VERSION_TWEAK	build/CMakeFiles/2.8.11.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	25;"	d	file:
-Callback	install/include/memclient/RequestItem.h	/^typedef std::function<void (const MemResult::Ptr&)> Callback;$/;"	t
-Callback	src/RequestItem.h	/^typedef std::function<void (const MemResult::Ptr&)> Callback;$/;"	t
-Close	install/include/network/TcpClient.h	/^    void Close( void );$/;"	p	class:TcpClient	access:public	signature:( void )
+Callback	src/RequestItem.h	/^typedef boost::function<void (const MemResult::Ptr&)> Callback;$/;"	t
 Close	network/TcpClient.cpp	/^void TcpClient::Close( void )$/;"	f	class:TcpClient	signature:( void )
 Close	network/TcpClient.h	/^    void Close( void );$/;"	p	class:TcpClient	access:public	signature:( void )
-Close4Error	install/include/network/TcpClient.h	/^    void Close4Error(ESocketError type,const system::error_code err);$/;"	p	class:TcpClient	access:private	signature:(ESocketError type,const system::error_code err)
 Close4Error	network/TcpClient.cpp	/^void TcpClient::Close4Error(ESocketError type,const system::error_code err)$/;"	f	class:TcpClient	signature:(ESocketError type,const system::error_code err)
 Close4Error	network/TcpClient.h	/^    void Close4Error(ESocketError type,const system::error_code err);$/;"	p	class:TcpClient	access:private	signature:(ESocketError type,const system::error_code err)
-ClosedEvent	install/include/network/TcpClient.h	/^    typedef signals2::signal<void ( void )> ClosedEvent;$/;"	t	class:TcpClient	access:public
 ClosedEvent	network/TcpClient.h	/^    typedef signals2::signal<void ( void )> ClosedEvent;$/;"	t	class:TcpClient	access:public
-Connect	install/include/network/TcpClient.h	/^    void Connect(const std::string& host,int port);$/;"	p	class:TcpClient	access:public	signature:(const std::string& host,int port)
 Connect	network/TcpClient.cpp	/^void TcpClient::Connect(const std::string& host,int port)$/;"	f	class:TcpClient	signature:(const std::string& host,int port)
 Connect	network/TcpClient.h	/^    void Connect(const std::string& host,int port);$/;"	p	class:TcpClient	access:public	signature:(const std::string& host,int port)
-ConnectedEvent	install/include/network/TcpClient.h	/^    typedef signals2::signal<void ()> ConnectedEvent;$/;"	t	class:TcpClient	access:public
 ConnectedEvent	network/TcpClient.h	/^    typedef signals2::signal<void ()> ConnectedEvent;$/;"	t	class:TcpClient	access:public
-ConsistentHashDistri	install/include/serverManager/ConsistentHashDistri.h	/^    ConsistentHashDistri(int replis = 200);$/;"	p	class:ConsistentHashDistri	access:public	signature:(int replis = 200)
-ConsistentHashDistri	install/include/serverManager/ConsistentHashDistri.h	/^class ConsistentHashDistri$/;"	c	inherits:DistributeAlgorithm
 ConsistentHashDistri	serverManager/ConsistentHashDistri.cpp	/^ConsistentHashDistri::ConsistentHashDistri(int replis)$/;"	f	class:ConsistentHashDistri	signature:(int replis)
 ConsistentHashDistri	serverManager/ConsistentHashDistri.h	/^    ConsistentHashDistri(int replis = 200);$/;"	p	class:ConsistentHashDistri	access:public	signature:(int replis = 200)
 ConsistentHashDistri	serverManager/ConsistentHashDistri.h	/^class ConsistentHashDistri$/;"	c	inherits:DistributeAlgorithm
-ConsistentHashDistri::Add	install/include/serverManager/ConsistentHashDistri.h	/^    virtual void Add(ServerItem::Ptr& pServer);$/;"	p	class:ConsistentHashDistri	access:public	signature:(ServerItem::Ptr& pServer)
 ConsistentHashDistri::Add	serverManager/ConsistentHashDistri.cpp	/^void ConsistentHashDistri::Add(ServerItem::Ptr& pServer)$/;"	f	class:ConsistentHashDistri	signature:(ServerItem::Ptr& pServer)
 ConsistentHashDistri::Add	serverManager/ConsistentHashDistri.h	/^    virtual void Add(ServerItem::Ptr& pServer);$/;"	p	class:ConsistentHashDistri	access:public	signature:(ServerItem::Ptr& pServer)
-ConsistentHashDistri::ConsistentHashDistri	install/include/serverManager/ConsistentHashDistri.h	/^    ConsistentHashDistri(int replis = 200);$/;"	p	class:ConsistentHashDistri	access:public	signature:(int replis = 200)
 ConsistentHashDistri::ConsistentHashDistri	serverManager/ConsistentHashDistri.cpp	/^ConsistentHashDistri::ConsistentHashDistri(int replis)$/;"	f	class:ConsistentHashDistri	signature:(int replis)
 ConsistentHashDistri::ConsistentHashDistri	serverManager/ConsistentHashDistri.h	/^    ConsistentHashDistri(int replis = 200);$/;"	p	class:ConsistentHashDistri	access:public	signature:(int replis = 200)
-ConsistentHashDistri::CycleType	install/include/serverManager/ConsistentHashDistri.h	/^    typedef std::map<hash_t,ServerItem::Ptr> CycleType;$/;"	t	class:ConsistentHashDistri	access:public
 ConsistentHashDistri::CycleType	serverManager/ConsistentHashDistri.h	/^    typedef std::map<hash_t,ServerItem::Ptr> CycleType;$/;"	t	class:ConsistentHashDistri	access:public
-ConsistentHashDistri::Get	install/include/serverManager/ConsistentHashDistri.h	/^    virtual ServerItem::Ptr& Get(hash_t hash);$/;"	p	class:ConsistentHashDistri	access:public	signature:(hash_t hash)
 ConsistentHashDistri::Get	serverManager/ConsistentHashDistri.cpp	/^ServerItem::Ptr& ConsistentHashDistri::Get(hash_t hash)$/;"	f	class:ConsistentHashDistri	signature:(hash_t hash)
 ConsistentHashDistri::Get	serverManager/ConsistentHashDistri.h	/^    virtual ServerItem::Ptr& Get(hash_t hash);$/;"	p	class:ConsistentHashDistri	access:public	signature:(hash_t hash)
-ConsistentHashDistri::Hash	install/include/serverManager/ConsistentHashDistri.h	/^    hash_t Hash(const std::string& md5Value,int offset);$/;"	p	class:ConsistentHashDistri	access:private	signature:(const std::string& md5Value,int offset)
 ConsistentHashDistri::Hash	serverManager/ConsistentHashDistri.cpp	/^hash_t ConsistentHashDistri::Hash(const std::string& md5Value,int offset)$/;"	f	class:ConsistentHashDistri	signature:(const std::string& md5Value,int offset)
 ConsistentHashDistri::Hash	serverManager/ConsistentHashDistri.h	/^    hash_t Hash(const std::string& md5Value,int offset);$/;"	p	class:ConsistentHashDistri	access:private	signature:(const std::string& md5Value,int offset)
-ConsistentHashDistri::Remove	install/include/serverManager/ConsistentHashDistri.h	/^    virtual void Remove(ServerItem::Ptr& pServer);$/;"	p	class:ConsistentHashDistri	access:public	signature:(ServerItem::Ptr& pServer)
 ConsistentHashDistri::Remove	serverManager/ConsistentHashDistri.cpp	/^void ConsistentHashDistri::Remove(ServerItem::Ptr& pServer)$/;"	f	class:ConsistentHashDistri	signature:(ServerItem::Ptr& pServer)
 ConsistentHashDistri::Remove	serverManager/ConsistentHashDistri.h	/^    virtual void Remove(ServerItem::Ptr& pServer);$/;"	p	class:ConsistentHashDistri	access:public	signature:(ServerItem::Ptr& pServer)
-ConsistentHashDistri::mCircle	install/include/serverManager/ConsistentHashDistri.h	/^    CycleType mCircle;$/;"	m	class:ConsistentHashDistri	access:private
 ConsistentHashDistri::mCircle	serverManager/ConsistentHashDistri.h	/^    CycleType mCircle;$/;"	m	class:ConsistentHashDistri	access:private
-ConsistentHashDistri::mReplications	install/include/serverManager/ConsistentHashDistri.h	/^    int mReplications;$/;"	m	class:ConsistentHashDistri	access:private
 ConsistentHashDistri::mReplications	serverManager/ConsistentHashDistri.h	/^    int mReplications;$/;"	m	class:ConsistentHashDistri	access:private
-ConstBuffer	install/include/network/SharedBuffer.h	/^typedef SharedBuffer<const_buffer> ConstBuffer;$/;"	t
 ConstBuffer	network/SharedBuffer.h	/^typedef SharedBuffer<const_buffer> ConstBuffer;$/;"	t
-Count	install/include/serverManager/ServerList.h	/^    size_t Count( void ) { return mServers.size(); }$/;"	f	class:ServerList	access:public	signature:( void )
 Count	serverManager/ServerList.h	/^    size_t Count( void ) { return mServers.size(); }$/;"	f	class:ServerList	access:public	signature:( void )
-CycleType	install/include/serverManager/ConsistentHashDistri.h	/^    typedef std::map<hash_t,ServerItem::Ptr> CycleType;$/;"	t	class:ConsistentHashDistri	access:public
 CycleType	serverManager/ConsistentHashDistri.h	/^    typedef std::map<hash_t,ServerItem::Ptr> CycleType;$/;"	t	class:ConsistentHashDistri	access:public
-D	install/include/network/SharedBuffer.h	/^    typedef std::function<void (void* data)> D;$/;"	t	class:SharedBuffer	access:public
-D	network/SharedBuffer.h	/^    typedef std::function<void (void* data)> D;$/;"	t	class:SharedBuffer	access:public
+D	network/SharedBuffer.h	/^    typedef boost::function<void (void* data)> D;$/;"	t	class:SharedBuffer	access:public
 DEC	build/CMakeFiles/2.8.11.2/CompilerIdC/CMakeCCompilerId.c	325;"	d	file:
 DEC	build/CMakeFiles/2.8.11.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	312;"	d	file:
-Debug	install/include/memclient/MemLog.h	/^    Debug,$/;"	e	enum:SeverityLevel
 Debug	src/MemLog.h	/^    Debug,$/;"	e	enum:SeverityLevel
-DefaultCallback	install/include/memclient/MemcachedClient.h	/^    static void DefaultCallback(const MemResult::Ptr&){}$/;"	f	class:MemcachedClient	access:private	signature:(const MemResult::Ptr&)
+Decrement	src/MemSelfOp.cpp	/^MemDecResult::Ptr MemcachedClient::Decrement(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry,Callback callback)$/;"	f	class:MemcachedClient	signature:(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry,Callback callback)
+Decrement	src/MemcachedClient.h	/^    MemDecResult::Ptr Decrement(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry = 0xffffffff,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry = 0xffffffff,Callback callback = DefaultCallback)
 DefaultCallback	src/MemcachedClient.h	/^    static void DefaultCallback(const MemResult::Ptr&){}$/;"	f	class:MemcachedClient	access:private	signature:(const MemResult::Ptr&)
-DefaultD	install/include/network/SharedBuffer.h	/^    static void DefaultD(const void* data) {}$/;"	f	class:SharedBuffer	access:private	signature:(const void* data)
 DefaultD	network/SharedBuffer.h	/^    static void DefaultD(const void* data) {}$/;"	f	class:SharedBuffer	access:private	signature:(const void* data)
-DistributeAlgorithm	install/include/serverManager/DistributeAlgorithm.h	/^class DistributeAlgorithm$/;"	c
+Delete	src/MemDelete.cpp	/^MemDeleteResult::Ptr MemcachedClient::Delete(const std::string& key,Callback callback)$/;"	f	class:MemcachedClient	signature:(const std::string& key,Callback callback)
+Delete	src/MemcachedClient.h	/^    MemDeleteResult::Ptr Delete(const std::string& key,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(const std::string& key,Callback callback = DefaultCallback)
 DistributeAlgorithm	serverManager/DistributeAlgorithm.h	/^class DistributeAlgorithm$/;"	c
-DistributeAlgorithm::Add	install/include/serverManager/DistributeAlgorithm.h	/^    virtual void Add(ServerItem::Ptr& pServer) = 0;$/;"	p	class:DistributeAlgorithm	access:public	signature:(ServerItem::Ptr& pServer)
 DistributeAlgorithm::Add	serverManager/DistributeAlgorithm.h	/^    virtual void Add(ServerItem::Ptr& pServer) = 0;$/;"	p	class:DistributeAlgorithm	access:public	signature:(ServerItem::Ptr& pServer)
-DistributeAlgorithm::Get	install/include/serverManager/DistributeAlgorithm.h	/^    virtual ServerItem::Ptr& Get(hash_t hash) = 0;$/;"	p	class:DistributeAlgorithm	access:public	signature:(hash_t hash)
 DistributeAlgorithm::Get	serverManager/DistributeAlgorithm.h	/^    virtual ServerItem::Ptr& Get(hash_t hash) = 0;$/;"	p	class:DistributeAlgorithm	access:public	signature:(hash_t hash)
-DistributeAlgorithm::Remove	install/include/serverManager/DistributeAlgorithm.h	/^    virtual void Remove(ServerItem::Ptr& pServer) = 0;$/;"	p	class:DistributeAlgorithm	access:public	signature:(ServerItem::Ptr& pServer)
 DistributeAlgorithm::Remove	serverManager/DistributeAlgorithm.h	/^    virtual void Remove(ServerItem::Ptr& pServer) = 0;$/;"	p	class:DistributeAlgorithm	access:public	signature:(ServerItem::Ptr& pServer)
-DistributeAlgorithm::~DistributeAlgorithm	install/include/serverManager/DistributeAlgorithm.h	/^    virtual ~DistributeAlgorithm() {}$/;"	f	class:DistributeAlgorithm	access:public	signature:()
 DistributeAlgorithm::~DistributeAlgorithm	serverManager/DistributeAlgorithm.h	/^    virtual ~DistributeAlgorithm() {}$/;"	f	class:DistributeAlgorithm	access:public	signature:()
 EQUALS	build/Makefile	/^EQUALS = =$/;"	m
 EQUALS	build/example/Makefile	/^EQUALS = =$/;"	m
@@ -323,83 +291,49 @@ EQUALS	build/serverManager/Makefile	/^EQUALS = =$/;"	m
 EQUALS	build/src/Makefile	/^EQUALS = =$/;"	m
 EQUALS	build/test/Makefile	/^EQUALS = =$/;"	m
 EQUALS	build/utils/Makefile	/^EQUALS = =$/;"	m
-ERequestStatus	install/include/memclient/MemResult.h	/^enum ERequestStatus$/;"	g
 ERequestStatus	src/MemResult.h	/^enum ERequestStatus$/;"	g
-ERequest_AUTH_CONTINUE	install/include/memclient/MemResult.h	/^    ERequest_AUTH_CONTINUE = 0x21,$/;"	e	enum:ERequestStatus
 ERequest_AUTH_CONTINUE	src/MemResult.h	/^    ERequest_AUTH_CONTINUE = 0x21,$/;"	e	enum:ERequestStatus
-ERequest_AUTH_ERROR	install/include/memclient/MemResult.h	/^    ERequest_AUTH_ERROR = 0x20,$/;"	e	enum:ERequestStatus
 ERequest_AUTH_ERROR	src/MemResult.h	/^    ERequest_AUTH_ERROR = 0x20,$/;"	e	enum:ERequestStatus
-ERequest_DELTA_BADVAL	install/include/memclient/MemResult.h	/^    ERequest_DELTA_BADVAL = 0x06,$/;"	e	enum:ERequestStatus
 ERequest_DELTA_BADVAL	src/MemResult.h	/^    ERequest_DELTA_BADVAL = 0x06,$/;"	e	enum:ERequestStatus
-ERequest_E2BIG	install/include/memclient/MemResult.h	/^    ERequest_E2BIG = 0x03,$/;"	e	enum:ERequestStatus
 ERequest_E2BIG	src/MemResult.h	/^    ERequest_E2BIG = 0x03,$/;"	e	enum:ERequestStatus
-ERequest_EINVAL	install/include/memclient/MemResult.h	/^    ERequest_EINVAL = 0x04,$/;"	e	enum:ERequestStatus
 ERequest_EINVAL	src/MemResult.h	/^    ERequest_EINVAL = 0x04,$/;"	e	enum:ERequestStatus
-ERequest_ENOMEM	install/include/memclient/MemResult.h	/^    ERequest_ENOMEM = 0x82,$/;"	e	enum:ERequestStatus
 ERequest_ENOMEM	src/MemResult.h	/^    ERequest_ENOMEM = 0x82,$/;"	e	enum:ERequestStatus
-ERequest_KEY_EEXISTS	install/include/memclient/MemResult.h	/^    ERequest_KEY_EEXISTS = 0x02,$/;"	e	enum:ERequestStatus
 ERequest_KEY_EEXISTS	src/MemResult.h	/^    ERequest_KEY_EEXISTS = 0x02,$/;"	e	enum:ERequestStatus
-ERequest_KEY_ENOENT	install/include/memclient/MemResult.h	/^    ERequest_KEY_ENOENT = 0x01,$/;"	e	enum:ERequestStatus
 ERequest_KEY_ENOENT	src/MemResult.h	/^    ERequest_KEY_ENOENT = 0x01,$/;"	e	enum:ERequestStatus
-ERequest_NETWORK_ERROR	install/include/memclient/MemResult.h	/^    ERequest_NETWORK_ERROR = 0x86,$/;"	e	enum:ERequestStatus
 ERequest_NETWORK_ERROR	src/MemResult.h	/^    ERequest_NETWORK_ERROR = 0x86,$/;"	e	enum:ERequestStatus
-ERequest_NOT_STORED	install/include/memclient/MemResult.h	/^    ERequest_NOT_STORED = 0x05,$/;"	e	enum:ERequestStatus
 ERequest_NOT_STORED	src/MemResult.h	/^    ERequest_NOT_STORED = 0x05,$/;"	e	enum:ERequestStatus
-ERequest_PENDING	install/include/memclient/MemResult.h	/^    ERequest_PENDING = 0xFF$/;"	e	enum:ERequestStatus
 ERequest_PENDING	src/MemResult.h	/^    ERequest_PENDING = 0xFF$/;"	e	enum:ERequestStatus
-ERequest_SUCCESS	install/include/memclient/MemResult.h	/^    ERequest_SUCCESS = 0x00,$/;"	e	enum:ERequestStatus
 ERequest_SUCCESS	src/MemResult.h	/^    ERequest_SUCCESS = 0x00,$/;"	e	enum:ERequestStatus
-ERequest_UNKNOWN_COMMAND	install/include/memclient/MemResult.h	/^    ERequest_UNKNOWN_COMMAND = 0x81,$/;"	e	enum:ERequestStatus
 ERequest_UNKNOWN_COMMAND	src/MemResult.h	/^    ERequest_UNKNOWN_COMMAND = 0x81,$/;"	e	enum:ERequestStatus
-ESocketError	install/include/network/TcpClient.h	/^    enum ESocketError$/;"	g	class:TcpClient	access:public
 ESocketError	network/TcpClient.h	/^    enum ESocketError$/;"	g	class:TcpClient	access:public
-ESocket_BodyBuffer	install/include/network/TcpClient.h	/^	ESocket_BodyBuffer$/;"	e	enum:TcpClient::ESocketError
 ESocket_BodyBuffer	network/TcpClient.h	/^	ESocket_BodyBuffer$/;"	e	enum:TcpClient::ESocketError
-ESocket_Connect	install/include/network/TcpClient.h	/^	ESocket_Connect,$/;"	e	enum:TcpClient::ESocketError
 ESocket_Connect	network/TcpClient.h	/^	ESocket_Connect,$/;"	e	enum:TcpClient::ESocketError
-ESocket_ReadBody	install/include/network/TcpClient.h	/^	ESocket_ReadBody,$/;"	e	enum:TcpClient::ESocketError
 ESocket_ReadBody	network/TcpClient.h	/^	ESocket_ReadBody,$/;"	e	enum:TcpClient::ESocketError
-ESocket_ReadHeader	install/include/network/TcpClient.h	/^	ESocket_ReadHeader,$/;"	e	enum:TcpClient::ESocketError
 ESocket_ReadHeader	network/TcpClient.h	/^	ESocket_ReadHeader,$/;"	e	enum:TcpClient::ESocketError
-ESocket_Send	install/include/network/TcpClient.h	/^	ESocket_Send,$/;"	e	enum:TcpClient::ESocketError
 ESocket_Send	network/TcpClient.h	/^	ESocket_Send,$/;"	e	enum:TcpClient::ESocketError
-Error	install/include/memclient/MemLog.h	/^    Error,$/;"	e	enum:SeverityLevel
 Error	src/MemLog.h	/^    Error,$/;"	e	enum:SeverityLevel
-ErrorCode	install/include/memclient/MemResult.h	/^    int ErrorCode( void ) const { return mErrorCode; }$/;"	f	class:MemResult	access:public	signature:( void ) const
 ErrorCode	src/MemResult.h	/^    int ErrorCode( void ) const { return mErrorCode; }$/;"	f	class:MemResult	access:public	signature:( void ) const
-ErrorEvent	install/include/network/TcpClient.h	/^    typedef signals2::signal<void (ESocketError,const system::error_code&)> ErrorEvent;$/;"	t	class:TcpClient	access:public
 ErrorEvent	network/TcpClient.h	/^    typedef signals2::signal<void (ESocketError,const system::error_code&)> ErrorEvent;$/;"	t	class:TcpClient	access:public
 F	utils/md5.cpp	26;"	d	file:
 FF	utils/md5.cpp	38;"	d	file:
-Fatal	install/include/memclient/MemLog.h	/^    Fatal$/;"	e	enum:SeverityLevel
 Fatal	src/MemLog.h	/^    Fatal$/;"	e	enum:SeverityLevel
-FillReceiveBuffer	install/include/memclient/MemResult.h	/^    virtual bool FillReceiveBuffer(VBuffer& bufs,int valueLen);$/;"	p	class:MemGetResult	access:public	signature:(VBuffer& bufs,int valueLen)
-FillReceiveBuffer	install/include/memclient/MemResult.h	/^    virtual bool FillReceiveBuffer(VBuffer& bufs,int valueLen);$/;"	p	class:MemResult	access:public	signature:(VBuffer& bufs,int valueLen)
-FillReceiveBuffer	install/include/memclient/RequestItem.h	/^    bool FillReceiveBuffer(VBuffer& bufs,int valueLen) { return mResult->FillReceiveBuffer(bufs,valueLen); }$/;"	f	class:RequestItem	access:public	signature:(VBuffer& bufs,int valueLen)
-FillReceiveBuffer	src/MemResult.cpp	/^bool MemGetResult::FillReceiveBuffer(VBuffer& bufs,int valueLen)$/;"	f	class:MemGetResult	signature:(VBuffer& bufs,int valueLen)
-FillReceiveBuffer	src/MemResult.cpp	/^bool MemResult::FillReceiveBuffer(VBuffer& bufs,int valueLen)$/;"	f	class:MemResult	signature:(VBuffer& bufs,int valueLen)
-FillReceiveBuffer	src/MemResult.h	/^    virtual bool FillReceiveBuffer(VBuffer& bufs,int valueLen);$/;"	p	class:MemGetResult	access:public	signature:(VBuffer& bufs,int valueLen)
-FillReceiveBuffer	src/MemResult.h	/^    virtual bool FillReceiveBuffer(VBuffer& bufs,int valueLen);$/;"	p	class:MemResult	access:public	signature:(VBuffer& bufs,int valueLen)
-FillReceiveBuffer	src/RequestItem.h	/^    bool FillReceiveBuffer(VBuffer& bufs,int valueLen) { return mResult->FillReceiveBuffer(bufs,valueLen); }$/;"	f	class:RequestItem	access:public	signature:(VBuffer& bufs,int valueLen)
-Finish	install/include/memclient/MemResult.h	/^    ERequestStatus Finish( void );$/;"	p	class:MemResult	access:public	signature:( void )
+FillReceiveBuffer	src/MemResult.cpp	/^bool MemGetResult::FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen)$/;"	f	class:MemGetResult	signature:(ERequestStatus status,VBuffer& bufs,int valueLen)
+FillReceiveBuffer	src/MemResult.cpp	/^bool MemIncResult::FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen)$/;"	f	class:MemIncResult	signature:(ERequestStatus status,VBuffer& bufs,int valueLen)
+FillReceiveBuffer	src/MemResult.cpp	/^bool MemResult::FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen)$/;"	f	class:MemResult	signature:(ERequestStatus status,VBuffer& bufs,int valueLen)
+FillReceiveBuffer	src/MemResult.h	/^    virtual bool FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen);$/;"	p	class:MemGetResult	access:public	signature:(ERequestStatus status,VBuffer& bufs,int valueLen)
+FillReceiveBuffer	src/MemResult.h	/^    virtual bool FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen);$/;"	p	class:MemIncResult	access:public	signature:(ERequestStatus status,VBuffer& bufs,int valueLen)
+FillReceiveBuffer	src/MemResult.h	/^    virtual bool FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen);$/;"	p	class:MemResult	access:public	signature:(ERequestStatus status,VBuffer& bufs,int valueLen)
+FillReceiveBuffer	src/RequestItem.h	/^    bool FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen) { return mResult->FillReceiveBuffer(status,bufs,valueLen); }$/;"	f	class:RequestItem	access:public	signature:(ERequestStatus status,VBuffer& bufs,int valueLen)
 Finish	src/MemResult.cpp	/^ERequestStatus MemResult::Finish( void )$/;"	f	class:MemResult	signature:( void )
 Finish	src/MemResult.h	/^    ERequestStatus Finish( void );$/;"	p	class:MemResult	access:public	signature:( void )
-FinishRequest	install/include/memclient/MemcachedClient.h	/^    void FinishRequest(RequestMap::iterator,ERequestStatus err);$/;"	p	class:MemcachedClient	access:private	signature:(RequestMap::iterator,ERequestStatus err)
 FinishRequest	src/MemcachedClient.cpp	/^void MemcachedClient::FinishRequest(RequestMap::iterator requestIt,ERequestStatus err)$/;"	f	class:MemcachedClient	signature:(RequestMap::iterator requestIt,ERequestStatus err)
 FinishRequest	src/MemcachedClient.h	/^    void FinishRequest(RequestMap::iterator,ERequestStatus err);$/;"	p	class:MemcachedClient	access:private	signature:(RequestMap::iterator,ERequestStatus err)
-Flag	install/include/memclient/MemResult.h	/^    int Flag( void ) const { return mFlag; }$/;"	f	class:MemGetResult	access:public	signature:( void ) const
 Flag	src/MemResult.h	/^    int Flag( void ) const { return mFlag; }$/;"	f	class:MemGetResult	access:public	signature:( void ) const
-Free	install/include/network/SharedBuffer.h	/^    static void Free(value_type* pBuffer,D d)$/;"	f	class:SharedBuffer	access:private	signature:(value_type* pBuffer,D d)
+Flush	src/MemFlush.cpp	/^MemFlushResult::Ptr MemcachedClient::Flush(ServerItem::Ptr server,uint32_t expiry,Callback callback)$/;"	f	class:MemcachedClient	signature:(ServerItem::Ptr server,uint32_t expiry,Callback callback)
+Flush	src/MemcachedClient.h	/^    MemFlushResult::Ptr Flush(ServerItem::Ptr pServer,uint32_t expiry,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(ServerItem::Ptr pServer,uint32_t expiry,Callback callback = DefaultCallback)
 Free	network/SharedBuffer.h	/^    static void Free(value_type* pBuffer,D d)$/;"	f	class:SharedBuffer	access:private	signature:(value_type* pBuffer,D d)
 G	utils/md5.cpp	27;"	d	file:
 GG	utils/md5.cpp	43;"	d	file:
-Get	install/include/memclient/MemcachedClient.h	/^    MemGetResult::Ptr Get(const std::string& key,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(const std::string& key,Callback callback = DefaultCallback)
-Get	install/include/memclient/MemcachedClient.h	/^    MemGetResult::Ptr Get(const std::string& key,const Buffer& buf,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(const std::string& key,const Buffer& buf,Callback callback = DefaultCallback)
-Get	install/include/serverManager/ConsistentHashDistri.h	/^    virtual ServerItem::Ptr& Get(hash_t hash);$/;"	p	class:ConsistentHashDistri	access:public	signature:(hash_t hash)
-Get	install/include/serverManager/DistributeAlgorithm.h	/^    virtual ServerItem::Ptr& Get(hash_t hash) = 0;$/;"	p	class:DistributeAlgorithm	access:public	signature:(hash_t hash)
-Get	install/include/serverManager/MemoDistri.h	/^    virtual ServerItem::Ptr& Get(hash_t hash);$/;"	p	class:MemoDistri	access:public	signature:(hash_t hash)
-Get	install/include/serverManager/ModuloDistri.h	/^    virtual ServerItem::Ptr& Get(hash_t hash);$/;"	p	class:ModuloDistri	access:public	signature:(hash_t hash)
-Get	install/include/serverManager/ServerList.h	/^    ServerItem::Ptr& Get(const std::string& key);$/;"	p	class:ServerList	access:public	signature:(const std::string& key)
 Get	serverManager/ConsistentHashDistri.cpp	/^ServerItem::Ptr& ConsistentHashDistri::Get(hash_t hash)$/;"	f	class:ConsistentHashDistri	signature:(hash_t hash)
 Get	serverManager/ConsistentHashDistri.h	/^    virtual ServerItem::Ptr& Get(hash_t hash);$/;"	p	class:ConsistentHashDistri	access:public	signature:(hash_t hash)
 Get	serverManager/DistributeAlgorithm.h	/^    virtual ServerItem::Ptr& Get(hash_t hash) = 0;$/;"	p	class:DistributeAlgorithm	access:public	signature:(hash_t hash)
@@ -409,51 +343,34 @@ Get	serverManager/ModuloDistri.cpp	/^ServerItem::Ptr& ModuloDistri::Get(hash_t h
 Get	serverManager/ModuloDistri.h	/^    virtual ServerItem::Ptr& Get(hash_t hash);$/;"	p	class:ModuloDistri	access:public	signature:(hash_t hash)
 Get	serverManager/ServerList.cpp	/^ServerItem::Ptr& ServerList::Get(const std::string& key)$/;"	f	class:ServerList	signature:(const std::string& key)
 Get	serverManager/ServerList.h	/^    ServerItem::Ptr& Get(const std::string& key);$/;"	p	class:ServerList	access:public	signature:(const std::string& key)
-Get	src/MemcachedClient.cpp	/^MemGetResult::Ptr MemcachedClient::Get(const std::string& key,Callback callback)$/;"	f	class:MemcachedClient	signature:(const std::string& key,Callback callback)
-Get	src/MemcachedClient.cpp	/^MemGetResult::Ptr MemcachedClient::Get(const std::string& key,const Buffer& buf,Callback callback)$/;"	f	class:MemcachedClient	signature:(const std::string& key,const Buffer& buf,Callback callback)
+Get	src/MemGet.cpp	/^MemGetResult::Ptr MemcachedClient::Get(const std::string& key,Callback callback)$/;"	f	class:MemcachedClient	signature:(const std::string& key,Callback callback)
+Get	src/MemGet.cpp	/^MemGetResult::Ptr MemcachedClient::Get(const std::string& key,const Buffer& buf,Callback callback)$/;"	f	class:MemcachedClient	signature:(const std::string& key,const Buffer& buf,Callback callback)
 Get	src/MemcachedClient.h	/^    MemGetResult::Ptr Get(const std::string& key,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(const std::string& key,Callback callback = DefaultCallback)
 Get	src/MemcachedClient.h	/^    MemGetResult::Ptr Get(const std::string& key,const Buffer& buf,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(const std::string& key,const Buffer& buf,Callback callback = DefaultCallback)
-GetBody	install/include/network/SharedBuffer.h	/^    void* GetBody( void )$/;"	f	class:SharedBuffer	access:public	signature:( void )
 GetBody	network/SharedBuffer.h	/^    void* GetBody( void )$/;"	f	class:SharedBuffer	access:public	signature:( void )
-GetHeader	install/include/network/SharedBuffer.h	/^    T& GetHeader( void )$/;"	f	class:SharedBuffer	access:public	signature:( void )
 GetHeader	network/SharedBuffer.h	/^    T& GetHeader( void )$/;"	f	class:SharedBuffer	access:public	signature:( void )
 H	utils/md5.cpp	28;"	d	file:
 HEX	build/CMakeFiles/2.8.11.2/CompilerIdC/CMakeCCompilerId.c	336;"	d	file:
 HEX	build/CMakeFiles/2.8.11.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	323;"	d	file:
-HEX	install/include/utils/md5.h	/^	static const char HEX[16];$/;"	m	class:MD5	access:private
 HEX	utils/md5.cpp	/^const char MD5::HEX[16] = {$/;"	m	class:MD5	file:
 HEX	utils/md5.h	/^	static const char HEX[16];$/;"	m	class:MD5	access:private
 HH	utils/md5.cpp	48;"	d	file:
-Hash	install/include/serverManager/ConsistentHashDistri.h	/^    hash_t Hash(const std::string& md5Value,int offset);$/;"	p	class:ConsistentHashDistri	access:private	signature:(const std::string& md5Value,int offset)
 Hash	serverManager/ConsistentHashDistri.cpp	/^hash_t ConsistentHashDistri::Hash(const std::string& md5Value,int offset)$/;"	f	class:ConsistentHashDistri	signature:(const std::string& md5Value,int offset)
 Hash	serverManager/ConsistentHashDistri.h	/^    hash_t Hash(const std::string& md5Value,int offset);$/;"	p	class:ConsistentHashDistri	access:private	signature:(const std::string& md5Value,int offset)
-HashFunc	install/include/serverManager/ServerList.h	/^    typedef std::function<hash_t (const std::string&)> HashFunc;$/;"	t	class:ServerList	access:public
-HashFunc	serverManager/ServerList.h	/^    typedef std::function<hash_t (const std::string&)> HashFunc;$/;"	t	class:ServerList	access:public
-HeaderReadedEvent	install/include/network/TcpClient.h	/^    typedef std::function<bool (const void *,VBuffer& )> HeaderReadedEvent;$/;"	t	class:TcpClient	access:public
-HeaderReadedEvent	network/TcpClient.h	/^    typedef std::function<bool (const void *,VBuffer& )> HeaderReadedEvent;$/;"	t	class:TcpClient	access:public
-Host	install/include/serverManager/ServerItem.h	/^    const std::string& Host( void ) const { return mHost; }$/;"	f	class:ServerItem	access:public	signature:( void ) const
+HashFunc	serverManager/ServerList.h	/^    typedef boost::function<hash_t (const std::string&)> HashFunc;$/;"	t	class:ServerList	access:public
+HeaderReadedEvent	network/TcpClient.h	/^    typedef boost::function<bool (void *,VBuffer& )> HeaderReadedEvent;$/;"	t	class:TcpClient	access:public
 Host	serverManager/ServerItem.h	/^    const std::string& Host( void ) const { return mHost; }$/;"	f	class:ServerItem	access:public	signature:( void ) const
 I	utils/md5.cpp	29;"	d	file:
 ID_VOID_MAIN	build/CMakeFiles/2.8.11.2/CompilerIdC/CMakeCCompilerId.c	9;"	d	file:
 II	utils/md5.cpp	53;"	d	file:
-Info	install/include/memclient/MemLog.h	/^    Info,$/;"	e	enum:SeverityLevel
+Increment	src/MemSelfOp.cpp	/^MemIncResult::Ptr MemcachedClient::Increment(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry,Callback callback)$/;"	f	class:MemcachedClient	signature:(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry,Callback callback)
+Increment	src/MemcachedClient.h	/^    MemIncResult::Ptr Increment(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry = 0xffffffff,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry = 0xffffffff,Callback callback = DefaultCallback)
 Info	src/MemLog.h	/^    Info,$/;"	e	enum:SeverityLevel
-IsNull	install/include/network/SharedBuffer.h	/^    bool IsNull( void ) const { return nullptr == mData.get();}$/;"	f	class:SharedBuffer	access:public	signature:( void ) const
 IsNull	network/SharedBuffer.h	/^    bool IsNull( void ) const { return nullptr == mData.get();}$/;"	f	class:SharedBuffer	access:public	signature:( void ) const
-Items	install/include/serverManager/ServerList.h	/^    const std::unordered_map<std::string,ServerItem::Ptr> Items( void ) const { return mServers; }$/;"	f	class:ServerList	access:public	signature:( void ) const
-Items	serverManager/ServerList.h	/^    const std::unordered_map<std::string,ServerItem::Ptr> Items( void ) const { return mServers; }$/;"	f	class:ServerList	access:public	signature:( void ) const
-Key	install/include/memclient/MemResult.h	/^    const std::string& Key( void ) const { return mKey; }$/;"	f	class:MemResult	access:public	signature:( void ) const
+Items	serverManager/ServerList.h	/^    const boost::unordered_map<std::string,ServerItem::Ptr> Items( void ) const { return mServers; }$/;"	f	class:ServerList	access:public	signature:( void ) const
 Key	src/MemResult.h	/^    const std::string& Key( void ) const { return mKey; }$/;"	f	class:MemResult	access:public	signature:( void ) const
-KeyCount	install/include/serverManager/MemoDistri.h	/^	std::size_t KeyCount;$/;"	m	struct:MemoDistri::ServerBalanceInfo	access:public
 KeyCount	serverManager/MemoDistri.h	/^	std::size_t KeyCount;$/;"	m	struct:MemoDistri::ServerBalanceInfo	access:public
-KeyServerMap	install/include/serverManager/MemoDistri.h	/^    typedef std::unordered_map<long,ServerItem::Ptr> KeyServerMap;$/;"	t	class:MemoDistri	access:private
-KeyServerMap	serverManager/MemoDistri.h	/^    typedef std::unordered_map<long,ServerItem::Ptr> KeyServerMap;$/;"	t	class:MemoDistri	access:private
-MD5	install/include/utils/md5.h	/^	MD5();$/;"	p	class:MD5	access:public	signature:()
-MD5	install/include/utils/md5.h	/^	MD5(const MD5&);$/;"	p	class:MD5	access:private	signature:(const MD5&)
-MD5	install/include/utils/md5.h	/^	MD5(const string& str);$/;"	p	class:MD5	access:public	signature:(const string& str)
-MD5	install/include/utils/md5.h	/^	MD5(const void* input, size_t length);$/;"	p	class:MD5	access:public	signature:(const void* input, size_t length)
-MD5	install/include/utils/md5.h	/^	MD5(ifstream& in);$/;"	p	class:MD5	access:public	signature:(ifstream& in)
-MD5	install/include/utils/md5.h	/^class MD5 $/;"	c
+KeyServerMap	serverManager/MemoDistri.h	/^    typedef boost::unordered_map<long,ServerItem::Ptr> KeyServerMap;$/;"	t	class:MemoDistri	access:private
 MD5	utils/md5.cpp	/^MD5::MD5() {$/;"	f	class:MD5	signature:()
 MD5	utils/md5.cpp	/^MD5::MD5(const string& str) {$/;"	f	class:MD5	signature:(const string& str)
 MD5	utils/md5.cpp	/^MD5::MD5(const void* input, size_t length) {$/;"	f	class:MD5	signature:(const void* input, size_t length)
@@ -464,16 +381,9 @@ MD5	utils/md5.h	/^	MD5(const string& str);$/;"	p	class:MD5	access:public	signatu
 MD5	utils/md5.h	/^	MD5(const void* input, size_t length);$/;"	p	class:MD5	access:public	signature:(const void* input, size_t length)
 MD5	utils/md5.h	/^	MD5(ifstream& in);$/;"	p	class:MD5	access:public	signature:(ifstream& in)
 MD5	utils/md5.h	/^class MD5 $/;"	c
-MD5::BUFFER_SIZE	install/include/utils/md5.h	/^	enum { BUFFER_SIZE = 1024 };$/;"	e	enum:MD5::__anon1
-MD5::BUFFER_SIZE	utils/md5.h	/^	enum { BUFFER_SIZE = 1024 };$/;"	e	enum:MD5::__anon2
-MD5::HEX	install/include/utils/md5.h	/^	static const char HEX[16];$/;"	m	class:MD5	access:private
+MD5::BUFFER_SIZE	utils/md5.h	/^	enum { BUFFER_SIZE = 1024 };$/;"	e	enum:MD5::__anon1
 MD5::HEX	utils/md5.cpp	/^const char MD5::HEX[16] = {$/;"	m	class:MD5	file:
 MD5::HEX	utils/md5.h	/^	static const char HEX[16];$/;"	m	class:MD5	access:private
-MD5::MD5	install/include/utils/md5.h	/^	MD5();$/;"	p	class:MD5	access:public	signature:()
-MD5::MD5	install/include/utils/md5.h	/^	MD5(const MD5&);$/;"	p	class:MD5	access:private	signature:(const MD5&)
-MD5::MD5	install/include/utils/md5.h	/^	MD5(const string& str);$/;"	p	class:MD5	access:public	signature:(const string& str)
-MD5::MD5	install/include/utils/md5.h	/^	MD5(const void* input, size_t length);$/;"	p	class:MD5	access:public	signature:(const void* input, size_t length)
-MD5::MD5	install/include/utils/md5.h	/^	MD5(ifstream& in);$/;"	p	class:MD5	access:public	signature:(ifstream& in)
 MD5::MD5	utils/md5.cpp	/^MD5::MD5() {$/;"	f	class:MD5	signature:()
 MD5::MD5	utils/md5.cpp	/^MD5::MD5(const string& str) {$/;"	f	class:MD5	signature:(const string& str)
 MD5::MD5	utils/md5.cpp	/^MD5::MD5(const void* input, size_t length) {$/;"	f	class:MD5	signature:(const void* input, size_t length)
@@ -483,49 +393,30 @@ MD5::MD5	utils/md5.h	/^	MD5(const MD5&);$/;"	p	class:MD5	access:private	signatur
 MD5::MD5	utils/md5.h	/^	MD5(const string& str);$/;"	p	class:MD5	access:public	signature:(const string& str)
 MD5::MD5	utils/md5.h	/^	MD5(const void* input, size_t length);$/;"	p	class:MD5	access:public	signature:(const void* input, size_t length)
 MD5::MD5	utils/md5.h	/^	MD5(ifstream& in);$/;"	p	class:MD5	access:public	signature:(ifstream& in)
-MD5::PADDING	install/include/utils/md5.h	/^	static const byte PADDING[64];	\/* padding for calculate *\/$/;"	m	class:MD5	access:private
 MD5::PADDING	utils/md5.cpp	/^const byte MD5::PADDING[64] = { 0x80 };$/;"	m	class:MD5	file:
 MD5::PADDING	utils/md5.h	/^	static const byte PADDING[64];	\/* padding for calculate *\/$/;"	m	class:MD5	access:private
-MD5::_buffer	install/include/utils/md5.h	/^	byte _buffer[64];	\/* input buffer *\/$/;"	m	class:MD5	access:private
 MD5::_buffer	utils/md5.h	/^	byte _buffer[64];	\/* input buffer *\/$/;"	m	class:MD5	access:private
-MD5::_count	install/include/utils/md5.h	/^	uint32 _count[2];	\/* number of bits, modulo 2^64 (low-order word first) *\/$/;"	m	class:MD5	access:private
 MD5::_count	utils/md5.h	/^	uint32 _count[2];	\/* number of bits, modulo 2^64 (low-order word first) *\/$/;"	m	class:MD5	access:private
-MD5::_digest	install/include/utils/md5.h	/^	byte _digest[16];	\/* message digest *\/$/;"	m	class:MD5	access:private
 MD5::_digest	utils/md5.h	/^	byte _digest[16];	\/* message digest *\/$/;"	m	class:MD5	access:private
-MD5::_finished	install/include/utils/md5.h	/^	bool _finished;		\/* calculate finished ? *\/$/;"	m	class:MD5	access:private
 MD5::_finished	utils/md5.h	/^	bool _finished;		\/* calculate finished ? *\/$/;"	m	class:MD5	access:private
-MD5::_state	install/include/utils/md5.h	/^	uint32 _state[4];	\/* state (ABCD) *\/$/;"	m	class:MD5	access:private
 MD5::_state	utils/md5.h	/^	uint32 _state[4];	\/* state (ABCD) *\/$/;"	m	class:MD5	access:private
-MD5::bytesToHexString	install/include/utils/md5.h	/^	string bytesToHexString(const byte* input, size_t length);$/;"	p	class:MD5	access:private	signature:(const byte* input, size_t length)
 MD5::bytesToHexString	utils/md5.cpp	/^string MD5::bytesToHexString(const byte* input, size_t length) {$/;"	f	class:MD5	signature:(const byte* input, size_t length)
 MD5::bytesToHexString	utils/md5.h	/^	string bytesToHexString(const byte* input, size_t length);$/;"	p	class:MD5	access:private	signature:(const byte* input, size_t length)
-MD5::decode	install/include/utils/md5.h	/^	void decode(const byte* input, uint32* output, size_t length);$/;"	p	class:MD5	access:private	signature:(const byte* input, uint32* output, size_t length)
 MD5::decode	utils/md5.cpp	/^void MD5::decode(const byte* input, uint32* output, size_t length) {$/;"	f	class:MD5	signature:(const byte* input, uint32* output, size_t length)
 MD5::decode	utils/md5.h	/^	void decode(const byte* input, uint32* output, size_t length);$/;"	p	class:MD5	access:private	signature:(const byte* input, uint32* output, size_t length)
-MD5::digest	install/include/utils/md5.h	/^	const byte* digest();$/;"	p	class:MD5	access:public	signature:()
 MD5::digest	utils/md5.cpp	/^const byte* MD5::digest() {$/;"	f	class:MD5	signature:()
 MD5::digest	utils/md5.h	/^	const byte* digest();$/;"	p	class:MD5	access:public	signature:()
-MD5::encode	install/include/utils/md5.h	/^	void encode(const uint32* input, byte* output, size_t length);$/;"	p	class:MD5	access:private	signature:(const uint32* input, byte* output, size_t length)
 MD5::encode	utils/md5.cpp	/^void MD5::encode(const uint32* input, byte* output, size_t length) {$/;"	f	class:MD5	signature:(const uint32* input, byte* output, size_t length)
 MD5::encode	utils/md5.h	/^	void encode(const uint32* input, byte* output, size_t length);$/;"	p	class:MD5	access:private	signature:(const uint32* input, byte* output, size_t length)
-MD5::final	install/include/utils/md5.h	/^	void final();$/;"	p	class:MD5	access:private	signature:()
 MD5::final	utils/md5.cpp	/^void MD5::final() {$/;"	f	class:MD5	signature:()
 MD5::final	utils/md5.h	/^	void final();$/;"	p	class:MD5	access:private	signature:()
-MD5::operator =	install/include/utils/md5.h	/^	MD5& operator=(const MD5&);$/;"	p	class:MD5	access:private	signature:(const MD5&)
 MD5::operator =	utils/md5.h	/^	MD5& operator=(const MD5&);$/;"	p	class:MD5	access:private	signature:(const MD5&)
-MD5::reset	install/include/utils/md5.h	/^	void reset();$/;"	p	class:MD5	access:public	signature:()
 MD5::reset	utils/md5.cpp	/^void MD5::reset() {$/;"	f	class:MD5	signature:()
 MD5::reset	utils/md5.h	/^	void reset();$/;"	p	class:MD5	access:public	signature:()
-MD5::toString	install/include/utils/md5.h	/^	string toString();$/;"	p	class:MD5	access:public	signature:()
 MD5::toString	utils/md5.cpp	/^string MD5::toString() {$/;"	f	class:MD5	signature:()
 MD5::toString	utils/md5.h	/^	string toString();$/;"	p	class:MD5	access:public	signature:()
-MD5::transform	install/include/utils/md5.h	/^	void transform(const byte block[64]);$/;"	p	class:MD5	access:private	signature:(const byte block[64])
 MD5::transform	utils/md5.cpp	/^void MD5::transform(const byte block[64]) {$/;"	f	class:MD5	signature:(const byte block[64])
 MD5::transform	utils/md5.h	/^	void transform(const byte block[64]);$/;"	p	class:MD5	access:private	signature:(const byte block[64])
-MD5::update	install/include/utils/md5.h	/^	void update(const byte* input, size_t length);$/;"	p	class:MD5	access:private	signature:(const byte* input, size_t length)
-MD5::update	install/include/utils/md5.h	/^	void update(const string& str);$/;"	p	class:MD5	access:public	signature:(const string& str)
-MD5::update	install/include/utils/md5.h	/^	void update(const void* input, size_t length);$/;"	p	class:MD5	access:public	signature:(const void* input, size_t length)
-MD5::update	install/include/utils/md5.h	/^	void update(ifstream& in);$/;"	p	class:MD5	access:public	signature:(ifstream& in)
 MD5::update	utils/md5.cpp	/^void MD5::update(const byte* input, size_t length) {$/;"	f	class:MD5	signature:(const byte* input, size_t length)
 MD5::update	utils/md5.cpp	/^void MD5::update(const string& str) {$/;"	f	class:MD5	signature:(const string& str)
 MD5::update	utils/md5.cpp	/^void MD5::update(const void* input, size_t length) {$/;"	f	class:MD5	signature:(const void* input, size_t length)
@@ -534,196 +425,153 @@ MD5::update	utils/md5.h	/^	void update(const byte* input, size_t length);$/;"	p	
 MD5::update	utils/md5.h	/^	void update(const string& str);$/;"	p	class:MD5	access:public	signature:(const string& str)
 MD5::update	utils/md5.h	/^	void update(const void* input, size_t length);$/;"	p	class:MD5	access:public	signature:(const void* input, size_t length)
 MD5::update	utils/md5.h	/^	void update(ifstream& in);$/;"	p	class:MD5	access:public	signature:(ifstream& in)
-MD5_H	install/include/utils/md5.h	2;"	d
 MD5_H	utils/md5.h	2;"	d
-MEMLOG	install/include/memclient/MemLog.h	23;"	d
 MEMLOG	src/MemLog.h	23;"	d
-MemGetResult	install/include/memclient/MemResult.h	/^    MemGetResult(const std::string& key,const Buffer& buffer);$/;"	p	class:MemGetResult	access:public	signature:(const std::string& key,const Buffer& buffer)
-MemGetResult	install/include/memclient/MemResult.h	/^class MemGetResult:public MemResult$/;"	c	inherits:MemResult
+MemAddResult	src/MemResult.h	/^typedef MemResult MemAddResult;$/;"	t
+MemDecResult	src/MemResult.h	/^typedef MemIncResult MemDecResult;$/;"	t
+MemDeleteResult	src/MemResult.h	/^typedef MemResult MemDeleteResult;$/;"	t
+MemFlushResult	src/MemResult.h	/^typedef MemResult MemFlushResult;$/;"	t
 MemGetResult	src/MemResult.cpp	/^MemGetResult::MemGetResult(const std::string& key,const Buffer& buffer)$/;"	f	class:MemGetResult	signature:(const std::string& key,const Buffer& buffer)
 MemGetResult	src/MemResult.h	/^    MemGetResult(const std::string& key,const Buffer& buffer);$/;"	p	class:MemGetResult	access:public	signature:(const std::string& key,const Buffer& buffer)
 MemGetResult	src/MemResult.h	/^class MemGetResult:public MemResult$/;"	c	inherits:MemResult
-MemGetResult::Base	install/include/memclient/MemResult.h	/^    typedef MemResult Base;$/;"	t	class:MemGetResult	access:private
 MemGetResult::Base	src/MemResult.h	/^    typedef MemResult Base;$/;"	t	class:MemGetResult	access:private
-MemGetResult::FillReceiveBuffer	install/include/memclient/MemResult.h	/^    virtual bool FillReceiveBuffer(VBuffer& bufs,int valueLen);$/;"	p	class:MemGetResult	access:public	signature:(VBuffer& bufs,int valueLen)
-MemGetResult::FillReceiveBuffer	src/MemResult.cpp	/^bool MemGetResult::FillReceiveBuffer(VBuffer& bufs,int valueLen)$/;"	f	class:MemGetResult	signature:(VBuffer& bufs,int valueLen)
-MemGetResult::FillReceiveBuffer	src/MemResult.h	/^    virtual bool FillReceiveBuffer(VBuffer& bufs,int valueLen);$/;"	p	class:MemGetResult	access:public	signature:(VBuffer& bufs,int valueLen)
-MemGetResult::Flag	install/include/memclient/MemResult.h	/^    int Flag( void ) const { return mFlag; }$/;"	f	class:MemGetResult	access:public	signature:( void ) const
+MemGetResult::FillReceiveBuffer	src/MemResult.cpp	/^bool MemGetResult::FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen)$/;"	f	class:MemGetResult	signature:(ERequestStatus status,VBuffer& bufs,int valueLen)
+MemGetResult::FillReceiveBuffer	src/MemResult.h	/^    virtual bool FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen);$/;"	p	class:MemGetResult	access:public	signature:(ERequestStatus status,VBuffer& bufs,int valueLen)
 MemGetResult::Flag	src/MemResult.h	/^    int Flag( void ) const { return mFlag; }$/;"	f	class:MemGetResult	access:public	signature:( void ) const
-MemGetResult::MemGetResult	install/include/memclient/MemResult.h	/^    MemGetResult(const std::string& key,const Buffer& buffer);$/;"	p	class:MemGetResult	access:public	signature:(const std::string& key,const Buffer& buffer)
 MemGetResult::MemGetResult	src/MemResult.cpp	/^MemGetResult::MemGetResult(const std::string& key,const Buffer& buffer)$/;"	f	class:MemGetResult	signature:(const std::string& key,const Buffer& buffer)
 MemGetResult::MemGetResult	src/MemResult.h	/^    MemGetResult(const std::string& key,const Buffer& buffer);$/;"	p	class:MemGetResult	access:public	signature:(const std::string& key,const Buffer& buffer)
-MemGetResult::Ptr	install/include/memclient/MemResult.h	/^    typedef std::shared_ptr<MemGetResult> Ptr;$/;"	t	class:MemGetResult	access:public
-MemGetResult::Ptr	src/MemResult.h	/^    typedef std::shared_ptr<MemGetResult> Ptr;$/;"	t	class:MemGetResult	access:public
-MemGetResult::mFlag	install/include/memclient/MemResult.h	/^    int mFlag;$/;"	m	class:MemGetResult	access:private
+MemGetResult::Ptr	src/MemResult.h	/^    typedef boost::shared_ptr<MemGetResult> Ptr;$/;"	t	class:MemGetResult	access:public
 MemGetResult::mFlag	src/MemResult.h	/^    int mFlag;$/;"	m	class:MemGetResult	access:private
-MemLog	install/include/memclient/MemLog.h	/^typedef Src::severity_logger_mt<SeverityLevel> MemLog;$/;"	t
+MemIncResult	src/MemResult.cpp	/^MemIncResult::MemIncResult(const std::string& key)$/;"	f	class:MemIncResult	signature:(const std::string& key)
+MemIncResult	src/MemResult.h	/^    MemIncResult(const std::string& key);$/;"	p	class:MemIncResult	access:public	signature:(const std::string& key)
+MemIncResult	src/MemResult.h	/^class MemIncResult:public MemResult$/;"	c	inherits:MemResult
+MemIncResult::Base	src/MemResult.h	/^    typedef MemResult Base;$/;"	t	class:MemIncResult	access:private
+MemIncResult::FillReceiveBuffer	src/MemResult.cpp	/^bool MemIncResult::FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen)$/;"	f	class:MemIncResult	signature:(ERequestStatus status,VBuffer& bufs,int valueLen)
+MemIncResult::FillReceiveBuffer	src/MemResult.h	/^    virtual bool FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen);$/;"	p	class:MemIncResult	access:public	signature:(ERequestStatus status,VBuffer& bufs,int valueLen)
+MemIncResult::MemIncResult	src/MemResult.cpp	/^MemIncResult::MemIncResult(const std::string& key)$/;"	f	class:MemIncResult	signature:(const std::string& key)
+MemIncResult::MemIncResult	src/MemResult.h	/^    MemIncResult(const std::string& key);$/;"	p	class:MemIncResult	access:public	signature:(const std::string& key)
+MemIncResult::Ptr	src/MemResult.h	/^    typedef boost::shared_ptr<MemIncResult> Ptr;$/;"	t	class:MemIncResult	access:public
+MemIncResult::Value	src/MemResult.h	/^    uint64_t Value(int i = 0) const { return mValue; }$/;"	f	class:MemIncResult	access:public	signature:(int i = 0) const
+MemIncResult::mValue	src/MemResult.h	/^    uint64_t mValue;$/;"	m	class:MemIncResult	access:private
 MemLog	src/MemLog.h	/^typedef Src::severity_logger_mt<SeverityLevel> MemLog;$/;"	t
-MemResult	install/include/memclient/MemResult.h	/^    MemResult(const std::string& key,const Buffer& buffer);$/;"	p	class:MemResult	access:public	signature:(const std::string& key,const Buffer& buffer)
-MemResult	install/include/memclient/MemResult.h	/^class MemResult$/;"	c
+MemReplaceResult	src/MemResult.h	/^typedef MemResult MemReplaceResult;$/;"	t
 MemResult	src/MemResult.cpp	/^MemResult::MemResult(const std::string& key,const Buffer& buffer)$/;"	f	class:MemResult	signature:(const std::string& key,const Buffer& buffer)
 MemResult	src/MemResult.h	/^    MemResult(const std::string& key,const Buffer& buffer);$/;"	p	class:MemResult	access:public	signature:(const std::string& key,const Buffer& buffer)
 MemResult	src/MemResult.h	/^class MemResult$/;"	c
-MemResult::ErrorCode	install/include/memclient/MemResult.h	/^    int ErrorCode( void ) const { return mErrorCode; }$/;"	f	class:MemResult	access:public	signature:( void ) const
 MemResult::ErrorCode	src/MemResult.h	/^    int ErrorCode( void ) const { return mErrorCode; }$/;"	f	class:MemResult	access:public	signature:( void ) const
-MemResult::FillReceiveBuffer	install/include/memclient/MemResult.h	/^    virtual bool FillReceiveBuffer(VBuffer& bufs,int valueLen);$/;"	p	class:MemResult	access:public	signature:(VBuffer& bufs,int valueLen)
-MemResult::FillReceiveBuffer	src/MemResult.cpp	/^bool MemResult::FillReceiveBuffer(VBuffer& bufs,int valueLen)$/;"	f	class:MemResult	signature:(VBuffer& bufs,int valueLen)
-MemResult::FillReceiveBuffer	src/MemResult.h	/^    virtual bool FillReceiveBuffer(VBuffer& bufs,int valueLen);$/;"	p	class:MemResult	access:public	signature:(VBuffer& bufs,int valueLen)
-MemResult::Finish	install/include/memclient/MemResult.h	/^    ERequestStatus Finish( void );$/;"	p	class:MemResult	access:public	signature:( void )
+MemResult::FillReceiveBuffer	src/MemResult.cpp	/^bool MemResult::FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen)$/;"	f	class:MemResult	signature:(ERequestStatus status,VBuffer& bufs,int valueLen)
+MemResult::FillReceiveBuffer	src/MemResult.h	/^    virtual bool FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen);$/;"	p	class:MemResult	access:public	signature:(ERequestStatus status,VBuffer& bufs,int valueLen)
 MemResult::Finish	src/MemResult.cpp	/^ERequestStatus MemResult::Finish( void )$/;"	f	class:MemResult	signature:( void )
 MemResult::Finish	src/MemResult.h	/^    ERequestStatus Finish( void );$/;"	p	class:MemResult	access:public	signature:( void )
-MemResult::Key	install/include/memclient/MemResult.h	/^    const std::string& Key( void ) const { return mKey; }$/;"	f	class:MemResult	access:public	signature:( void ) const
 MemResult::Key	src/MemResult.h	/^    const std::string& Key( void ) const { return mKey; }$/;"	f	class:MemResult	access:public	signature:( void ) const
-MemResult::MemResult	install/include/memclient/MemResult.h	/^    MemResult(const std::string& key,const Buffer& buffer);$/;"	p	class:MemResult	access:public	signature:(const std::string& key,const Buffer& buffer)
 MemResult::MemResult	src/MemResult.cpp	/^MemResult::MemResult(const std::string& key,const Buffer& buffer)$/;"	f	class:MemResult	signature:(const std::string& key,const Buffer& buffer)
 MemResult::MemResult	src/MemResult.h	/^    MemResult(const std::string& key,const Buffer& buffer);$/;"	p	class:MemResult	access:public	signature:(const std::string& key,const Buffer& buffer)
-MemResult::Notify	install/include/memclient/MemResult.h	/^    void Notify(ERequestStatus err);$/;"	p	class:MemResult	access:public	signature:(ERequestStatus err)
 MemResult::Notify	src/MemResult.cpp	/^void MemResult::Notify(ERequestStatus err)$/;"	f	class:MemResult	signature:(ERequestStatus err)
 MemResult::Notify	src/MemResult.h	/^    void Notify(ERequestStatus err);$/;"	p	class:MemResult	access:public	signature:(ERequestStatus err)
-MemResult::Ptr	install/include/memclient/MemResult.h	/^    typedef std::shared_ptr<MemResult> Ptr;$/;"	t	class:MemResult	access:public
-MemResult::Ptr	src/MemResult.h	/^    typedef std::shared_ptr<MemResult> Ptr;$/;"	t	class:MemResult	access:public
-MemResult::StrError	install/include/memclient/MemResult.h	/^    static const std::string StrError(int error);$/;"	p	class:MemResult	access:public	signature:(int error)
+MemResult::Ptr	src/MemResult.h	/^    typedef boost::shared_ptr<MemResult> Ptr;$/;"	t	class:MemResult	access:public
 MemResult::StrError	src/MemResult.h	/^    static const std::string StrError(int error);$/;"	p	class:MemResult	access:public	signature:(int error)
-MemResult::Value	install/include/memclient/MemResult.h	/^    const Buffer& Value() const { return mValue; }$/;"	f	class:MemResult	access:public	signature:() const
 MemResult::Value	src/MemResult.h	/^    const Buffer& Value() const { return mValue; }$/;"	f	class:MemResult	access:public	signature:() const
-MemResult::mErrorCode	install/include/memclient/MemResult.h	/^    ERequestStatus mErrorCode;$/;"	m	class:MemResult	access:private
 MemResult::mErrorCode	src/MemResult.h	/^    ERequestStatus mErrorCode;$/;"	m	class:MemResult	access:private
-MemResult::mKey	install/include/memclient/MemResult.h	/^    std::string mKey;$/;"	m	class:MemResult	access:private
 MemResult::mKey	src/MemResult.h	/^    std::string mKey;$/;"	m	class:MemResult	access:private
-MemResult::mSyncEvent	install/include/memclient/MemResult.h	/^    std::condition_variable mSyncEvent;$/;"	m	class:MemResult	access:private
-MemResult::mSyncEvent	src/MemResult.h	/^    std::condition_variable mSyncEvent;$/;"	m	class:MemResult	access:private
-MemResult::mSyncMut	install/include/memclient/MemResult.h	/^    std::mutex mSyncMut;$/;"	m	class:MemResult	access:private
-MemResult::mSyncMut	src/MemResult.h	/^    std::mutex mSyncMut;$/;"	m	class:MemResult	access:private
-MemResult::mValue	install/include/memclient/MemResult.h	/^    Buffer mValue;$/;"	m	class:MemResult	access:private
+MemResult::mSyncEvent	src/MemResult.h	/^    boost::condition_variable mSyncEvent;$/;"	m	class:MemResult	access:private
+MemResult::mSyncMut	src/MemResult.h	/^    boost::mutex mSyncMut;$/;"	m	class:MemResult	access:private
 MemResult::mValue	src/MemResult.h	/^    Buffer mValue;$/;"	m	class:MemResult	access:private
-MemcachedClient	install/include/memclient/MemcachedClient.h	/^    explicit MemcachedClient(boost::asio::io_service& ioService);$/;"	p	class:MemcachedClient	access:public	signature:(boost::asio::io_service& ioService)
-MemcachedClient	install/include/memclient/MemcachedClient.h	/^class MemcachedClient$/;"	c	inherits:boost::noncopyable
+MemSetResult	src/MemResult.h	/^typedef MemResult MemSetResult;$/;"	t
+MemVersionResult	src/MemResult.h	/^typedef MemResult MemVersionResult;$/;"	t
 MemcachedClient	src/MemcachedClient.cpp	/^MemcachedClient::MemcachedClient(boost::asio::io_service& ioService)$/;"	f	class:MemcachedClient	signature:(boost::asio::io_service& ioService)
 MemcachedClient	src/MemcachedClient.h	/^    explicit MemcachedClient(boost::asio::io_service& ioService);$/;"	p	class:MemcachedClient	access:public	signature:(boost::asio::io_service& ioService)
 MemcachedClient	src/MemcachedClient.h	/^class MemcachedClient$/;"	c	inherits:boost::noncopyable
-MemcachedClient::AdjustEndian	install/include/memclient/MemcachedClient.h	/^    static void AdjustEndian(protocol_binary_request_header* request);$/;"	p	class:MemcachedClient	access:private	signature:(protocol_binary_request_header* request)
-MemcachedClient::AdjustEndian	install/include/memclient/MemcachedClient.h	/^    static void AdjustEndian(protocol_binary_response_header* response);$/;"	p	class:MemcachedClient	access:private	signature:(protocol_binary_response_header* response)
+MemcachedClient::Add	src/MemStore.cpp	/^MemAddResult::Ptr MemcachedClient::Add(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback)$/;"	f	class:MemcachedClient	signature:(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback)
+MemcachedClient::Add	src/MemcachedClient.h	/^    MemAddResult::Ptr Add(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback = DefaultCallback)
 MemcachedClient::AdjustEndian	src/MemcachedClient.cpp	/^\/*static*\/void MemcachedClient::AdjustEndian(protocol_binary_request_header* header)$/;"	f	class:MemcachedClient	signature:(protocol_binary_request_header* header)
 MemcachedClient::AdjustEndian	src/MemcachedClient.cpp	/^\/*static*\/void MemcachedClient::AdjustEndian(protocol_binary_response_header* header)$/;"	f	class:MemcachedClient	signature:(protocol_binary_response_header* header)
 MemcachedClient::AdjustEndian	src/MemcachedClient.h	/^    static void AdjustEndian(protocol_binary_request_header* request);$/;"	p	class:MemcachedClient	access:private	signature:(protocol_binary_request_header* request)
 MemcachedClient::AdjustEndian	src/MemcachedClient.h	/^    static void AdjustEndian(protocol_binary_response_header* response);$/;"	p	class:MemcachedClient	access:private	signature:(protocol_binary_response_header* response)
-MemcachedClient::DefaultCallback	install/include/memclient/MemcachedClient.h	/^    static void DefaultCallback(const MemResult::Ptr&){}$/;"	f	class:MemcachedClient	access:private	signature:(const MemResult::Ptr&)
+MemcachedClient::Decrement	src/MemSelfOp.cpp	/^MemDecResult::Ptr MemcachedClient::Decrement(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry,Callback callback)$/;"	f	class:MemcachedClient	signature:(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry,Callback callback)
+MemcachedClient::Decrement	src/MemcachedClient.h	/^    MemDecResult::Ptr Decrement(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry = 0xffffffff,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry = 0xffffffff,Callback callback = DefaultCallback)
 MemcachedClient::DefaultCallback	src/MemcachedClient.h	/^    static void DefaultCallback(const MemResult::Ptr&){}$/;"	f	class:MemcachedClient	access:private	signature:(const MemResult::Ptr&)
-MemcachedClient::FinishRequest	install/include/memclient/MemcachedClient.h	/^    void FinishRequest(RequestMap::iterator,ERequestStatus err);$/;"	p	class:MemcachedClient	access:private	signature:(RequestMap::iterator,ERequestStatus err)
+MemcachedClient::Delete	src/MemDelete.cpp	/^MemDeleteResult::Ptr MemcachedClient::Delete(const std::string& key,Callback callback)$/;"	f	class:MemcachedClient	signature:(const std::string& key,Callback callback)
+MemcachedClient::Delete	src/MemcachedClient.h	/^    MemDeleteResult::Ptr Delete(const std::string& key,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(const std::string& key,Callback callback = DefaultCallback)
 MemcachedClient::FinishRequest	src/MemcachedClient.cpp	/^void MemcachedClient::FinishRequest(RequestMap::iterator requestIt,ERequestStatus err)$/;"	f	class:MemcachedClient	signature:(RequestMap::iterator requestIt,ERequestStatus err)
 MemcachedClient::FinishRequest	src/MemcachedClient.h	/^    void FinishRequest(RequestMap::iterator,ERequestStatus err);$/;"	p	class:MemcachedClient	access:private	signature:(RequestMap::iterator,ERequestStatus err)
-MemcachedClient::Get	install/include/memclient/MemcachedClient.h	/^    MemGetResult::Ptr Get(const std::string& key,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(const std::string& key,Callback callback = DefaultCallback)
-MemcachedClient::Get	install/include/memclient/MemcachedClient.h	/^    MemGetResult::Ptr Get(const std::string& key,const Buffer& buf,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(const std::string& key,const Buffer& buf,Callback callback = DefaultCallback)
-MemcachedClient::Get	src/MemcachedClient.cpp	/^MemGetResult::Ptr MemcachedClient::Get(const std::string& key,Callback callback)$/;"	f	class:MemcachedClient	signature:(const std::string& key,Callback callback)
-MemcachedClient::Get	src/MemcachedClient.cpp	/^MemGetResult::Ptr MemcachedClient::Get(const std::string& key,const Buffer& buf,Callback callback)$/;"	f	class:MemcachedClient	signature:(const std::string& key,const Buffer& buf,Callback callback)
+MemcachedClient::Flush	src/MemFlush.cpp	/^MemFlushResult::Ptr MemcachedClient::Flush(ServerItem::Ptr server,uint32_t expiry,Callback callback)$/;"	f	class:MemcachedClient	signature:(ServerItem::Ptr server,uint32_t expiry,Callback callback)
+MemcachedClient::Flush	src/MemcachedClient.h	/^    MemFlushResult::Ptr Flush(ServerItem::Ptr pServer,uint32_t expiry,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(ServerItem::Ptr pServer,uint32_t expiry,Callback callback = DefaultCallback)
+MemcachedClient::Get	src/MemGet.cpp	/^MemGetResult::Ptr MemcachedClient::Get(const std::string& key,Callback callback)$/;"	f	class:MemcachedClient	signature:(const std::string& key,Callback callback)
+MemcachedClient::Get	src/MemGet.cpp	/^MemGetResult::Ptr MemcachedClient::Get(const std::string& key,const Buffer& buf,Callback callback)$/;"	f	class:MemcachedClient	signature:(const std::string& key,const Buffer& buf,Callback callback)
 MemcachedClient::Get	src/MemcachedClient.h	/^    MemGetResult::Ptr Get(const std::string& key,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(const std::string& key,Callback callback = DefaultCallback)
 MemcachedClient::Get	src/MemcachedClient.h	/^    MemGetResult::Ptr Get(const std::string& key,const Buffer& buf,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(const std::string& key,const Buffer& buf,Callback callback = DefaultCallback)
-MemcachedClient::MemcachedClient	install/include/memclient/MemcachedClient.h	/^    explicit MemcachedClient(boost::asio::io_service& ioService);$/;"	p	class:MemcachedClient	access:public	signature:(boost::asio::io_service& ioService)
+MemcachedClient::Increment	src/MemSelfOp.cpp	/^MemIncResult::Ptr MemcachedClient::Increment(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry,Callback callback)$/;"	f	class:MemcachedClient	signature:(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry,Callback callback)
+MemcachedClient::Increment	src/MemcachedClient.h	/^    MemIncResult::Ptr Increment(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry = 0xffffffff,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry = 0xffffffff,Callback callback = DefaultCallback)
 MemcachedClient::MemcachedClient	src/MemcachedClient.cpp	/^MemcachedClient::MemcachedClient(boost::asio::io_service& ioService)$/;"	f	class:MemcachedClient	signature:(boost::asio::io_service& ioService)
 MemcachedClient::MemcachedClient	src/MemcachedClient.h	/^    explicit MemcachedClient(boost::asio::io_service& ioService);$/;"	p	class:MemcachedClient	access:public	signature:(boost::asio::io_service& ioService)
-MemcachedClient::OnBodayReaded	install/include/memclient/MemcachedClient.h	/^    void OnBodayReaded(const void* header,const VBuffer& boday);$/;"	p	class:MemcachedClient	access:private	signature:(const void* header,const VBuffer& boday)
 MemcachedClient::OnBodayReaded	src/MemcachedClient.cpp	/^void MemcachedClient::OnBodayReaded(const void* header,const VBuffer& boday)$/;"	f	class:MemcachedClient	signature:(const void* header,const VBuffer& boday)
 MemcachedClient::OnBodayReaded	src/MemcachedClient.h	/^    void OnBodayReaded(const void* header,const VBuffer& boday);$/;"	p	class:MemcachedClient	access:private	signature:(const void* header,const VBuffer& boday)
-MemcachedClient::OnHeaderReaded	install/include/memclient/MemcachedClient.h	/^    bool OnHeaderReaded(const void* header,VBuffer& body);$/;"	p	class:MemcachedClient	access:private	signature:(const void* header,VBuffer& body)
-MemcachedClient::OnHeaderReaded	src/MemcachedClient.cpp	/^bool MemcachedClient::OnHeaderReaded(const void* header,VBuffer& body)$/;"	f	class:MemcachedClient	signature:(const void* header,VBuffer& body)
-MemcachedClient::OnHeaderReaded	src/MemcachedClient.h	/^    bool OnHeaderReaded(const void* header,VBuffer& body);$/;"	p	class:MemcachedClient	access:private	signature:(const void* header,VBuffer& body)
-MemcachedClient::OnServerAdded	install/include/memclient/MemcachedClient.h	/^    void OnServerAdded(const ServerItem::Ptr& item);$/;"	p	class:MemcachedClient	access:private	signature:(const ServerItem::Ptr& item)
+MemcachedClient::OnHeaderReaded	src/MemcachedClient.cpp	/^bool MemcachedClient::OnHeaderReaded(void* header,VBuffer& body)$/;"	f	class:MemcachedClient	signature:(void* header,VBuffer& body)
+MemcachedClient::OnHeaderReaded	src/MemcachedClient.h	/^    bool OnHeaderReaded(void* header,VBuffer& body);$/;"	p	class:MemcachedClient	access:private	signature:(void* header,VBuffer& body)
 MemcachedClient::OnServerAdded	src/MemcachedClient.cpp	/^void MemcachedClient::OnServerAdded(const ServerItem::Ptr& item)$/;"	f	class:MemcachedClient	signature:(const ServerItem::Ptr& item)
 MemcachedClient::OnServerAdded	src/MemcachedClient.h	/^    void OnServerAdded(const ServerItem::Ptr& item);$/;"	p	class:MemcachedClient	access:private	signature:(const ServerItem::Ptr& item)
-MemcachedClient::OnServerRemoved	install/include/memclient/MemcachedClient.h	/^    void OnServerRemoved(const ServerItem::Ptr& item);$/;"	p	class:MemcachedClient	access:private	signature:(const ServerItem::Ptr& item)
 MemcachedClient::OnServerRemoved	src/MemcachedClient.cpp	/^void MemcachedClient::OnServerRemoved(const ServerItem::Ptr& item)$/;"	f	class:MemcachedClient	signature:(const ServerItem::Ptr& item)
 MemcachedClient::OnServerRemoved	src/MemcachedClient.h	/^    void OnServerRemoved(const ServerItem::Ptr& item);$/;"	p	class:MemcachedClient	access:private	signature:(const ServerItem::Ptr& item)
-MemcachedClient::RequestMap	install/include/memclient/MemcachedClient.h	/^    typedef std::unordered_map<int,RequestItem> RequestMap;$/;"	t	class:MemcachedClient	access:private
-MemcachedClient::RequestMap	src/MemcachedClient.h	/^    typedef std::unordered_map<int,RequestItem> RequestMap;$/;"	t	class:MemcachedClient	access:private
-MemcachedClient::Servers	install/include/memclient/MemcachedClient.h	/^    ServerList Servers;$/;"	m	class:MemcachedClient	access:public
+MemcachedClient::Replace	src/MemStore.cpp	/^MemReplaceResult::Ptr MemcachedClient::Replace(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback)$/;"	f	class:MemcachedClient	signature:(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback)
+MemcachedClient::Replace	src/MemcachedClient.h	/^    MemReplaceResult::Ptr Replace(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback = DefaultCallback)
+MemcachedClient::RequestMap	src/MemcachedClient.h	/^    typedef boost::unordered_map<int,RequestItem> RequestMap;$/;"	t	class:MemcachedClient	access:private
+MemcachedClient::SelfOp	src/MemSelfOp.cpp	/^MemIncResult::Ptr MemcachedClient::SelfOp(uint8_t cmd,const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry,Callback callback)$/;"	f	class:MemcachedClient	signature:(uint8_t cmd,const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry,Callback callback)
+MemcachedClient::SelfOp	src/MemcachedClient.h	/^    MemIncResult::Ptr SelfOp(uint8_t cmd,const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry,Callback callback);$/;"	p	class:MemcachedClient	access:private	signature:(uint8_t cmd,const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry,Callback callback)
 MemcachedClient::Servers	src/MemcachedClient.h	/^    ServerList Servers;$/;"	m	class:MemcachedClient	access:public
-MemcachedClient::mIoService	install/include/memclient/MemcachedClient.h	/^    boost::asio::io_service& mIoService;$/;"	m	class:MemcachedClient	access:private
+MemcachedClient::Set	src/MemStore.cpp	/^MemSetResult::Ptr MemcachedClient::Set(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback)$/;"	f	class:MemcachedClient	signature:(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback)
+MemcachedClient::Set	src/MemcachedClient.h	/^    MemSetResult::Ptr Set(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback = DefaultCallback)
+MemcachedClient::Store	src/MemStore.cpp	/^MemSetResult::Ptr MemcachedClient::Store(uint8_t cmd$/;"	f	class:MemcachedClient	signature:(uint8_t cmd ,const std::string& key ,uint32_t flag ,uint32_t expiry ,const ConstBuffer& buf ,Callback callback)
+MemcachedClient::Store	src/MemcachedClient.h	/^    MemResult::Ptr Store(uint8_t cmd,const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback);$/;"	p	class:MemcachedClient	access:private	signature:(uint8_t cmd,const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback)
+MemcachedClient::Version	src/MemcachedClient.h	/^    MemVersionResult::Ptr Version(ServerItem::Ptr pServer);;$/;"	p	class:MemcachedClient	access:public	signature:(ServerItem::Ptr pServer)
 MemcachedClient::mIoService	src/MemcachedClient.h	/^    boost::asio::io_service& mIoService;$/;"	m	class:MemcachedClient	access:private
-MemcachedClient::mLog	install/include/memclient/MemcachedClient.h	/^    MemLog mLog;$/;"	m	class:MemcachedClient	access:private
 MemcachedClient::mLog	src/MemcachedClient.h	/^    MemLog mLog;$/;"	m	class:MemcachedClient	access:private
-MemcachedClient::mNextRequestId	install/include/memclient/MemcachedClient.h	/^    std::atomic_int mNextRequestId;$/;"	m	class:MemcachedClient	access:private
 MemcachedClient::mNextRequestId	src/MemcachedClient.h	/^    std::atomic_int mNextRequestId;$/;"	m	class:MemcachedClient	access:private
-MemcachedClient::mRequests	install/include/memclient/MemcachedClient.h	/^    RequestMap mRequests;$/;"	m	class:MemcachedClient	access:private
 MemcachedClient::mRequests	src/MemcachedClient.h	/^    RequestMap mRequests;$/;"	m	class:MemcachedClient	access:private
-MemcachedClient::mSyncRequest	install/include/memclient/MemcachedClient.h	/^    std::mutex mSyncRequest;$/;"	m	class:MemcachedClient	access:private
-MemcachedClient::mSyncRequest	src/MemcachedClient.h	/^    std::mutex mSyncRequest;$/;"	m	class:MemcachedClient	access:private
-MemoDistri	install/include/serverManager/MemoDistri.h	/^class MemoDistri:public DistributeAlgorithm$/;"	c	inherits:DistributeAlgorithm
+MemcachedClient::mSyncRequest	src/MemcachedClient.h	/^    boost::mutex mSyncRequest;$/;"	m	class:MemcachedClient	access:private
 MemoDistri	serverManager/MemoDistri.h	/^class MemoDistri:public DistributeAlgorithm$/;"	c	inherits:DistributeAlgorithm
-MemoDistri::Add	install/include/serverManager/MemoDistri.h	/^    virtual void Add(ServerItem::Ptr& pServer);$/;"	p	class:MemoDistri	access:public	signature:(ServerItem::Ptr& pServer)
 MemoDistri::Add	serverManager/MemoDistri.cpp	/^void MemoDistri::Add(ServerItem::Ptr& pServer)$/;"	f	class:MemoDistri	signature:(ServerItem::Ptr& pServer)
 MemoDistri::Add	serverManager/MemoDistri.h	/^    virtual void Add(ServerItem::Ptr& pServer);$/;"	p	class:MemoDistri	access:public	signature:(ServerItem::Ptr& pServer)
-MemoDistri::Get	install/include/serverManager/MemoDistri.h	/^    virtual ServerItem::Ptr& Get(hash_t hash);$/;"	p	class:MemoDistri	access:public	signature:(hash_t hash)
 MemoDistri::Get	serverManager/MemoDistri.cpp	/^ServerItem::Ptr& MemoDistri::Get(hash_t hash)$/;"	f	class:MemoDistri	signature:(hash_t hash)
 MemoDistri::Get	serverManager/MemoDistri.h	/^    virtual ServerItem::Ptr& Get(hash_t hash);$/;"	p	class:MemoDistri	access:public	signature:(hash_t hash)
-MemoDistri::KeyServerMap	install/include/serverManager/MemoDistri.h	/^    typedef std::unordered_map<long,ServerItem::Ptr> KeyServerMap;$/;"	t	class:MemoDistri	access:private
-MemoDistri::KeyServerMap	serverManager/MemoDistri.h	/^    typedef std::unordered_map<long,ServerItem::Ptr> KeyServerMap;$/;"	t	class:MemoDistri	access:private
-MemoDistri::Remove	install/include/serverManager/MemoDistri.h	/^    virtual void Remove(ServerItem::Ptr& pServer);$/;"	p	class:MemoDistri	access:public	signature:(ServerItem::Ptr& pServer)
+MemoDistri::KeyServerMap	serverManager/MemoDistri.h	/^    typedef boost::unordered_map<long,ServerItem::Ptr> KeyServerMap;$/;"	t	class:MemoDistri	access:private
 MemoDistri::Remove	serverManager/MemoDistri.cpp	/^void MemoDistri::Remove(ServerItem::Ptr& pServer)$/;"	f	class:MemoDistri	signature:(ServerItem::Ptr& pServer)
 MemoDistri::Remove	serverManager/MemoDistri.h	/^    virtual void Remove(ServerItem::Ptr& pServer);$/;"	p	class:MemoDistri	access:public	signature:(ServerItem::Ptr& pServer)
-MemoDistri::ServerBalanceInfo	install/include/serverManager/MemoDistri.h	/^    struct ServerBalanceInfo$/;"	s	class:MemoDistri	access:private
 MemoDistri::ServerBalanceInfo	serverManager/MemoDistri.h	/^    struct ServerBalanceInfo$/;"	s	class:MemoDistri	access:private
-MemoDistri::ServerBalanceInfo::KeyCount	install/include/serverManager/MemoDistri.h	/^	std::size_t KeyCount;$/;"	m	struct:MemoDistri::ServerBalanceInfo	access:public
 MemoDistri::ServerBalanceInfo::KeyCount	serverManager/MemoDistri.h	/^	std::size_t KeyCount;$/;"	m	struct:MemoDistri::ServerBalanceInfo	access:public
-MemoDistri::ServerBalanceInfo::Server	install/include/serverManager/MemoDistri.h	/^	ServerItem::Ptr Server;$/;"	m	struct:MemoDistri::ServerBalanceInfo	access:public
 MemoDistri::ServerBalanceInfo::Server	serverManager/MemoDistri.h	/^	ServerItem::Ptr Server;$/;"	m	struct:MemoDistri::ServerBalanceInfo	access:public
-MemoDistri::ServerBalanceInfo::ServerBalanceInfo	install/include/serverManager/MemoDistri.h	/^	ServerBalanceInfo(ServerItem::Ptr& server)$/;"	f	struct:MemoDistri::ServerBalanceInfo	access:public	signature:(ServerItem::Ptr& server)
 MemoDistri::ServerBalanceInfo::ServerBalanceInfo	serverManager/MemoDistri.h	/^	ServerBalanceInfo(ServerItem::Ptr& server)$/;"	f	struct:MemoDistri::ServerBalanceInfo	access:public	signature:(ServerItem::Ptr& server)
-MemoDistri::ServerBalanceInfo::operator <	install/include/serverManager/MemoDistri.h	/^	friend bool operator < (const ServerBalanceInfo& lhs,const ServerBalanceInfo& rhs)$/;"	f	struct:MemoDistri::ServerBalanceInfo	access:friend	signature:(const ServerBalanceInfo& lhs,const ServerBalanceInfo& rhs)
 MemoDistri::ServerBalanceInfo::operator <	serverManager/MemoDistri.h	/^	friend bool operator < (const ServerBalanceInfo& lhs,const ServerBalanceInfo& rhs)$/;"	f	struct:MemoDistri::ServerBalanceInfo	access:friend	signature:(const ServerBalanceInfo& lhs,const ServerBalanceInfo& rhs)
-MemoDistri::mBalanceInfos	install/include/serverManager/MemoDistri.h	/^    std::vector<ServerBalanceInfo> mBalanceInfos;$/;"	m	class:MemoDistri	access:private
 MemoDistri::mBalanceInfos	serverManager/MemoDistri.h	/^    std::vector<ServerBalanceInfo> mBalanceInfos;$/;"	m	class:MemoDistri	access:private
-MemoDistri::mKeyServerMapping	install/include/serverManager/MemoDistri.h	/^    KeyServerMap mKeyServerMapping;$/;"	m	class:MemoDistri	access:private
 MemoDistri::mKeyServerMapping	serverManager/MemoDistri.h	/^    KeyServerMap mKeyServerMapping;$/;"	m	class:MemoDistri	access:private
-ModuloDistri	install/include/serverManager/ModuloDistri.h	/^    ModuloDistri();$/;"	p	class:ModuloDistri	access:public	signature:()
-ModuloDistri	install/include/serverManager/ModuloDistri.h	/^class ModuloDistri:public DistributeAlgorithm$/;"	c	inherits:DistributeAlgorithm
 ModuloDistri	serverManager/ModuloDistri.h	/^    ModuloDistri();$/;"	p	class:ModuloDistri	access:public	signature:()
 ModuloDistri	serverManager/ModuloDistri.h	/^class ModuloDistri:public DistributeAlgorithm$/;"	c	inherits:DistributeAlgorithm
-ModuloDistri::Add	install/include/serverManager/ModuloDistri.h	/^    virtual void Add(ServerItem::Ptr& pServer);$/;"	p	class:ModuloDistri	access:public	signature:(ServerItem::Ptr& pServer)
 ModuloDistri::Add	serverManager/ModuloDistri.cpp	/^void ModuloDistri::Add(ServerItem::Ptr& pServer)$/;"	f	class:ModuloDistri	signature:(ServerItem::Ptr& pServer)
 ModuloDistri::Add	serverManager/ModuloDistri.h	/^    virtual void Add(ServerItem::Ptr& pServer);$/;"	p	class:ModuloDistri	access:public	signature:(ServerItem::Ptr& pServer)
-ModuloDistri::Get	install/include/serverManager/ModuloDistri.h	/^    virtual ServerItem::Ptr& Get(hash_t hash);$/;"	p	class:ModuloDistri	access:public	signature:(hash_t hash)
 ModuloDistri::Get	serverManager/ModuloDistri.cpp	/^ServerItem::Ptr& ModuloDistri::Get(hash_t hash)$/;"	f	class:ModuloDistri	signature:(hash_t hash)
 ModuloDistri::Get	serverManager/ModuloDistri.h	/^    virtual ServerItem::Ptr& Get(hash_t hash);$/;"	p	class:ModuloDistri	access:public	signature:(hash_t hash)
-ModuloDistri::ModuloDistri	install/include/serverManager/ModuloDistri.h	/^    ModuloDistri();$/;"	p	class:ModuloDistri	access:public	signature:()
 ModuloDistri::ModuloDistri	serverManager/ModuloDistri.h	/^    ModuloDistri();$/;"	p	class:ModuloDistri	access:public	signature:()
-ModuloDistri::Remove	install/include/serverManager/ModuloDistri.h	/^    virtual void Remove(ServerItem::Ptr& pServer);$/;"	p	class:ModuloDistri	access:public	signature:(ServerItem::Ptr& pServer)
 ModuloDistri::Remove	serverManager/ModuloDistri.cpp	/^void ModuloDistri::Remove(ServerItem::Ptr& pServer)$/;"	f	class:ModuloDistri	signature:(ServerItem::Ptr& pServer)
 ModuloDistri::Remove	serverManager/ModuloDistri.h	/^    virtual void Remove(ServerItem::Ptr& pServer);$/;"	p	class:ModuloDistri	access:public	signature:(ServerItem::Ptr& pServer)
-ModuloDistri::mServers	install/include/serverManager/ModuloDistri.h	/^    std::vector<ServerItem::Ptr> mServers;$/;"	m	class:ModuloDistri	access:private
 ModuloDistri::mServers	serverManager/ModuloDistri.h	/^    std::vector<ServerItem::Ptr> mServers;$/;"	m	class:ModuloDistri	access:private
-Notify	install/include/memclient/MemResult.h	/^    void Notify(ERequestStatus err);$/;"	p	class:MemResult	access:public	signature:(ERequestStatus err)
-Notify	install/include/memclient/RequestItem.h	/^    void Notify(ERequestStatus status);$/;"	p	class:RequestItem	access:public	signature:(ERequestStatus status)
 Notify	src/MemResult.cpp	/^void MemResult::Notify(ERequestStatus err)$/;"	f	class:MemResult	signature:(ERequestStatus err)
 Notify	src/MemResult.h	/^    void Notify(ERequestStatus err);$/;"	p	class:MemResult	access:public	signature:(ERequestStatus err)
 Notify	src/RequestItem.cpp	/^void RequestItem::Notify(ERequestStatus status)$/;"	f	class:RequestItem	signature:(ERequestStatus status)
 Notify	src/RequestItem.h	/^    void Notify(ERequestStatus status);$/;"	p	class:RequestItem	access:public	signature:(ERequestStatus status)
-OnBodayReaded	install/include/memclient/MemcachedClient.h	/^    void OnBodayReaded(const void* header,const VBuffer& boday);$/;"	p	class:MemcachedClient	access:private	signature:(const void* header,const VBuffer& boday)
 OnBodayReaded	src/MemcachedClient.cpp	/^void MemcachedClient::OnBodayReaded(const void* header,const VBuffer& boday)$/;"	f	class:MemcachedClient	signature:(const void* header,const VBuffer& boday)
 OnBodayReaded	src/MemcachedClient.h	/^    void OnBodayReaded(const void* header,const VBuffer& boday);$/;"	p	class:MemcachedClient	access:private	signature:(const void* header,const VBuffer& boday)
-OnBody	install/include/network/TcpClient.h	/^    BodyReadedEvent OnBody;$/;"	m	class:TcpClient	access:public
 OnBody	network/TcpClient.h	/^    BodyReadedEvent OnBody;$/;"	m	class:TcpClient	access:public
-OnClosed	install/include/network/TcpClient.h	/^    ClosedEvent OnClosed;$/;"	m	class:TcpClient	access:public
 OnClosed	network/TcpClient.h	/^    ClosedEvent OnClosed;$/;"	m	class:TcpClient	access:public
-OnConnected	install/include/network/TcpClient.h	/^    ConnectedEvent OnConnected;$/;"	m	class:TcpClient	access:public
 OnConnected	network/TcpClient.h	/^    ConnectedEvent OnConnected;$/;"	m	class:TcpClient	access:public
-OnError	install/include/network/TcpClient.h	/^    ErrorEvent OnError;$/;"	m	class:TcpClient	access:public
 OnError	network/TcpClient.h	/^    ErrorEvent OnError;$/;"	m	class:TcpClient	access:public
-OnHeader	install/include/network/TcpClient.h	/^    HeaderReadedEvent OnHeader;$/;"	m	class:TcpClient	access:public
 OnHeader	network/TcpClient.h	/^    HeaderReadedEvent OnHeader;$/;"	m	class:TcpClient	access:public
-OnHeaderReaded	install/include/memclient/MemcachedClient.h	/^    bool OnHeaderReaded(const void* header,VBuffer& body);$/;"	p	class:MemcachedClient	access:private	signature:(const void* header,VBuffer& body)
-OnHeaderReaded	src/MemcachedClient.cpp	/^bool MemcachedClient::OnHeaderReaded(const void* header,VBuffer& body)$/;"	f	class:MemcachedClient	signature:(const void* header,VBuffer& body)
-OnHeaderReaded	src/MemcachedClient.h	/^    bool OnHeaderReaded(const void* header,VBuffer& body);$/;"	p	class:MemcachedClient	access:private	signature:(const void* header,VBuffer& body)
-OnServerAdded	install/include/memclient/MemcachedClient.h	/^    void OnServerAdded(const ServerItem::Ptr& item);$/;"	p	class:MemcachedClient	access:private	signature:(const ServerItem::Ptr& item)
-OnServerAdded	install/include/serverManager/ServerList.h	/^    ServerEvent OnServerAdded;$/;"	m	class:ServerList	access:public
+OnHeaderReaded	src/MemcachedClient.cpp	/^bool MemcachedClient::OnHeaderReaded(void* header,VBuffer& body)$/;"	f	class:MemcachedClient	signature:(void* header,VBuffer& body)
+OnHeaderReaded	src/MemcachedClient.h	/^    bool OnHeaderReaded(void* header,VBuffer& body);$/;"	p	class:MemcachedClient	access:private	signature:(void* header,VBuffer& body)
 OnServerAdded	serverManager/ServerList.h	/^    ServerEvent OnServerAdded;$/;"	m	class:ServerList	access:public
 OnServerAdded	src/MemcachedClient.cpp	/^void MemcachedClient::OnServerAdded(const ServerItem::Ptr& item)$/;"	f	class:MemcachedClient	signature:(const ServerItem::Ptr& item)
 OnServerAdded	src/MemcachedClient.h	/^    void OnServerAdded(const ServerItem::Ptr& item);$/;"	p	class:MemcachedClient	access:private	signature:(const ServerItem::Ptr& item)
-OnServerRemoved	install/include/memclient/MemcachedClient.h	/^    void OnServerRemoved(const ServerItem::Ptr& item);$/;"	p	class:MemcachedClient	access:private	signature:(const ServerItem::Ptr& item)
-OnServerRemoved	install/include/serverManager/ServerList.h	/^    ServerEvent OnServerRemoved;$/;"	m	class:ServerList	access:public
 OnServerRemoved	serverManager/ServerList.h	/^    ServerEvent OnServerRemoved;$/;"	m	class:ServerList	access:public
 OnServerRemoved	src/MemcachedClient.cpp	/^void MemcachedClient::OnServerRemoved(const ServerItem::Ptr& item)$/;"	f	class:MemcachedClient	signature:(const ServerItem::Ptr& item)
 OnServerRemoved	src/MemcachedClient.h	/^    void OnServerRemoved(const ServerItem::Ptr& item);$/;"	p	class:MemcachedClient	access:private	signature:(const ServerItem::Ptr& item)
-PADDING	install/include/utils/md5.h	/^	static const byte PADDING[64];	\/* padding for calculate *\/$/;"	m	class:MD5	access:private
 PADDING	utils/md5.cpp	/^const byte MD5::PADDING[64] = { 0x80 };$/;"	m	class:MD5	file:
 PADDING	utils/md5.h	/^	static const byte PADDING[64];	\/* padding for calculate *\/$/;"	m	class:MD5	access:private
 PLATFORM_ID	build/CMakeFiles/2.8.11.2/CompilerIdC/CMakeCCompilerId.c	213;"	d	file:
@@ -778,16 +626,12 @@ PLATFORM_ID	build/CMakeFiles/2.8.11.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	266;"
 PLATFORM_ID	build/CMakeFiles/2.8.11.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	269;"	d	file:
 PLATFORM_ID	build/CMakeFiles/2.8.11.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	272;"	d	file:
 PLATFORM_ID	build/CMakeFiles/2.8.11.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	275;"	d	file:
-PendingRequests	install/include/serverManager/ServerItem.h	/^    const std::vector<int>& PendingRequests() const { return mPendingRequests; }$/;"	f	class:ServerItem	access:public	signature:() const
 PendingRequests	serverManager/ServerItem.h	/^    const std::vector<int>& PendingRequests() const { return mPendingRequests; }$/;"	f	class:ServerItem	access:public	signature:() const
-Port	install/include/serverManager/ServerItem.h	/^    int Port( void ) const { return mPort; }$/;"	f	class:ServerItem	access:public	signature:( void ) const
 Port	serverManager/ServerItem.h	/^    int Port( void ) const { return mPort; }$/;"	f	class:ServerItem	access:public	signature:( void ) const
-Ptr	install/include/memclient/MemResult.h	/^    typedef std::shared_ptr<MemGetResult> Ptr;$/;"	t	class:MemGetResult	access:public
-Ptr	install/include/memclient/MemResult.h	/^    typedef std::shared_ptr<MemResult> Ptr;$/;"	t	class:MemResult	access:public
-Ptr	install/include/serverManager/ServerItem.h	/^    typedef std::shared_ptr<ServerItem> Ptr;$/;"	t	class:ServerItem	access:public
-Ptr	serverManager/ServerItem.h	/^    typedef std::shared_ptr<ServerItem> Ptr;$/;"	t	class:ServerItem	access:public
-Ptr	src/MemResult.h	/^    typedef std::shared_ptr<MemGetResult> Ptr;$/;"	t	class:MemGetResult	access:public
-Ptr	src/MemResult.h	/^    typedef std::shared_ptr<MemResult> Ptr;$/;"	t	class:MemResult	access:public
+Ptr	serverManager/ServerItem.h	/^    typedef boost::shared_ptr<ServerItem> Ptr;$/;"	t	class:ServerItem	access:public
+Ptr	src/MemResult.h	/^    typedef boost::shared_ptr<MemGetResult> Ptr;$/;"	t	class:MemGetResult	access:public
+Ptr	src/MemResult.h	/^    typedef boost::shared_ptr<MemIncResult> Ptr;$/;"	t	class:MemIncResult	access:public
+Ptr	src/MemResult.h	/^    typedef boost::shared_ptr<MemResult> Ptr;$/;"	t	class:MemResult	access:public
 RM	build/Makefile	/^RM = \/usr\/local\/bin\/cmake -E remove -f$/;"	m
 RM	build/example/Makefile	/^RM = \/usr\/local\/bin\/cmake -E remove -f$/;"	m
 RM	build/network/Makefile	/^RM = \/usr\/local\/bin\/cmake -E remove -f$/;"	m
@@ -796,17 +640,10 @@ RM	build/src/Makefile	/^RM = \/usr\/local\/bin\/cmake -E remove -f$/;"	m
 RM	build/test/Makefile	/^RM = \/usr\/local\/bin\/cmake -E remove -f$/;"	m
 RM	build/utils/Makefile	/^RM = \/usr\/local\/bin\/cmake -E remove -f$/;"	m
 ROTATE_LEFT	utils/md5.cpp	33;"	d	file:
-ReadBody	install/include/network/TcpClient.h	/^    void ReadBody( void );$/;"	p	class:TcpClient	access:private	signature:( void )
 ReadBody	network/TcpClient.cpp	/^void TcpClient::ReadBody()$/;"	f	class:TcpClient	signature:()
 ReadBody	network/TcpClient.h	/^    void ReadBody( void );$/;"	p	class:TcpClient	access:private	signature:( void )
-ReadHeader	install/include/network/TcpClient.h	/^    void ReadHeader( void );$/;"	p	class:TcpClient	access:private	signature:( void )
 ReadHeader	network/TcpClient.cpp	/^void TcpClient::ReadHeader()$/;"	f	class:TcpClient	signature:()
 ReadHeader	network/TcpClient.h	/^    void ReadHeader( void );$/;"	p	class:TcpClient	access:private	signature:( void )
-Remove	install/include/serverManager/ConsistentHashDistri.h	/^    virtual void Remove(ServerItem::Ptr& pServer);$/;"	p	class:ConsistentHashDistri	access:public	signature:(ServerItem::Ptr& pServer)
-Remove	install/include/serverManager/DistributeAlgorithm.h	/^    virtual void Remove(ServerItem::Ptr& pServer) = 0;$/;"	p	class:DistributeAlgorithm	access:public	signature:(ServerItem::Ptr& pServer)
-Remove	install/include/serverManager/MemoDistri.h	/^    virtual void Remove(ServerItem::Ptr& pServer);$/;"	p	class:MemoDistri	access:public	signature:(ServerItem::Ptr& pServer)
-Remove	install/include/serverManager/ModuloDistri.h	/^    virtual void Remove(ServerItem::Ptr& pServer);$/;"	p	class:ModuloDistri	access:public	signature:(ServerItem::Ptr& pServer)
-Remove	install/include/serverManager/ServerList.h	/^    bool Remove(const std::string& host,int port);$/;"	p	class:ServerList	access:public	signature:(const std::string& host,int port)
 Remove	serverManager/ConsistentHashDistri.cpp	/^void ConsistentHashDistri::Remove(ServerItem::Ptr& pServer)$/;"	f	class:ConsistentHashDistri	signature:(ServerItem::Ptr& pServer)
 Remove	serverManager/ConsistentHashDistri.h	/^    virtual void Remove(ServerItem::Ptr& pServer);$/;"	p	class:ConsistentHashDistri	access:public	signature:(ServerItem::Ptr& pServer)
 Remove	serverManager/DistributeAlgorithm.h	/^    virtual void Remove(ServerItem::Ptr& pServer) = 0;$/;"	p	class:DistributeAlgorithm	access:public	signature:(ServerItem::Ptr& pServer)
@@ -816,26 +653,19 @@ Remove	serverManager/ModuloDistri.cpp	/^void ModuloDistri::Remove(ServerItem::Pt
 Remove	serverManager/ModuloDistri.h	/^    virtual void Remove(ServerItem::Ptr& pServer);$/;"	p	class:ModuloDistri	access:public	signature:(ServerItem::Ptr& pServer)
 Remove	serverManager/ServerList.cpp	/^bool ServerList::Remove(const std::string& host,int port)$/;"	f	class:ServerList	signature:(const std::string& host,int port)
 Remove	serverManager/ServerList.h	/^    bool Remove(const std::string& host,int port);$/;"	p	class:ServerList	access:public	signature:(const std::string& host,int port)
-RequestItem	install/include/memclient/RequestItem.h	/^    explicit RequestItem(Callback callback,const MemResult::Ptr& result);$/;"	p	class:RequestItem	access:public	signature:(Callback callback,const MemResult::Ptr& result)
-RequestItem	install/include/memclient/RequestItem.h	/^class RequestItem$/;"	c
+Replace	src/MemStore.cpp	/^MemReplaceResult::Ptr MemcachedClient::Replace(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback)$/;"	f	class:MemcachedClient	signature:(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback)
+Replace	src/MemcachedClient.h	/^    MemReplaceResult::Ptr Replace(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback = DefaultCallback)
 RequestItem	src/RequestItem.cpp	/^RequestItem::RequestItem(Callback callback,const MemResult::Ptr& result)$/;"	f	class:RequestItem	signature:(Callback callback,const MemResult::Ptr& result)
 RequestItem	src/RequestItem.h	/^    explicit RequestItem(Callback callback,const MemResult::Ptr& result);$/;"	p	class:RequestItem	access:public	signature:(Callback callback,const MemResult::Ptr& result)
 RequestItem	src/RequestItem.h	/^class RequestItem$/;"	c
-RequestItem::FillReceiveBuffer	install/include/memclient/RequestItem.h	/^    bool FillReceiveBuffer(VBuffer& bufs,int valueLen) { return mResult->FillReceiveBuffer(bufs,valueLen); }$/;"	f	class:RequestItem	access:public	signature:(VBuffer& bufs,int valueLen)
-RequestItem::FillReceiveBuffer	src/RequestItem.h	/^    bool FillReceiveBuffer(VBuffer& bufs,int valueLen) { return mResult->FillReceiveBuffer(bufs,valueLen); }$/;"	f	class:RequestItem	access:public	signature:(VBuffer& bufs,int valueLen)
-RequestItem::Notify	install/include/memclient/RequestItem.h	/^    void Notify(ERequestStatus status);$/;"	p	class:RequestItem	access:public	signature:(ERequestStatus status)
+RequestItem::FillReceiveBuffer	src/RequestItem.h	/^    bool FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen) { return mResult->FillReceiveBuffer(status,bufs,valueLen); }$/;"	f	class:RequestItem	access:public	signature:(ERequestStatus status,VBuffer& bufs,int valueLen)
 RequestItem::Notify	src/RequestItem.cpp	/^void RequestItem::Notify(ERequestStatus status)$/;"	f	class:RequestItem	signature:(ERequestStatus status)
 RequestItem::Notify	src/RequestItem.h	/^    void Notify(ERequestStatus status);$/;"	p	class:RequestItem	access:public	signature:(ERequestStatus status)
-RequestItem::RequestItem	install/include/memclient/RequestItem.h	/^    explicit RequestItem(Callback callback,const MemResult::Ptr& result);$/;"	p	class:RequestItem	access:public	signature:(Callback callback,const MemResult::Ptr& result)
 RequestItem::RequestItem	src/RequestItem.cpp	/^RequestItem::RequestItem(Callback callback,const MemResult::Ptr& result)$/;"	f	class:RequestItem	signature:(Callback callback,const MemResult::Ptr& result)
 RequestItem::RequestItem	src/RequestItem.h	/^    explicit RequestItem(Callback callback,const MemResult::Ptr& result);$/;"	p	class:RequestItem	access:public	signature:(Callback callback,const MemResult::Ptr& result)
-RequestItem::mCallback	install/include/memclient/RequestItem.h	/^    Callback mCallback;$/;"	m	class:RequestItem	access:private
 RequestItem::mCallback	src/RequestItem.h	/^    Callback mCallback;$/;"	m	class:RequestItem	access:private
-RequestItem::mResult	install/include/memclient/RequestItem.h	/^    MemResult::Ptr mResult;$/;"	m	class:RequestItem	access:private
 RequestItem::mResult	src/RequestItem.h	/^    MemResult::Ptr mResult;$/;"	m	class:RequestItem	access:private
-RequestMap	install/include/memclient/MemcachedClient.h	/^    typedef std::unordered_map<int,RequestItem> RequestMap;$/;"	t	class:MemcachedClient	access:private
-RequestMap	src/MemcachedClient.h	/^    typedef std::unordered_map<int,RequestItem> RequestMap;$/;"	t	class:MemcachedClient	access:private
-Reset	install/include/network/SharedBuffer.h	/^    void Reset(void* data,size_t size,D d = DefaultD)$/;"	f	class:SharedBuffer	access:public	signature:(void* data,size_t size,D d = DefaultD)
+RequestMap	src/MemcachedClient.h	/^    typedef boost::unordered_map<int,RequestItem> RequestMap;$/;"	t	class:MemcachedClient	access:private
 Reset	network/SharedBuffer.h	/^    void Reset(void* data,size_t size,D d = DefaultD)$/;"	f	class:SharedBuffer	access:public	signature:(void* data,size_t size,D d = DefaultD)
 RunAll	build/build.py	/^def RunAll(runList):$/;"	f	access:public
 S11	utils/md5.cpp	6;"	d	file:
@@ -868,312 +698,187 @@ SUFFIXES	build/serverManager/Makefile	/^SUFFIXES =$/;"	m
 SUFFIXES	build/src/Makefile	/^SUFFIXES =$/;"	m
 SUFFIXES	build/test/Makefile	/^SUFFIXES =$/;"	m
 SUFFIXES	build/utils/Makefile	/^SUFFIXES =$/;"	m
-Send	install/include/network/TcpClient.h	/^    void Send();$/;"	p	class:TcpClient	access:private	signature:()
-Send	install/include/network/TcpClient.h	/^    void Send(const ConstBuffer& buf);$/;"	p	class:TcpClient	access:public	signature:(const ConstBuffer& buf)
-Send	install/include/network/TcpClient.h	/^    void Send(const VConstBuffer& vbuf);$/;"	p	class:TcpClient	access:public	signature:(const VConstBuffer& vbuf)
+SelfOp	src/MemSelfOp.cpp	/^MemIncResult::Ptr MemcachedClient::SelfOp(uint8_t cmd,const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry,Callback callback)$/;"	f	class:MemcachedClient	signature:(uint8_t cmd,const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry,Callback callback)
+SelfOp	src/MemcachedClient.h	/^    MemIncResult::Ptr SelfOp(uint8_t cmd,const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry,Callback callback);$/;"	p	class:MemcachedClient	access:private	signature:(uint8_t cmd,const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry,Callback callback)
 Send	network/TcpClient.cpp	/^void TcpClient::Send()$/;"	f	class:TcpClient	signature:()
 Send	network/TcpClient.cpp	/^void TcpClient::Send(const ConstBuffer& buf)$/;"	f	class:TcpClient	signature:(const ConstBuffer& buf)
 Send	network/TcpClient.cpp	/^void TcpClient::Send(const VConstBuffer& vbuf)$/;"	f	class:TcpClient	signature:(const VConstBuffer& vbuf)
 Send	network/TcpClient.h	/^    void Send();$/;"	p	class:TcpClient	access:private	signature:()
 Send	network/TcpClient.h	/^    void Send(const ConstBuffer& buf);$/;"	p	class:TcpClient	access:public	signature:(const ConstBuffer& buf)
 Send	network/TcpClient.h	/^    void Send(const VConstBuffer& vbuf);$/;"	p	class:TcpClient	access:public	signature:(const VConstBuffer& vbuf)
-SendRequest	install/include/serverManager/ServerItem.h	/^    void SendRequest(int requestId,const ConstBuffer& buf);$/;"	p	class:ServerItem	access:public	signature:(int requestId,const ConstBuffer& buf)
-SendRequest	install/include/serverManager/ServerItem.h	/^    void SendRequest(int requestId,const VConstBuffer& bufs);$/;"	p	class:ServerItem	access:public	signature:(int requestId,const VConstBuffer& bufs)
 SendRequest	serverManager/ServerItem.cpp	/^void ServerItem::SendRequest(int requestId,const ConstBuffer& buf)$/;"	f	class:ServerItem	signature:(int requestId,const ConstBuffer& buf)
 SendRequest	serverManager/ServerItem.cpp	/^void ServerItem::SendRequest(int requestId,const VConstBuffer& bufs)$/;"	f	class:ServerItem	signature:(int requestId,const VConstBuffer& bufs)
 SendRequest	serverManager/ServerItem.h	/^    void SendRequest(int requestId,const ConstBuffer& buf);$/;"	p	class:ServerItem	access:public	signature:(int requestId,const ConstBuffer& buf)
 SendRequest	serverManager/ServerItem.h	/^    void SendRequest(int requestId,const VConstBuffer& bufs);$/;"	p	class:ServerItem	access:public	signature:(int requestId,const VConstBuffer& bufs)
-Server	install/include/serverManager/MemoDistri.h	/^	ServerItem::Ptr Server;$/;"	m	struct:MemoDistri::ServerBalanceInfo	access:public
 Server	serverManager/MemoDistri.h	/^	ServerItem::Ptr Server;$/;"	m	struct:MemoDistri::ServerBalanceInfo	access:public
-ServerBalanceInfo	install/include/serverManager/MemoDistri.h	/^	ServerBalanceInfo(ServerItem::Ptr& server)$/;"	f	struct:MemoDistri::ServerBalanceInfo	access:public	signature:(ServerItem::Ptr& server)
-ServerBalanceInfo	install/include/serverManager/MemoDistri.h	/^    struct ServerBalanceInfo$/;"	s	class:MemoDistri	access:private
 ServerBalanceInfo	serverManager/MemoDistri.h	/^	ServerBalanceInfo(ServerItem::Ptr& server)$/;"	f	struct:MemoDistri::ServerBalanceInfo	access:public	signature:(ServerItem::Ptr& server)
 ServerBalanceInfo	serverManager/MemoDistri.h	/^    struct ServerBalanceInfo$/;"	s	class:MemoDistri	access:private
-ServerEvent	install/include/serverManager/ServerList.h	/^    typedef signals2::signal<void (const ServerItem::Ptr&)> ServerEvent;$/;"	t	class:ServerList	access:public
 ServerEvent	serverManager/ServerList.h	/^    typedef signals2::signal<void (const ServerItem::Ptr&)> ServerEvent;$/;"	t	class:ServerList	access:public
-ServerItem	install/include/serverManager/ServerItem.h	/^    explicit ServerItem(boost::asio::io_service& ioService,const std::string& host,int port = 11211,int weight = 1)$/;"	f	class:ServerItem	access:public	signature:(boost::asio::io_service& ioService,const std::string& host,int port = 11211,int weight = 1)
-ServerItem	install/include/serverManager/ServerItem.h	/^class ServerItem$/;"	c
 ServerItem	serverManager/ServerItem.h	/^    explicit ServerItem(boost::asio::io_service& ioService,const std::string& host,int port = 11211,int weight = 1)$/;"	f	class:ServerItem	access:public	signature:(boost::asio::io_service& ioService,const std::string& host,int port = 11211,int weight = 1)
 ServerItem	serverManager/ServerItem.h	/^class ServerItem$/;"	c
-ServerItem::Host	install/include/serverManager/ServerItem.h	/^    const std::string& Host( void ) const { return mHost; }$/;"	f	class:ServerItem	access:public	signature:( void ) const
 ServerItem::Host	serverManager/ServerItem.h	/^    const std::string& Host( void ) const { return mHost; }$/;"	f	class:ServerItem	access:public	signature:( void ) const
-ServerItem::PendingRequests	install/include/serverManager/ServerItem.h	/^    const std::vector<int>& PendingRequests() const { return mPendingRequests; }$/;"	f	class:ServerItem	access:public	signature:() const
 ServerItem::PendingRequests	serverManager/ServerItem.h	/^    const std::vector<int>& PendingRequests() const { return mPendingRequests; }$/;"	f	class:ServerItem	access:public	signature:() const
-ServerItem::Port	install/include/serverManager/ServerItem.h	/^    int Port( void ) const { return mPort; }$/;"	f	class:ServerItem	access:public	signature:( void ) const
 ServerItem::Port	serverManager/ServerItem.h	/^    int Port( void ) const { return mPort; }$/;"	f	class:ServerItem	access:public	signature:( void ) const
-ServerItem::Ptr	install/include/serverManager/ServerItem.h	/^    typedef std::shared_ptr<ServerItem> Ptr;$/;"	t	class:ServerItem	access:public
-ServerItem::Ptr	serverManager/ServerItem.h	/^    typedef std::shared_ptr<ServerItem> Ptr;$/;"	t	class:ServerItem	access:public
-ServerItem::SendRequest	install/include/serverManager/ServerItem.h	/^    void SendRequest(int requestId,const ConstBuffer& buf);$/;"	p	class:ServerItem	access:public	signature:(int requestId,const ConstBuffer& buf)
-ServerItem::SendRequest	install/include/serverManager/ServerItem.h	/^    void SendRequest(int requestId,const VConstBuffer& bufs);$/;"	p	class:ServerItem	access:public	signature:(int requestId,const VConstBuffer& bufs)
+ServerItem::Ptr	serverManager/ServerItem.h	/^    typedef boost::shared_ptr<ServerItem> Ptr;$/;"	t	class:ServerItem	access:public
 ServerItem::SendRequest	serverManager/ServerItem.cpp	/^void ServerItem::SendRequest(int requestId,const ConstBuffer& buf)$/;"	f	class:ServerItem	signature:(int requestId,const ConstBuffer& buf)
 ServerItem::SendRequest	serverManager/ServerItem.cpp	/^void ServerItem::SendRequest(int requestId,const VConstBuffer& bufs)$/;"	f	class:ServerItem	signature:(int requestId,const VConstBuffer& bufs)
 ServerItem::SendRequest	serverManager/ServerItem.h	/^    void SendRequest(int requestId,const ConstBuffer& buf);$/;"	p	class:ServerItem	access:public	signature:(int requestId,const ConstBuffer& buf)
 ServerItem::SendRequest	serverManager/ServerItem.h	/^    void SendRequest(int requestId,const VConstBuffer& bufs);$/;"	p	class:ServerItem	access:public	signature:(int requestId,const VConstBuffer& bufs)
-ServerItem::ServerItem	install/include/serverManager/ServerItem.h	/^    explicit ServerItem(boost::asio::io_service& ioService,const std::string& host,int port = 11211,int weight = 1)$/;"	f	class:ServerItem	access:public	signature:(boost::asio::io_service& ioService,const std::string& host,int port = 11211,int weight = 1)
 ServerItem::ServerItem	serverManager/ServerItem.h	/^    explicit ServerItem(boost::asio::io_service& ioService,const std::string& host,int port = 11211,int weight = 1)$/;"	f	class:ServerItem	access:public	signature:(boost::asio::io_service& ioService,const std::string& host,int port = 11211,int weight = 1)
-ServerItem::ToString	install/include/serverManager/ServerItem.h	/^    static std::string ToString(const std::string& host,int port) $/;"	f	class:ServerItem	access:public	signature:(const std::string& host,int port)
-ServerItem::ToString	install/include/serverManager/ServerItem.h	/^    std::string ToString( void ) const { return ToString(mHost,mPort);}$/;"	f	class:ServerItem	access:public	signature:( void ) const
 ServerItem::ToString	serverManager/ServerItem.h	/^    static std::string ToString(const std::string& host,int port) $/;"	f	class:ServerItem	access:public	signature:(const std::string& host,int port)
 ServerItem::ToString	serverManager/ServerItem.h	/^    std::string ToString( void ) const { return ToString(mHost,mPort);}$/;"	f	class:ServerItem	access:public	signature:( void ) const
-ServerItem::Weight	install/include/serverManager/ServerItem.h	/^    int Weight( void ) const { return mWeight; }$/;"	f	class:ServerItem	access:public	signature:( void ) const
 ServerItem::Weight	serverManager/ServerItem.h	/^    int Weight( void ) const { return mWeight; }$/;"	f	class:ServerItem	access:public	signature:( void ) const
-ServerItem::mHost	install/include/serverManager/ServerItem.h	/^    std::string mHost;$/;"	m	class:ServerItem	access:private
 ServerItem::mHost	serverManager/ServerItem.h	/^    std::string mHost;$/;"	m	class:ServerItem	access:private
-ServerItem::mPendingRequests	install/include/serverManager/ServerItem.h	/^    std::vector<int> mPendingRequests;$/;"	m	class:ServerItem	access:private
 ServerItem::mPendingRequests	serverManager/ServerItem.h	/^    std::vector<int> mPendingRequests;$/;"	m	class:ServerItem	access:private
-ServerItem::mPort	install/include/serverManager/ServerItem.h	/^    int mPort;$/;"	m	class:ServerItem	access:private
 ServerItem::mPort	serverManager/ServerItem.h	/^    int mPort;$/;"	m	class:ServerItem	access:private
-ServerItem::mSocket	install/include/serverManager/ServerItem.h	/^    TcpClient mSocket;$/;"	m	class:ServerItem	access:private
 ServerItem::mSocket	serverManager/ServerItem.h	/^    TcpClient mSocket;$/;"	m	class:ServerItem	access:private
-ServerItem::mWeight	install/include/serverManager/ServerItem.h	/^    int mWeight;$/;"	m	class:ServerItem	access:private
 ServerItem::mWeight	serverManager/ServerItem.h	/^    int mWeight;$/;"	m	class:ServerItem	access:private
-ServerItem::operator ->	install/include/serverManager/ServerItem.h	/^    TcpClient* operator-> () { return &mSocket; }$/;"	f	class:ServerItem	access:public	signature:()
 ServerItem::operator ->	serverManager/ServerItem.h	/^    TcpClient* operator-> () { return &mSocket; }$/;"	f	class:ServerItem	access:public	signature:()
-ServerList	install/include/serverManager/ServerList.h	/^    ServerList(uint32_t replication = 200);$/;"	p	class:ServerList	access:public	signature:(uint32_t replication = 200)
-ServerList	install/include/serverManager/ServerList.h	/^class ServerList$/;"	c
 ServerList	serverManager/ServerList.cpp	/^ServerList::ServerList(uint32_t replication)$/;"	f	class:ServerList	signature:(uint32_t replication)
 ServerList	serverManager/ServerList.h	/^    ServerList(uint32_t replication = 200);$/;"	p	class:ServerList	access:public	signature:(uint32_t replication = 200)
 ServerList	serverManager/ServerList.h	/^class ServerList$/;"	c
-ServerList::Add	install/include/serverManager/ServerList.h	/^    bool Add(const std::string& host,int port,boost::asio::io_service& ioService);$/;"	p	class:ServerList	access:public	signature:(const std::string& host,int port,boost::asio::io_service& ioService)
 ServerList::Add	serverManager/ServerList.cpp	/^bool ServerList::Add(const std::string& host,int port,boost::asio::io_service& ioService)$/;"	f	class:ServerList	signature:(const std::string& host,int port,boost::asio::io_service& ioService)
 ServerList::Add	serverManager/ServerList.h	/^    bool Add(const std::string& host,int port,boost::asio::io_service& ioService);$/;"	p	class:ServerList	access:public	signature:(const std::string& host,int port,boost::asio::io_service& ioService)
-ServerList::Count	install/include/serverManager/ServerList.h	/^    size_t Count( void ) { return mServers.size(); }$/;"	f	class:ServerList	access:public	signature:( void )
 ServerList::Count	serverManager/ServerList.h	/^    size_t Count( void ) { return mServers.size(); }$/;"	f	class:ServerList	access:public	signature:( void )
-ServerList::Get	install/include/serverManager/ServerList.h	/^    ServerItem::Ptr& Get(const std::string& key);$/;"	p	class:ServerList	access:public	signature:(const std::string& key)
 ServerList::Get	serverManager/ServerList.cpp	/^ServerItem::Ptr& ServerList::Get(const std::string& key)$/;"	f	class:ServerList	signature:(const std::string& key)
 ServerList::Get	serverManager/ServerList.h	/^    ServerItem::Ptr& Get(const std::string& key);$/;"	p	class:ServerList	access:public	signature:(const std::string& key)
-ServerList::HashFunc	install/include/serverManager/ServerList.h	/^    typedef std::function<hash_t (const std::string&)> HashFunc;$/;"	t	class:ServerList	access:public
-ServerList::HashFunc	serverManager/ServerList.h	/^    typedef std::function<hash_t (const std::string&)> HashFunc;$/;"	t	class:ServerList	access:public
-ServerList::Items	install/include/serverManager/ServerList.h	/^    const std::unordered_map<std::string,ServerItem::Ptr> Items( void ) const { return mServers; }$/;"	f	class:ServerList	access:public	signature:( void ) const
-ServerList::Items	serverManager/ServerList.h	/^    const std::unordered_map<std::string,ServerItem::Ptr> Items( void ) const { return mServers; }$/;"	f	class:ServerList	access:public	signature:( void ) const
-ServerList::OnServerAdded	install/include/serverManager/ServerList.h	/^    ServerEvent OnServerAdded;$/;"	m	class:ServerList	access:public
+ServerList::HashFunc	serverManager/ServerList.h	/^    typedef boost::function<hash_t (const std::string&)> HashFunc;$/;"	t	class:ServerList	access:public
+ServerList::Items	serverManager/ServerList.h	/^    const boost::unordered_map<std::string,ServerItem::Ptr> Items( void ) const { return mServers; }$/;"	f	class:ServerList	access:public	signature:( void ) const
 ServerList::OnServerAdded	serverManager/ServerList.h	/^    ServerEvent OnServerAdded;$/;"	m	class:ServerList	access:public
-ServerList::OnServerRemoved	install/include/serverManager/ServerList.h	/^    ServerEvent OnServerRemoved;$/;"	m	class:ServerList	access:public
 ServerList::OnServerRemoved	serverManager/ServerList.h	/^    ServerEvent OnServerRemoved;$/;"	m	class:ServerList	access:public
-ServerList::Remove	install/include/serverManager/ServerList.h	/^    bool Remove(const std::string& host,int port);$/;"	p	class:ServerList	access:public	signature:(const std::string& host,int port)
 ServerList::Remove	serverManager/ServerList.cpp	/^bool ServerList::Remove(const std::string& host,int port)$/;"	f	class:ServerList	signature:(const std::string& host,int port)
 ServerList::Remove	serverManager/ServerList.h	/^    bool Remove(const std::string& host,int port);$/;"	p	class:ServerList	access:public	signature:(const std::string& host,int port)
-ServerList::ServerEvent	install/include/serverManager/ServerList.h	/^    typedef signals2::signal<void (const ServerItem::Ptr&)> ServerEvent;$/;"	t	class:ServerList	access:public
 ServerList::ServerEvent	serverManager/ServerList.h	/^    typedef signals2::signal<void (const ServerItem::Ptr&)> ServerEvent;$/;"	t	class:ServerList	access:public
-ServerList::ServerList	install/include/serverManager/ServerList.h	/^    ServerList(uint32_t replication = 200);$/;"	p	class:ServerList	access:public	signature:(uint32_t replication = 200)
 ServerList::ServerList	serverManager/ServerList.cpp	/^ServerList::ServerList(uint32_t replication)$/;"	f	class:ServerList	signature:(uint32_t replication)
 ServerList::ServerList	serverManager/ServerList.h	/^    ServerList(uint32_t replication = 200);$/;"	p	class:ServerList	access:public	signature:(uint32_t replication = 200)
-ServerList::SetDistributeAlgorithm	install/include/serverManager/ServerList.h	/^    void SetDistributeAlgorithm(DistributeAlgorithm* algorithm);$/;"	p	class:ServerList	access:public	signature:(DistributeAlgorithm* algorithm)
 ServerList::SetDistributeAlgorithm	serverManager/ServerList.cpp	/^void ServerList::SetDistributeAlgorithm(DistributeAlgorithm* algorithm)$/;"	f	class:ServerList	signature:(DistributeAlgorithm* algorithm)
 ServerList::SetDistributeAlgorithm	serverManager/ServerList.h	/^    void SetDistributeAlgorithm(DistributeAlgorithm* algorithm);$/;"	p	class:ServerList	access:public	signature:(DistributeAlgorithm* algorithm)
-ServerList::SetHashAlogrithm	install/include/serverManager/ServerList.h	/^    void SetHashAlogrithm(HashFunc hFunc) { mHashFunc = hFunc; }$/;"	f	class:ServerList	access:public	signature:(HashFunc hFunc)
 ServerList::SetHashAlogrithm	serverManager/ServerList.h	/^    void SetHashAlogrithm(HashFunc hFunc) { mHashFunc = hFunc; }$/;"	f	class:ServerList	access:public	signature:(HashFunc hFunc)
-ServerList::mDistributeAlgorithm	install/include/serverManager/ServerList.h	/^    std::unique_ptr<DistributeAlgorithm> mDistributeAlgorithm;$/;"	m	class:ServerList	access:private
-ServerList::mDistributeAlgorithm	serverManager/ServerList.h	/^    std::unique_ptr<DistributeAlgorithm> mDistributeAlgorithm;$/;"	m	class:ServerList	access:private
-ServerList::mHashFunc	install/include/serverManager/ServerList.h	/^    HashFunc mHashFunc;$/;"	m	class:ServerList	access:private
+ServerList::mDistributeAlgorithm	serverManager/ServerList.h	/^    DistributeAlgorithm* mDistributeAlgorithm;$/;"	m	class:ServerList	access:private
 ServerList::mHashFunc	serverManager/ServerList.h	/^    HashFunc mHashFunc;$/;"	m	class:ServerList	access:private
-ServerList::mReplications	install/include/serverManager/ServerList.h	/^    uint32_t mReplications;$/;"	m	class:ServerList	access:private
 ServerList::mReplications	serverManager/ServerList.h	/^    uint32_t mReplications;$/;"	m	class:ServerList	access:private
-ServerList::mServers	install/include/serverManager/ServerList.h	/^    std::unordered_map<std::string,ServerItem::Ptr> mServers;$/;"	m	class:ServerList	access:private
-ServerList::mServers	serverManager/ServerList.h	/^    std::unordered_map<std::string,ServerItem::Ptr> mServers;$/;"	m	class:ServerList	access:private
-Servers	install/include/memclient/MemcachedClient.h	/^    ServerList Servers;$/;"	m	class:MemcachedClient	access:public
+ServerList::mServers	serverManager/ServerList.h	/^    boost::unordered_map<std::string,ServerItem::Ptr> mServers;$/;"	m	class:ServerList	access:private
 Servers	src/MemcachedClient.h	/^    ServerList Servers;$/;"	m	class:MemcachedClient	access:public
-SetDistributeAlgorithm	install/include/serverManager/ServerList.h	/^    void SetDistributeAlgorithm(DistributeAlgorithm* algorithm);$/;"	p	class:ServerList	access:public	signature:(DistributeAlgorithm* algorithm)
+Set	src/MemStore.cpp	/^MemSetResult::Ptr MemcachedClient::Set(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback)$/;"	f	class:MemcachedClient	signature:(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback)
+Set	src/MemcachedClient.h	/^    MemSetResult::Ptr Set(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback = DefaultCallback);$/;"	p	class:MemcachedClient	access:public	signature:(const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback = DefaultCallback)
 SetDistributeAlgorithm	serverManager/ServerList.cpp	/^void ServerList::SetDistributeAlgorithm(DistributeAlgorithm* algorithm)$/;"	f	class:ServerList	signature:(DistributeAlgorithm* algorithm)
 SetDistributeAlgorithm	serverManager/ServerList.h	/^    void SetDistributeAlgorithm(DistributeAlgorithm* algorithm);$/;"	p	class:ServerList	access:public	signature:(DistributeAlgorithm* algorithm)
-SetHashAlogrithm	install/include/serverManager/ServerList.h	/^    void SetHashAlogrithm(HashFunc hFunc) { mHashFunc = hFunc; }$/;"	f	class:ServerList	access:public	signature:(HashFunc hFunc)
 SetHashAlogrithm	serverManager/ServerList.h	/^    void SetHashAlogrithm(HashFunc hFunc) { mHashFunc = hFunc; }$/;"	f	class:ServerList	access:public	signature:(HashFunc hFunc)
-SeverityLevel	install/include/memclient/MemLog.h	/^enum SeverityLevel$/;"	g
 SeverityLevel	src/MemLog.h	/^enum SeverityLevel$/;"	g
-SharedBuffer	install/include/network/SharedBuffer.h	/^    SharedBuffer(){}$/;"	f	class:SharedBuffer	access:public	signature:()
-SharedBuffer	install/include/network/SharedBuffer.h	/^    SharedBuffer(void* data,size_t size,D d = DefaultD)$/;"	f	class:SharedBuffer	access:public	signature:(void* data,size_t size,D d = DefaultD)
-SharedBuffer	install/include/network/SharedBuffer.h	/^class SharedBuffer$/;"	c
 SharedBuffer	network/SharedBuffer.h	/^    SharedBuffer(){}$/;"	f	class:SharedBuffer	access:public	signature:()
 SharedBuffer	network/SharedBuffer.h	/^    SharedBuffer(void* data,size_t size,D d = DefaultD)$/;"	f	class:SharedBuffer	access:public	signature:(void* data,size_t size,D d = DefaultD)
 SharedBuffer	network/SharedBuffer.h	/^class SharedBuffer$/;"	c
-SharedBuffer::D	install/include/network/SharedBuffer.h	/^    typedef std::function<void (void* data)> D;$/;"	t	class:SharedBuffer	access:public
-SharedBuffer::D	network/SharedBuffer.h	/^    typedef std::function<void (void* data)> D;$/;"	t	class:SharedBuffer	access:public
-SharedBuffer::DefaultD	install/include/network/SharedBuffer.h	/^    static void DefaultD(const void* data) {}$/;"	f	class:SharedBuffer	access:private	signature:(const void* data)
+SharedBuffer::D	network/SharedBuffer.h	/^    typedef boost::function<void (void* data)> D;$/;"	t	class:SharedBuffer	access:public
 SharedBuffer::DefaultD	network/SharedBuffer.h	/^    static void DefaultD(const void* data) {}$/;"	f	class:SharedBuffer	access:private	signature:(const void* data)
-SharedBuffer::Free	install/include/network/SharedBuffer.h	/^    static void Free(value_type* pBuffer,D d)$/;"	f	class:SharedBuffer	access:private	signature:(value_type* pBuffer,D d)
 SharedBuffer::Free	network/SharedBuffer.h	/^    static void Free(value_type* pBuffer,D d)$/;"	f	class:SharedBuffer	access:private	signature:(value_type* pBuffer,D d)
-SharedBuffer::GetBody	install/include/network/SharedBuffer.h	/^    void* GetBody( void )$/;"	f	class:SharedBuffer	access:public	signature:( void )
 SharedBuffer::GetBody	network/SharedBuffer.h	/^    void* GetBody( void )$/;"	f	class:SharedBuffer	access:public	signature:( void )
-SharedBuffer::GetHeader	install/include/network/SharedBuffer.h	/^    T& GetHeader( void )$/;"	f	class:SharedBuffer	access:public	signature:( void )
 SharedBuffer::GetHeader	network/SharedBuffer.h	/^    T& GetHeader( void )$/;"	f	class:SharedBuffer	access:public	signature:( void )
-SharedBuffer::IsNull	install/include/network/SharedBuffer.h	/^    bool IsNull( void ) const { return nullptr == mData.get();}$/;"	f	class:SharedBuffer	access:public	signature:( void ) const
 SharedBuffer::IsNull	network/SharedBuffer.h	/^    bool IsNull( void ) const { return nullptr == mData.get();}$/;"	f	class:SharedBuffer	access:public	signature:( void ) const
-SharedBuffer::Reset	install/include/network/SharedBuffer.h	/^    void Reset(void* data,size_t size,D d = DefaultD)$/;"	f	class:SharedBuffer	access:public	signature:(void* data,size_t size,D d = DefaultD)
 SharedBuffer::Reset	network/SharedBuffer.h	/^    void Reset(void* data,size_t size,D d = DefaultD)$/;"	f	class:SharedBuffer	access:public	signature:(void* data,size_t size,D d = DefaultD)
-SharedBuffer::SharedBuffer	install/include/network/SharedBuffer.h	/^    SharedBuffer(){}$/;"	f	class:SharedBuffer	access:public	signature:()
-SharedBuffer::SharedBuffer	install/include/network/SharedBuffer.h	/^    SharedBuffer(void* data,size_t size,D d = DefaultD)$/;"	f	class:SharedBuffer	access:public	signature:(void* data,size_t size,D d = DefaultD)
 SharedBuffer::SharedBuffer	network/SharedBuffer.h	/^    SharedBuffer(){}$/;"	f	class:SharedBuffer	access:public	signature:()
 SharedBuffer::SharedBuffer	network/SharedBuffer.h	/^    SharedBuffer(void* data,size_t size,D d = DefaultD)$/;"	f	class:SharedBuffer	access:public	signature:(void* data,size_t size,D d = DefaultD)
-SharedBuffer::gBufferPool	install/include/network/SharedBuffer.h	/^    static boost::object_pool<value_type> gBufferPool;$/;"	m	class:SharedBuffer	access:private
+SharedBuffer::Size	network/SharedBuffer.h	/^    size_t Size( void ) const$/;"	f	class:SharedBuffer	access:public	signature:( void ) const
+SharedBuffer::ToString	network/SharedBuffer.h	/^    std::string ToString( void ) const $/;"	f	class:SharedBuffer	access:public	signature:( void ) const
 SharedBuffer::gBufferPool	network/SharedBuffer.h	/^    static boost::object_pool<value_type> gBufferPool;$/;"	m	class:SharedBuffer	access:private
-SharedBuffer::mData	install/include/network/SharedBuffer.h	/^    std::shared_ptr<value_type> mData;$/;"	m	class:SharedBuffer	access:private
-SharedBuffer::mData	network/SharedBuffer.h	/^    std::shared_ptr<value_type> mData;$/;"	m	class:SharedBuffer	access:private
-SharedBuffer::operator const value_type&	install/include/network/SharedBuffer.h	/^    operator const value_type& () const{ return *mData; }$/;"	f	class:SharedBuffer	access:public	signature:() const
+SharedBuffer::mData	network/SharedBuffer.h	/^    boost::shared_ptr<value_type> mData;$/;"	m	class:SharedBuffer	access:private
 SharedBuffer::operator const value_type&	network/SharedBuffer.h	/^    operator const value_type& () const{ return *mData; }$/;"	f	class:SharedBuffer	access:public	signature:() const
-StrError	install/include/memclient/MemResult.h	/^    static const std::string StrError(int error);$/;"	p	class:MemResult	access:public	signature:(int error)
+Size	network/SharedBuffer.h	/^    size_t Size( void ) const$/;"	f	class:SharedBuffer	access:public	signature:( void ) const
+Store	src/MemStore.cpp	/^MemSetResult::Ptr MemcachedClient::Store(uint8_t cmd$/;"	f	class:MemcachedClient	signature:(uint8_t cmd ,const std::string& key ,uint32_t flag ,uint32_t expiry ,const ConstBuffer& buf ,Callback callback)
+Store	src/MemcachedClient.h	/^    MemResult::Ptr Store(uint8_t cmd,const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback);$/;"	p	class:MemcachedClient	access:private	signature:(uint8_t cmd,const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback)
 StrError	src/MemResult.h	/^    static const std::string StrError(int error);$/;"	p	class:MemResult	access:public	signature:(int error)
-TcpClient	install/include/network/TcpClient.h	/^    TcpClient(boost::asio::io_service& ioService,size_t nHeaderLen);$/;"	p	class:TcpClient	access:public	signature:(boost::asio::io_service& ioService,size_t nHeaderLen)
-TcpClient	install/include/network/TcpClient.h	/^class TcpClient:boost::noncopyable$/;"	c	inherits:boost::noncopyable
 TcpClient	network/TcpClient.cpp	/^TcpClient::TcpClient(boost::asio::io_service& ioService,size_t nHeaderLen)$/;"	f	class:TcpClient	signature:(boost::asio::io_service& ioService,size_t nHeaderLen)
 TcpClient	network/TcpClient.h	/^    TcpClient(boost::asio::io_service& ioService,size_t nHeaderLen);$/;"	p	class:TcpClient	access:public	signature:(boost::asio::io_service& ioService,size_t nHeaderLen)
 TcpClient	network/TcpClient.h	/^class TcpClient:boost::noncopyable$/;"	c	inherits:boost::noncopyable
-TcpClient::BodyReadedEvent	install/include/network/TcpClient.h	/^    typedef std::function<void (const void* ,const VBuffer& )> BodyReadedEvent;$/;"	t	class:TcpClient	access:public
-TcpClient::BodyReadedEvent	network/TcpClient.h	/^    typedef std::function<void (const void* ,const VBuffer& )> BodyReadedEvent;$/;"	t	class:TcpClient	access:public
-TcpClient::Close	install/include/network/TcpClient.h	/^    void Close( void );$/;"	p	class:TcpClient	access:public	signature:( void )
+TcpClient::BodyReadedEvent	network/TcpClient.h	/^    typedef boost::function<void (const void* ,const VBuffer& )> BodyReadedEvent;$/;"	t	class:TcpClient	access:public
 TcpClient::Close	network/TcpClient.cpp	/^void TcpClient::Close( void )$/;"	f	class:TcpClient	signature:( void )
 TcpClient::Close	network/TcpClient.h	/^    void Close( void );$/;"	p	class:TcpClient	access:public	signature:( void )
-TcpClient::Close4Error	install/include/network/TcpClient.h	/^    void Close4Error(ESocketError type,const system::error_code err);$/;"	p	class:TcpClient	access:private	signature:(ESocketError type,const system::error_code err)
 TcpClient::Close4Error	network/TcpClient.cpp	/^void TcpClient::Close4Error(ESocketError type,const system::error_code err)$/;"	f	class:TcpClient	signature:(ESocketError type,const system::error_code err)
 TcpClient::Close4Error	network/TcpClient.h	/^    void Close4Error(ESocketError type,const system::error_code err);$/;"	p	class:TcpClient	access:private	signature:(ESocketError type,const system::error_code err)
-TcpClient::ClosedEvent	install/include/network/TcpClient.h	/^    typedef signals2::signal<void ( void )> ClosedEvent;$/;"	t	class:TcpClient	access:public
 TcpClient::ClosedEvent	network/TcpClient.h	/^    typedef signals2::signal<void ( void )> ClosedEvent;$/;"	t	class:TcpClient	access:public
-TcpClient::Connect	install/include/network/TcpClient.h	/^    void Connect(const std::string& host,int port);$/;"	p	class:TcpClient	access:public	signature:(const std::string& host,int port)
 TcpClient::Connect	network/TcpClient.cpp	/^void TcpClient::Connect(const std::string& host,int port)$/;"	f	class:TcpClient	signature:(const std::string& host,int port)
 TcpClient::Connect	network/TcpClient.h	/^    void Connect(const std::string& host,int port);$/;"	p	class:TcpClient	access:public	signature:(const std::string& host,int port)
-TcpClient::ConnectedEvent	install/include/network/TcpClient.h	/^    typedef signals2::signal<void ()> ConnectedEvent;$/;"	t	class:TcpClient	access:public
 TcpClient::ConnectedEvent	network/TcpClient.h	/^    typedef signals2::signal<void ()> ConnectedEvent;$/;"	t	class:TcpClient	access:public
-TcpClient::ESocketError	install/include/network/TcpClient.h	/^    enum ESocketError$/;"	g	class:TcpClient	access:public
 TcpClient::ESocketError	network/TcpClient.h	/^    enum ESocketError$/;"	g	class:TcpClient	access:public
-TcpClient::ESocket_BodyBuffer	install/include/network/TcpClient.h	/^	ESocket_BodyBuffer$/;"	e	enum:TcpClient::ESocketError
 TcpClient::ESocket_BodyBuffer	network/TcpClient.h	/^	ESocket_BodyBuffer$/;"	e	enum:TcpClient::ESocketError
-TcpClient::ESocket_Connect	install/include/network/TcpClient.h	/^	ESocket_Connect,$/;"	e	enum:TcpClient::ESocketError
 TcpClient::ESocket_Connect	network/TcpClient.h	/^	ESocket_Connect,$/;"	e	enum:TcpClient::ESocketError
-TcpClient::ESocket_ReadBody	install/include/network/TcpClient.h	/^	ESocket_ReadBody,$/;"	e	enum:TcpClient::ESocketError
 TcpClient::ESocket_ReadBody	network/TcpClient.h	/^	ESocket_ReadBody,$/;"	e	enum:TcpClient::ESocketError
-TcpClient::ESocket_ReadHeader	install/include/network/TcpClient.h	/^	ESocket_ReadHeader,$/;"	e	enum:TcpClient::ESocketError
 TcpClient::ESocket_ReadHeader	network/TcpClient.h	/^	ESocket_ReadHeader,$/;"	e	enum:TcpClient::ESocketError
-TcpClient::ESocket_Send	install/include/network/TcpClient.h	/^	ESocket_Send,$/;"	e	enum:TcpClient::ESocketError
 TcpClient::ESocket_Send	network/TcpClient.h	/^	ESocket_Send,$/;"	e	enum:TcpClient::ESocketError
-TcpClient::ErrorEvent	install/include/network/TcpClient.h	/^    typedef signals2::signal<void (ESocketError,const system::error_code&)> ErrorEvent;$/;"	t	class:TcpClient	access:public
 TcpClient::ErrorEvent	network/TcpClient.h	/^    typedef signals2::signal<void (ESocketError,const system::error_code&)> ErrorEvent;$/;"	t	class:TcpClient	access:public
-TcpClient::HeaderReadedEvent	install/include/network/TcpClient.h	/^    typedef std::function<bool (const void *,VBuffer& )> HeaderReadedEvent;$/;"	t	class:TcpClient	access:public
-TcpClient::HeaderReadedEvent	network/TcpClient.h	/^    typedef std::function<bool (const void *,VBuffer& )> HeaderReadedEvent;$/;"	t	class:TcpClient	access:public
-TcpClient::OnBody	install/include/network/TcpClient.h	/^    BodyReadedEvent OnBody;$/;"	m	class:TcpClient	access:public
+TcpClient::HeaderReadedEvent	network/TcpClient.h	/^    typedef boost::function<bool (void *,VBuffer& )> HeaderReadedEvent;$/;"	t	class:TcpClient	access:public
 TcpClient::OnBody	network/TcpClient.h	/^    BodyReadedEvent OnBody;$/;"	m	class:TcpClient	access:public
-TcpClient::OnClosed	install/include/network/TcpClient.h	/^    ClosedEvent OnClosed;$/;"	m	class:TcpClient	access:public
 TcpClient::OnClosed	network/TcpClient.h	/^    ClosedEvent OnClosed;$/;"	m	class:TcpClient	access:public
-TcpClient::OnConnected	install/include/network/TcpClient.h	/^    ConnectedEvent OnConnected;$/;"	m	class:TcpClient	access:public
 TcpClient::OnConnected	network/TcpClient.h	/^    ConnectedEvent OnConnected;$/;"	m	class:TcpClient	access:public
-TcpClient::OnError	install/include/network/TcpClient.h	/^    ErrorEvent OnError;$/;"	m	class:TcpClient	access:public
 TcpClient::OnError	network/TcpClient.h	/^    ErrorEvent OnError;$/;"	m	class:TcpClient	access:public
-TcpClient::OnHeader	install/include/network/TcpClient.h	/^    HeaderReadedEvent OnHeader;$/;"	m	class:TcpClient	access:public
 TcpClient::OnHeader	network/TcpClient.h	/^    HeaderReadedEvent OnHeader;$/;"	m	class:TcpClient	access:public
-TcpClient::ReadBody	install/include/network/TcpClient.h	/^    void ReadBody( void );$/;"	p	class:TcpClient	access:private	signature:( void )
 TcpClient::ReadBody	network/TcpClient.cpp	/^void TcpClient::ReadBody()$/;"	f	class:TcpClient	signature:()
 TcpClient::ReadBody	network/TcpClient.h	/^    void ReadBody( void );$/;"	p	class:TcpClient	access:private	signature:( void )
-TcpClient::ReadHeader	install/include/network/TcpClient.h	/^    void ReadHeader( void );$/;"	p	class:TcpClient	access:private	signature:( void )
 TcpClient::ReadHeader	network/TcpClient.cpp	/^void TcpClient::ReadHeader()$/;"	f	class:TcpClient	signature:()
 TcpClient::ReadHeader	network/TcpClient.h	/^    void ReadHeader( void );$/;"	p	class:TcpClient	access:private	signature:( void )
-TcpClient::Send	install/include/network/TcpClient.h	/^    void Send();$/;"	p	class:TcpClient	access:private	signature:()
-TcpClient::Send	install/include/network/TcpClient.h	/^    void Send(const ConstBuffer& buf);$/;"	p	class:TcpClient	access:public	signature:(const ConstBuffer& buf)
-TcpClient::Send	install/include/network/TcpClient.h	/^    void Send(const VConstBuffer& vbuf);$/;"	p	class:TcpClient	access:public	signature:(const VConstBuffer& vbuf)
 TcpClient::Send	network/TcpClient.cpp	/^void TcpClient::Send()$/;"	f	class:TcpClient	signature:()
 TcpClient::Send	network/TcpClient.cpp	/^void TcpClient::Send(const ConstBuffer& buf)$/;"	f	class:TcpClient	signature:(const ConstBuffer& buf)
 TcpClient::Send	network/TcpClient.cpp	/^void TcpClient::Send(const VConstBuffer& vbuf)$/;"	f	class:TcpClient	signature:(const VConstBuffer& vbuf)
 TcpClient::Send	network/TcpClient.h	/^    void Send();$/;"	p	class:TcpClient	access:private	signature:()
 TcpClient::Send	network/TcpClient.h	/^    void Send(const ConstBuffer& buf);$/;"	p	class:TcpClient	access:public	signature:(const ConstBuffer& buf)
 TcpClient::Send	network/TcpClient.h	/^    void Send(const VConstBuffer& vbuf);$/;"	p	class:TcpClient	access:public	signature:(const VConstBuffer& vbuf)
-TcpClient::TcpClient	install/include/network/TcpClient.h	/^    TcpClient(boost::asio::io_service& ioService,size_t nHeaderLen);$/;"	p	class:TcpClient	access:public	signature:(boost::asio::io_service& ioService,size_t nHeaderLen)
 TcpClient::TcpClient	network/TcpClient.cpp	/^TcpClient::TcpClient(boost::asio::io_service& ioService,size_t nHeaderLen)$/;"	f	class:TcpClient	signature:(boost::asio::io_service& ioService,size_t nHeaderLen)
 TcpClient::TcpClient	network/TcpClient.h	/^    TcpClient(boost::asio::io_service& ioService,size_t nHeaderLen);$/;"	p	class:TcpClient	access:public	signature:(boost::asio::io_service& ioService,size_t nHeaderLen)
-TcpClient::mHeaderBuffer	install/include/network/TcpClient.h	/^    char* const mHeaderBuffer;$/;"	m	class:TcpClient	access:private
 TcpClient::mHeaderBuffer	network/TcpClient.h	/^    char* const mHeaderBuffer;$/;"	m	class:TcpClient	access:private
-TcpClient::mHeaderLength	install/include/network/TcpClient.h	/^    size_t mHeaderLength;$/;"	m	class:TcpClient	access:private
 TcpClient::mHeaderLength	network/TcpClient.h	/^    size_t mHeaderLength;$/;"	m	class:TcpClient	access:private
-TcpClient::mIsInWriting	install/include/network/TcpClient.h	/^    bool mIsInWriting;$/;"	m	class:TcpClient	access:private
 TcpClient::mIsInWriting	network/TcpClient.h	/^    bool mIsInWriting;$/;"	m	class:TcpClient	access:private
-TcpClient::mPendingBuffers	install/include/network/TcpClient.h	/^    VConstBuffer mPendingBuffers;$/;"	m	class:TcpClient	access:private
 TcpClient::mPendingBuffers	network/TcpClient.h	/^    VConstBuffer mPendingBuffers;$/;"	m	class:TcpClient	access:private
-TcpClient::mReadBuffers	install/include/network/TcpClient.h	/^    VBuffer mReadBuffers;$/;"	m	class:TcpClient	access:private
 TcpClient::mReadBuffers	network/TcpClient.h	/^    VBuffer mReadBuffers;$/;"	m	class:TcpClient	access:private
-TcpClient::mSocket	install/include/network/TcpClient.h	/^    boost::asio::ip::tcp::socket mSocket;$/;"	m	class:TcpClient	access:private
 TcpClient::mSocket	network/TcpClient.h	/^    boost::asio::ip::tcp::socket mSocket;$/;"	m	class:TcpClient	access:private
-TcpClient::mWriteBuffers	install/include/network/TcpClient.h	/^    VConstBuffer mWriteBuffers;$/;"	m	class:TcpClient	access:private
 TcpClient::mWriteBuffers	network/TcpClient.h	/^    VConstBuffer mWriteBuffers;$/;"	m	class:TcpClient	access:private
-TcpClient::~TcpClient	install/include/network/TcpClient.h	/^    ~TcpClient();$/;"	p	class:TcpClient	access:public	signature:()
 TcpClient::~TcpClient	network/TcpClient.cpp	/^TcpClient::~TcpClient()$/;"	f	class:TcpClient	signature:()
 TcpClient::~TcpClient	network/TcpClient.h	/^    ~TcpClient();$/;"	p	class:TcpClient	access:public	signature:()
-ToString	install/include/serverManager/ServerItem.h	/^    static std::string ToString(const std::string& host,int port) $/;"	f	class:ServerItem	access:public	signature:(const std::string& host,int port)
-ToString	install/include/serverManager/ServerItem.h	/^    std::string ToString( void ) const { return ToString(mHost,mPort);}$/;"	f	class:ServerItem	access:public	signature:( void ) const
+ToString	network/SharedBuffer.h	/^    std::string ToString( void ) const $/;"	f	class:SharedBuffer	access:public	signature:( void ) const
 ToString	serverManager/ServerItem.h	/^    static std::string ToString(const std::string& host,int port) $/;"	f	class:ServerItem	access:public	signature:(const std::string& host,int port)
 ToString	serverManager/ServerItem.h	/^    std::string ToString( void ) const { return ToString(mHost,mPort);}$/;"	f	class:ServerItem	access:public	signature:( void ) const
-VBuffer	install/include/network/SharedBuffer.h	/^typedef std::vector<Buffer> VBuffer;$/;"	t
 VBuffer	network/SharedBuffer.h	/^typedef std::vector<Buffer> VBuffer;$/;"	t
-VConstBuffer	install/include/network/SharedBuffer.h	/^typedef std::vector<ConstBuffer> VConstBuffer;$/;"	t
 VConstBuffer	network/SharedBuffer.h	/^typedef std::vector<ConstBuffer> VConstBuffer;$/;"	t
-Value	install/include/memclient/MemResult.h	/^    const Buffer& Value() const { return mValue; }$/;"	f	class:MemResult	access:public	signature:() const
 Value	src/MemResult.h	/^    const Buffer& Value() const { return mValue; }$/;"	f	class:MemResult	access:public	signature:() const
-Warn	install/include/memclient/MemLog.h	/^    Warn,$/;"	e	enum:SeverityLevel
+Value	src/MemResult.h	/^    uint64_t Value(int i = 0) const { return mValue; }$/;"	f	class:MemIncResult	access:public	signature:(int i = 0) const
+Version	src/MemcachedClient.h	/^    MemVersionResult::Ptr Version(ServerItem::Ptr pServer);;$/;"	p	class:MemcachedClient	access:public	signature:(ServerItem::Ptr pServer)
 Warn	src/MemLog.h	/^    Warn,$/;"	e	enum:SeverityLevel
-Weight	install/include/serverManager/ServerItem.h	/^    int Weight( void ) const { return mWeight; }$/;"	f	class:ServerItem	access:public	signature:( void ) const
 Weight	serverManager/ServerItem.h	/^    int Weight( void ) const { return mWeight; }$/;"	f	class:ServerItem	access:public	signature:( void ) const
-_DISTRIBUTEALGORITHM_H	install/include/serverManager/DistributeAlgorithm.h	2;"	d
 _DISTRIBUTEALGORITHM_H	serverManager/DistributeAlgorithm.h	2;"	d
-_HOST_NET_CONVERSION_H	install/include/network/HostNetConversion.h	2;"	d
 _HOST_NET_CONVERSION_H	network/HostNetConversion.h	2;"	d
-_MEMCACHEDCLIENT_H	install/include/memclient/MemcachedClient.h	2;"	d
 _MEMCACHEDCLIENT_H	src/MemcachedClient.h	2;"	d
-_MEMCACHEDCOMMON_H	install/include/memclient/MemcachedCommon.h	2;"	d
 _MEMCACHEDCOMMON_H	src/MemcachedCommon.h	2;"	d
-_MEMLOG_H	install/include/memclient/MemLog.h	2;"	d
 _MEMLOG_H	src/MemLog.h	2;"	d
-_MEMODISTRI_H	install/include/serverManager/MemoDistri.h	2;"	d
 _MEMODISTRI_H	serverManager/MemoDistri.h	2;"	d
-_MEMRESULT_H	install/include/memclient/MemResult.h	2;"	d
 _MEMRESULT_H	src/MemResult.h	2;"	d
-_MODULODISTRI_H	install/include/serverManager/ModuloDistri.h	2;"	d
 _MODULODISTRI_H	serverManager/ModuloDistri.h	2;"	d
-_REQUESTITEM_H	install/include/memclient/RequestItem.h	2;"	d
 _REQUESTITEM_H	src/RequestItem.h	2;"	d
-_SERVERITEM_H	install/include/serverManager/ServerItem.h	2;"	d
 _SERVERITEM_H	serverManager/ServerItem.h	2;"	d
-_SERVERLIST_H	install/include/serverManager/ServerList.h	2;"	d
 _SERVERLIST_H	serverManager/ServerList.h	2;"	d
-_SHAREDBUFFER_H	install/include/network/SharedBuffer.h	2;"	d
 _SHAREDBUFFER_H	network/SharedBuffer.h	2;"	d
-_TCPCLIENT_H	install/include/network/TcpClient.h	2;"	d
 _TCPCLIENT_H	network/TcpClient.h	2;"	d
-_buffer	install/include/utils/md5.h	/^	byte _buffer[64];	\/* input buffer *\/$/;"	m	class:MD5	access:private
 _buffer	utils/md5.h	/^	byte _buffer[64];	\/* input buffer *\/$/;"	m	class:MD5	access:private
-_cONSISTENThASHdISTRI_h	install/include/serverManager/ConsistentHashDistri.h	2;"	d
 _cONSISTENThASHdISTRI_h	serverManager/ConsistentHashDistri.h	2;"	d
-_count	install/include/utils/md5.h	/^	uint32 _count[2];	\/* number of bits, modulo 2^64 (low-order word first) *\/$/;"	m	class:MD5	access:private
 _count	utils/md5.h	/^	uint32 _count[2];	\/* number of bits, modulo 2^64 (low-order word first) *\/$/;"	m	class:MD5	access:private
-_digest	install/include/utils/md5.h	/^	byte _digest[16];	\/* message digest *\/$/;"	m	class:MD5	access:private
 _digest	utils/md5.h	/^	byte _digest[16];	\/* message digest *\/$/;"	m	class:MD5	access:private
-_finished	install/include/utils/md5.h	/^	bool _finished;		\/* calculate finished ? *\/$/;"	m	class:MD5	access:private
 _finished	utils/md5.h	/^	bool _finished;		\/* calculate finished ? *\/$/;"	m	class:MD5	access:private
-_state	install/include/utils/md5.h	/^	uint32 _state[4];	\/* state (ABCD) *\/$/;"	m	class:MD5	access:private
 _state	utils/md5.h	/^	uint32 _state[4];	\/* state (ABCD) *\/$/;"	m	class:MD5	access:private
-byte	install/include/utils/md5.h	/^typedef unsigned char byte;$/;"	t
 byte	utils/md5.h	/^typedef unsigned char byte;$/;"	t
-bytesToHexString	install/include/utils/md5.h	/^	string bytesToHexString(const byte* input, size_t length);$/;"	p	class:MD5	access:private	signature:(const byte* input, size_t length)
 bytesToHexString	utils/md5.cpp	/^string MD5::bytesToHexString(const byte* input, size_t length) {$/;"	f	class:MD5	signature:(const byte* input, size_t length)
 bytesToHexString	utils/md5.h	/^	string bytesToHexString(const byte* input, size_t length);$/;"	p	class:MD5	access:private	signature:(const byte* input, size_t length)
-decode	install/include/utils/md5.h	/^	void decode(const byte* input, uint32* output, size_t length);$/;"	p	class:MD5	access:private	signature:(const byte* input, uint32* output, size_t length)
 decode	utils/md5.cpp	/^void MD5::decode(const byte* input, uint32* output, size_t length) {$/;"	f	class:MD5	signature:(const byte* input, uint32* output, size_t length)
 decode	utils/md5.h	/^	void decode(const byte* input, uint32* output, size_t length);$/;"	p	class:MD5	access:private	signature:(const byte* input, uint32* output, size_t length)
-digest	install/include/utils/md5.h	/^	const byte* digest();$/;"	p	class:MD5	access:public	signature:()
 digest	utils/md5.cpp	/^const byte* MD5::digest() {$/;"	f	class:MD5	signature:()
 digest	utils/md5.h	/^	const byte* digest();$/;"	p	class:MD5	access:public	signature:()
-encode	install/include/utils/md5.h	/^	void encode(const uint32* input, byte* output, size_t length);$/;"	p	class:MD5	access:private	signature:(const uint32* input, byte* output, size_t length)
 encode	utils/md5.cpp	/^void MD5::encode(const uint32* input, byte* output, size_t length) {$/;"	f	class:MD5	signature:(const uint32* input, byte* output, size_t length)
 encode	utils/md5.h	/^	void encode(const uint32* input, byte* output, size_t length);$/;"	p	class:MD5	access:private	signature:(const uint32* input, byte* output, size_t length)
 exclude	build/remove.py	/^exclude = ['build.py','remove.py','.svn']$/;"	v
 files	build/remove.py	/^files = os.listdir('.')$/;"	v
-final	install/include/utils/md5.h	/^	void final();$/;"	p	class:MD5	access:private	signature:()
 final	utils/md5.cpp	/^void MD5::final() {$/;"	f	class:MD5	signature:()
 final	utils/md5.h	/^	void final();$/;"	p	class:MD5	access:private	signature:()
 fun	example/SyncGet.cpp	/^void fun(io_service* io)$/;"	f	signature:(io_service* io)
-gBufferPool	install/include/network/SharedBuffer.h	/^    static boost::object_pool<value_type> gBufferPool;$/;"	m	class:SharedBuffer	access:private
 gBufferPool	network/SharedBuffer.h	/^    static boost::object_pool<value_type> gBufferPool;$/;"	m	class:SharedBuffer	access:private
-hash_t	install/include/memclient/MemcachedCommon.h	/^typedef size_t hash_t;$/;"	t
-hash_t	install/include/serverManager/DistributeAlgorithm.h	/^typedef size_t hash_t;$/;"	t
-hash_t	install/include/serverManager/ServerList.h	/^typedef size_t hash_t;$/;"	t
 hash_t	serverManager/DistributeAlgorithm.h	/^typedef size_t hash_t;$/;"	t
 hash_t	serverManager/ServerList.h	/^typedef size_t hash_t;$/;"	t
 hash_t	src/MemcachedCommon.h	/^typedef size_t hash_t;$/;"	t
-htonll	install/include/network/HostNetConversion.h	/^uint64_t htonll(uint64_t val);$/;"	p	signature:(uint64_t val)
 htonll	network/HostNetConversion.cpp	/^uint64_t htonll(uint64_t val) {$/;"	f	signature:(uint64_t val)
 htonll	network/HostNetConversion.h	/^uint64_t htonll(uint64_t val);$/;"	p	signature:(uint64_t val)
 info_arch	build/CMakeFiles/2.8.11.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_arch = "INFO" ":" "arch[" ARCHITECTURE_ID "]";$/;"	v
@@ -1184,75 +889,41 @@ info_platform	build/CMakeFiles/2.8.11.2/CompilerIdC/CMakeCCompilerId.c	/^char co
 info_platform	build/CMakeFiles/2.8.11.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_platform = "INFO" ":" "platform[" PLATFORM_ID "]";$/;"	v
 info_version	build/CMakeFiles/2.8.11.2/CompilerIdC/CMakeCCompilerId.c	/^char const info_version[] = {$/;"	v
 info_version	build/CMakeFiles/2.8.11.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_version[] = {$/;"	v
-mBalanceInfos	install/include/serverManager/MemoDistri.h	/^    std::vector<ServerBalanceInfo> mBalanceInfos;$/;"	m	class:MemoDistri	access:private
 mBalanceInfos	serverManager/MemoDistri.h	/^    std::vector<ServerBalanceInfo> mBalanceInfos;$/;"	m	class:MemoDistri	access:private
-mCallback	install/include/memclient/RequestItem.h	/^    Callback mCallback;$/;"	m	class:RequestItem	access:private
 mCallback	src/RequestItem.h	/^    Callback mCallback;$/;"	m	class:RequestItem	access:private
-mCircle	install/include/serverManager/ConsistentHashDistri.h	/^    CycleType mCircle;$/;"	m	class:ConsistentHashDistri	access:private
 mCircle	serverManager/ConsistentHashDistri.h	/^    CycleType mCircle;$/;"	m	class:ConsistentHashDistri	access:private
-mData	install/include/network/SharedBuffer.h	/^    std::shared_ptr<value_type> mData;$/;"	m	class:SharedBuffer	access:private
-mData	network/SharedBuffer.h	/^    std::shared_ptr<value_type> mData;$/;"	m	class:SharedBuffer	access:private
-mDistributeAlgorithm	install/include/serverManager/ServerList.h	/^    std::unique_ptr<DistributeAlgorithm> mDistributeAlgorithm;$/;"	m	class:ServerList	access:private
-mDistributeAlgorithm	serverManager/ServerList.h	/^    std::unique_ptr<DistributeAlgorithm> mDistributeAlgorithm;$/;"	m	class:ServerList	access:private
-mErrorCode	install/include/memclient/MemResult.h	/^    ERequestStatus mErrorCode;$/;"	m	class:MemResult	access:private
+mData	network/SharedBuffer.h	/^    boost::shared_ptr<value_type> mData;$/;"	m	class:SharedBuffer	access:private
+mDistributeAlgorithm	serverManager/ServerList.h	/^    DistributeAlgorithm* mDistributeAlgorithm;$/;"	m	class:ServerList	access:private
 mErrorCode	src/MemResult.h	/^    ERequestStatus mErrorCode;$/;"	m	class:MemResult	access:private
-mFlag	install/include/memclient/MemResult.h	/^    int mFlag;$/;"	m	class:MemGetResult	access:private
 mFlag	src/MemResult.h	/^    int mFlag;$/;"	m	class:MemGetResult	access:private
-mHashFunc	install/include/serverManager/ServerList.h	/^    HashFunc mHashFunc;$/;"	m	class:ServerList	access:private
 mHashFunc	serverManager/ServerList.h	/^    HashFunc mHashFunc;$/;"	m	class:ServerList	access:private
-mHeaderBuffer	install/include/network/TcpClient.h	/^    char* const mHeaderBuffer;$/;"	m	class:TcpClient	access:private
 mHeaderBuffer	network/TcpClient.h	/^    char* const mHeaderBuffer;$/;"	m	class:TcpClient	access:private
-mHeaderLength	install/include/network/TcpClient.h	/^    size_t mHeaderLength;$/;"	m	class:TcpClient	access:private
 mHeaderLength	network/TcpClient.h	/^    size_t mHeaderLength;$/;"	m	class:TcpClient	access:private
-mHost	install/include/serverManager/ServerItem.h	/^    std::string mHost;$/;"	m	class:ServerItem	access:private
 mHost	serverManager/ServerItem.h	/^    std::string mHost;$/;"	m	class:ServerItem	access:private
-mIoService	install/include/memclient/MemcachedClient.h	/^    boost::asio::io_service& mIoService;$/;"	m	class:MemcachedClient	access:private
 mIoService	src/MemcachedClient.h	/^    boost::asio::io_service& mIoService;$/;"	m	class:MemcachedClient	access:private
-mIsInWriting	install/include/network/TcpClient.h	/^    bool mIsInWriting;$/;"	m	class:TcpClient	access:private
 mIsInWriting	network/TcpClient.h	/^    bool mIsInWriting;$/;"	m	class:TcpClient	access:private
-mKey	install/include/memclient/MemResult.h	/^    std::string mKey;$/;"	m	class:MemResult	access:private
 mKey	src/MemResult.h	/^    std::string mKey;$/;"	m	class:MemResult	access:private
-mKeyServerMapping	install/include/serverManager/MemoDistri.h	/^    KeyServerMap mKeyServerMapping;$/;"	m	class:MemoDistri	access:private
 mKeyServerMapping	serverManager/MemoDistri.h	/^    KeyServerMap mKeyServerMapping;$/;"	m	class:MemoDistri	access:private
-mLog	install/include/memclient/MemcachedClient.h	/^    MemLog mLog;$/;"	m	class:MemcachedClient	access:private
 mLog	src/MemcachedClient.h	/^    MemLog mLog;$/;"	m	class:MemcachedClient	access:private
-mNextRequestId	install/include/memclient/MemcachedClient.h	/^    std::atomic_int mNextRequestId;$/;"	m	class:MemcachedClient	access:private
 mNextRequestId	src/MemcachedClient.h	/^    std::atomic_int mNextRequestId;$/;"	m	class:MemcachedClient	access:private
-mPendingBuffers	install/include/network/TcpClient.h	/^    VConstBuffer mPendingBuffers;$/;"	m	class:TcpClient	access:private
 mPendingBuffers	network/TcpClient.h	/^    VConstBuffer mPendingBuffers;$/;"	m	class:TcpClient	access:private
-mPendingRequests	install/include/serverManager/ServerItem.h	/^    std::vector<int> mPendingRequests;$/;"	m	class:ServerItem	access:private
 mPendingRequests	serverManager/ServerItem.h	/^    std::vector<int> mPendingRequests;$/;"	m	class:ServerItem	access:private
-mPort	install/include/serverManager/ServerItem.h	/^    int mPort;$/;"	m	class:ServerItem	access:private
 mPort	serverManager/ServerItem.h	/^    int mPort;$/;"	m	class:ServerItem	access:private
-mReadBuffers	install/include/network/TcpClient.h	/^    VBuffer mReadBuffers;$/;"	m	class:TcpClient	access:private
 mReadBuffers	network/TcpClient.h	/^    VBuffer mReadBuffers;$/;"	m	class:TcpClient	access:private
-mReplications	install/include/serverManager/ConsistentHashDistri.h	/^    int mReplications;$/;"	m	class:ConsistentHashDistri	access:private
-mReplications	install/include/serverManager/ServerList.h	/^    uint32_t mReplications;$/;"	m	class:ServerList	access:private
 mReplications	serverManager/ConsistentHashDistri.h	/^    int mReplications;$/;"	m	class:ConsistentHashDistri	access:private
 mReplications	serverManager/ServerList.h	/^    uint32_t mReplications;$/;"	m	class:ServerList	access:private
-mRequests	install/include/memclient/MemcachedClient.h	/^    RequestMap mRequests;$/;"	m	class:MemcachedClient	access:private
 mRequests	src/MemcachedClient.h	/^    RequestMap mRequests;$/;"	m	class:MemcachedClient	access:private
-mResult	install/include/memclient/RequestItem.h	/^    MemResult::Ptr mResult;$/;"	m	class:RequestItem	access:private
 mResult	src/RequestItem.h	/^    MemResult::Ptr mResult;$/;"	m	class:RequestItem	access:private
-mServers	install/include/serverManager/ModuloDistri.h	/^    std::vector<ServerItem::Ptr> mServers;$/;"	m	class:ModuloDistri	access:private
-mServers	install/include/serverManager/ServerList.h	/^    std::unordered_map<std::string,ServerItem::Ptr> mServers;$/;"	m	class:ServerList	access:private
 mServers	serverManager/ModuloDistri.h	/^    std::vector<ServerItem::Ptr> mServers;$/;"	m	class:ModuloDistri	access:private
-mServers	serverManager/ServerList.h	/^    std::unordered_map<std::string,ServerItem::Ptr> mServers;$/;"	m	class:ServerList	access:private
-mSocket	install/include/network/TcpClient.h	/^    boost::asio::ip::tcp::socket mSocket;$/;"	m	class:TcpClient	access:private
-mSocket	install/include/serverManager/ServerItem.h	/^    TcpClient mSocket;$/;"	m	class:ServerItem	access:private
+mServers	serverManager/ServerList.h	/^    boost::unordered_map<std::string,ServerItem::Ptr> mServers;$/;"	m	class:ServerList	access:private
 mSocket	network/TcpClient.h	/^    boost::asio::ip::tcp::socket mSocket;$/;"	m	class:TcpClient	access:private
 mSocket	serverManager/ServerItem.h	/^    TcpClient mSocket;$/;"	m	class:ServerItem	access:private
-mSyncEvent	install/include/memclient/MemResult.h	/^    std::condition_variable mSyncEvent;$/;"	m	class:MemResult	access:private
-mSyncEvent	src/MemResult.h	/^    std::condition_variable mSyncEvent;$/;"	m	class:MemResult	access:private
-mSyncMut	install/include/memclient/MemResult.h	/^    std::mutex mSyncMut;$/;"	m	class:MemResult	access:private
-mSyncMut	src/MemResult.h	/^    std::mutex mSyncMut;$/;"	m	class:MemResult	access:private
-mSyncRequest	install/include/memclient/MemcachedClient.h	/^    std::mutex mSyncRequest;$/;"	m	class:MemcachedClient	access:private
-mSyncRequest	src/MemcachedClient.h	/^    std::mutex mSyncRequest;$/;"	m	class:MemcachedClient	access:private
-mValue	install/include/memclient/MemResult.h	/^    Buffer mValue;$/;"	m	class:MemResult	access:private
+mSyncEvent	src/MemResult.h	/^    boost::condition_variable mSyncEvent;$/;"	m	class:MemResult	access:private
+mSyncMut	src/MemResult.h	/^    boost::mutex mSyncMut;$/;"	m	class:MemResult	access:private
+mSyncRequest	src/MemcachedClient.h	/^    boost::mutex mSyncRequest;$/;"	m	class:MemcachedClient	access:private
 mValue	src/MemResult.h	/^    Buffer mValue;$/;"	m	class:MemResult	access:private
-mWeight	install/include/serverManager/ServerItem.h	/^    int mWeight;$/;"	m	class:ServerItem	access:private
+mValue	src/MemResult.h	/^    uint64_t mValue;$/;"	m	class:MemIncResult	access:private
 mWeight	serverManager/ServerItem.h	/^    int mWeight;$/;"	m	class:ServerItem	access:private
-mWriteBuffers	install/include/network/TcpClient.h	/^    VConstBuffer mWriteBuffers;$/;"	m	class:TcpClient	access:private
 mWriteBuffers	network/TcpClient.h	/^    VConstBuffer mWriteBuffers;$/;"	m	class:TcpClient	access:private
 main	build/CMakeFiles/2.8.11.2/CompilerIdC/CMakeCCompilerId.c	/^int main(int argc, char* argv[])$/;"	f	signature:(int argc, char* argv[])
 main	build/CMakeFiles/2.8.11.2/CompilerIdC/CMakeCCompilerId.c	/^void main() {}$/;"	f
@@ -1260,20 +931,14 @@ main	build/CMakeFiles/2.8.11.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^int main(i
 main	example/AsyncGet.cpp	/^int main(int argc,char** argv)$/;"	f	signature:(int argc,char** argv)
 main	example/SyncGet.cpp	/^int main(int argc,char** argv)$/;"	f	signature:(int argc,char** argv)
 mc_swap64	network/HostNetConversion.cpp	/^static uint64_t mc_swap64(uint64_t in) {$/;"	f	file:	signature:(uint64_t in)
-ntohll	install/include/network/HostNetConversion.h	/^uint64_t ntohll(uint64_t val);$/;"	p	signature:(uint64_t val)
 ntohll	network/HostNetConversion.cpp	/^uint64_t ntohll(uint64_t val) {$/;"	f	signature:(uint64_t val)
 ntohll	network/HostNetConversion.h	/^uint64_t ntohll(uint64_t val);$/;"	p	signature:(uint64_t val)
-operator ->	install/include/serverManager/ServerItem.h	/^    TcpClient* operator-> () { return &mSocket; }$/;"	f	class:ServerItem	access:public	signature:()
 operator ->	serverManager/ServerItem.h	/^    TcpClient* operator-> () { return &mSocket; }$/;"	f	class:ServerItem	access:public	signature:()
-operator <	install/include/serverManager/MemoDistri.h	/^	friend bool operator < (const ServerBalanceInfo& lhs,const ServerBalanceInfo& rhs)$/;"	f	struct:MemoDistri::ServerBalanceInfo	access:friend	signature:(const ServerBalanceInfo& lhs,const ServerBalanceInfo& rhs)
 operator <	serverManager/MemoDistri.h	/^	friend bool operator < (const ServerBalanceInfo& lhs,const ServerBalanceInfo& rhs)$/;"	f	struct:MemoDistri::ServerBalanceInfo	access:friend	signature:(const ServerBalanceInfo& lhs,const ServerBalanceInfo& rhs)
-operator =	install/include/utils/md5.h	/^	MD5& operator=(const MD5&);$/;"	p	class:MD5	access:private	signature:(const MD5&)
 operator =	utils/md5.h	/^	MD5& operator=(const MD5&);$/;"	p	class:MD5	access:private	signature:(const MD5&)
-operator const value_type&	install/include/network/SharedBuffer.h	/^    operator const value_type& () const{ return *mData; }$/;"	f	class:SharedBuffer	access:public	signature:() const
 operator const value_type&	network/SharedBuffer.h	/^    operator const value_type& () const{ return *mData; }$/;"	f	class:SharedBuffer	access:public	signature:() const
 os	build/build.py	/^import os$/;"	i
 os	build/remove.py	/^import os$/;"	i
-reset	install/include/utils/md5.h	/^	void reset();$/;"	p	class:MD5	access:public	signature:()
 reset	utils/md5.cpp	/^void MD5::reset() {$/;"	f	class:MD5	signature:()
 reset	utils/md5.h	/^	void reset();$/;"	p	class:MD5	access:public	signature:()
 shutil	build/remove.py	/^import shutil$/;"	i
@@ -1281,18 +946,11 @@ subprocess	build/build.py	/^import subprocess$/;"	i
 subprocess	build/remove.py	/^import subprocess$/;"	i
 sys	build/build.py	/^import sys$/;"	i
 sys	build/remove.py	/^import sys$/;"	i
-toString	install/include/utils/md5.h	/^	string toString();$/;"	p	class:MD5	access:public	signature:()
 toString	utils/md5.cpp	/^string MD5::toString() {$/;"	f	class:MD5	signature:()
 toString	utils/md5.h	/^	string toString();$/;"	p	class:MD5	access:public	signature:()
-transform	install/include/utils/md5.h	/^	void transform(const byte block[64]);$/;"	p	class:MD5	access:private	signature:(const byte block[64])
 transform	utils/md5.cpp	/^void MD5::transform(const byte block[64]) {$/;"	f	class:MD5	signature:(const byte block[64])
 transform	utils/md5.h	/^	void transform(const byte block[64]);$/;"	p	class:MD5	access:private	signature:(const byte block[64])
-uint32	install/include/utils/md5.h	/^typedef unsigned int uint32;$/;"	t
 uint32	utils/md5.h	/^typedef unsigned int uint32;$/;"	t
-update	install/include/utils/md5.h	/^	void update(const byte* input, size_t length);$/;"	p	class:MD5	access:private	signature:(const byte* input, size_t length)
-update	install/include/utils/md5.h	/^	void update(const string& str);$/;"	p	class:MD5	access:public	signature:(const string& str)
-update	install/include/utils/md5.h	/^	void update(const void* input, size_t length);$/;"	p	class:MD5	access:public	signature:(const void* input, size_t length)
-update	install/include/utils/md5.h	/^	void update(ifstream& in);$/;"	p	class:MD5	access:public	signature:(ifstream& in)
 update	utils/md5.cpp	/^void MD5::update(const byte* input, size_t length) {$/;"	f	class:MD5	signature:(const byte* input, size_t length)
 update	utils/md5.cpp	/^void MD5::update(const string& str) {$/;"	f	class:MD5	signature:(const string& str)
 update	utils/md5.cpp	/^void MD5::update(const void* input, size_t length) {$/;"	f	class:MD5	signature:(const void* input, size_t length)
@@ -1301,8 +959,6 @@ update	utils/md5.h	/^	void update(const byte* input, size_t length);$/;"	p	class
 update	utils/md5.h	/^	void update(const string& str);$/;"	p	class:MD5	access:public	signature:(const string& str)
 update	utils/md5.h	/^	void update(const void* input, size_t length);$/;"	p	class:MD5	access:public	signature:(const void* input, size_t length)
 update	utils/md5.h	/^	void update(ifstream& in);$/;"	p	class:MD5	access:public	signature:(ifstream& in)
-~DistributeAlgorithm	install/include/serverManager/DistributeAlgorithm.h	/^    virtual ~DistributeAlgorithm() {}$/;"	f	class:DistributeAlgorithm	access:public	signature:()
 ~DistributeAlgorithm	serverManager/DistributeAlgorithm.h	/^    virtual ~DistributeAlgorithm() {}$/;"	f	class:DistributeAlgorithm	access:public	signature:()
-~TcpClient	install/include/network/TcpClient.h	/^    ~TcpClient();$/;"	p	class:TcpClient	access:public	signature:()
 ~TcpClient	network/TcpClient.cpp	/^TcpClient::~TcpClient()$/;"	f	class:TcpClient	signature:()
 ~TcpClient	network/TcpClient.h	/^    ~TcpClient();$/;"	p	class:TcpClient	access:public	signature:()
