@@ -36,7 +36,7 @@ public:
 public:
     void Connect(const std::string& host,int port);
     void Send(const ConstBuffer& buf);
-    void Send(const VConstBuffer& vbuf);
+    void Send(const SVConstBuffer& vbuf);
     void Close( void );
 
 private:

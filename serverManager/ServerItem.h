@@ -28,7 +28,7 @@ public:
     std::string ToString( void ) const { return ToString(mHost,mPort);}
 
     void SendRequest(int requestId,const ConstBuffer& buf);
-    void SendRequest(int requestId,const VConstBuffer& bufs);
+    void SendRequest(int requestId,const SVConstBuffer& bufs);
 
     const std::vector<int>& PendingRequests() const { return mPendingRequests; }
 

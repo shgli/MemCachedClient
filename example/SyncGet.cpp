@@ -5,11 +5,6 @@
 
 using namespace boost::asio;
 
-void fun(io_service* io)
-{
-    io->run();
-}
-
 int main(int argc,char** argv)
 {
     io_service io;
@@ -21,7 +16,7 @@ int main(int argc,char** argv)
     value.resize(13);
     auto result = client.Get("Test",Buffer((void*)value.c_str(),13));
 
-    std::thread t(boost::bind(fun,&io));
+    std::thread t([&io]{io.run();});
     if(ERequest_SUCCESS == result->Finish())
     {
 	std::cout<<value<<std::endl;

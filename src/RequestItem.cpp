@@ -12,3 +12,14 @@ void RequestItem::Notify(ERequestStatus status)
 	mCallback(mResult);
     }
 }
+
+bool RequestItem::FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen,int keyLen)
+{
+    return mResult->FillReceiveBuffer(status,bufs,valueLen,keyLen); 
+}
+
+bool RequestItem::HasMoreResult( void ) const 
+{
+    return mResult->HasMoreResult(); 
+}
+

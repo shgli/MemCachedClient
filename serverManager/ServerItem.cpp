@@ -5,7 +5,7 @@ void ServerItem::SendRequest(int requestId,const ConstBuffer& buf)
     mSocket.Send(buf);
 }
 
-void ServerItem::SendRequest(int requestId,const VConstBuffer& bufs)
+void ServerItem::SendRequest(int requestId,const SVConstBuffer& bufs)
 {
     mPendingRequests.push_back(requestId);
     mSocket.Send(bufs);

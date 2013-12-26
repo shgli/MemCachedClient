@@ -17,6 +17,10 @@ public:
 	:mData(gBufferPool.construct(data,size),boost::bind(Free,_1,d))
     {}
 
+    SharedBuffer(const std::string& data)
+	:mData(gBufferPool.construct(const_cast<void*>((const void*)data.c_str()),data.size()),DefaultD)
+    {}
+
     SharedBuffer(){}
 
     operator const value_type& () const{ return *mData; }
@@ -74,6 +78,8 @@ typedef SharedBuffer<mutable_buffer> Buffer;
 typedef SharedBuffer<const_buffer> ConstBuffer;
 typedef std::vector<Buffer> VBuffer;
 typedef std::vector<ConstBuffer> VConstBuffer;
+typedef boost::shared_ptr<VBuffer> SVBuffer;
+typedef boost::shared_ptr<VConstBuffer> SVConstBuffer;
 
 #endif
  

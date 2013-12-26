@@ -99,12 +99,12 @@ void TcpClient::Send(const ConstBuffer& buf)
         });
 }
 
-void TcpClient::Send(const VConstBuffer& vbuf)
+void TcpClient::Send(const SVConstBuffer& vbuf)
 {
      mSocket.get_io_service().post(
-        [this,&vbuf]()
+        [this,vbuf]()
         {
-            mPendingBuffers.insert(mPendingBuffers.end(),vbuf.begin(),vbuf.end());
+            mPendingBuffers.insert(mPendingBuffers.end(),vbuf->begin(),vbuf->end());
 
 	    if(mWriteBuffers.empty())
 	    {

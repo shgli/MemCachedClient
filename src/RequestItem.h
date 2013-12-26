@@ -12,8 +12,10 @@ class RequestItem
 public:
     explicit RequestItem(Callback callback,const MemResult::Ptr& result);
 
-    bool FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen) { return mResult->FillReceiveBuffer(status,bufs,valueLen); }
+_internal:
+    bool FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen,int keyLen);
 
+    bool HasMoreResult( void ) const;
     void Notify(ERequestStatus status);
 };
 #endif
