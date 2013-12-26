@@ -34,7 +34,7 @@ bool MemcachedClient::OnHeaderReaded(void* header,VBuffer& body)
     {
 	AdjustEndian(pHeader);
 	int requestId = pHeader->response.opaque;
-	int valueLen = pHeader->response.bodylen - pHeader->response.extlen;
+	int valueLen = pHeader->response.bodylen - pHeader->response.extlen - pHeader->response.keylen;
 
 	auto requestIt = mRequests.find(requestId);
 	if(mRequests.end() != requestIt)
@@ -46,7 +46,7 @@ bool MemcachedClient::OnHeaderReaded(void* header,VBuffer& body)
 	    }
 	    else
 	    {
-	        return requestIt->second.FillReceiveBuffer((ERequestStatus)pHeader->response.status,body,valueLen);
+	        return requestIt->second.FillReceiveBuffer((ERequestStatus)pHeader->response.status,body,valueLen,pHeader->response.keylen);
 	    }
 	}
 	else
@@ -89,11 +89,14 @@ void MemcachedClient::OnBodayReaded(const void* header,const VBuffer& boday)
 
 void MemcachedClient::FinishRequest(RequestMap::iterator requestIt,ERequestStatus err)
 {
-    mIoService.post([this,requestIt,err]()
-	    {
-	        requestIt->second.Notify(err);
-                mRequests.erase(requestIt);
-	    });
+    if(!requestIt->second.HasMoreResult())
+    {
+	mIoService.post([this,requestIt,err]()
+		{
+		    requestIt->second.Notify(err);
+		    mRequests.erase(requestIt);
+		});
+    }
 }
 
 /*static*/void MemcachedClient::AdjustEndian(protocol_binary_request_header* header)

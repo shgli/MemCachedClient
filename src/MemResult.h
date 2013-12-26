@@ -1,11 +1,11 @@
 #ifndef _MEMRESULT_H
 #define _MEMRESULT_H
+#include "SharedBuffer.h"
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/condition_variable.hpp>
 #include <boost/pool/pool.hpp>
 #include <memcached/protocol_binary.h>
 #include "MemcachedCommon.h"
-#include "SharedBuffer.h"
 enum ERequestStatus
 {
     ERequest_SUCCESS = 0x00,
@@ -46,46 +46,74 @@ public:
 
     static const std::string StrError(int error);
 
-//internal:
-    virtual bool FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen);
+_internal:
+    virtual bool FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen,int keyLen);
+    virtual bool HasMoreResult( void ) { return false; }
     void Notify(ERequestStatus err);
 };
 
 class MemGetResult:public MemResult
 {
-    typedef MemResult Base;
     int mFlag;
 public:
+    typedef MemResult Base;
     typedef boost::shared_ptr<MemGetResult> Ptr;
-    MemGetResult(const std::string& key,const Buffer& buffer);
 
     int Flag( void ) const { return mFlag; }
 
-    virtual bool FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen);
+_internal:
+    MemGetResult(const std::string& key,const Buffer& buffer);
+    virtual bool FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen,int keyLen);
 };
 
 typedef MemResult MemSetResult;
 typedef MemResult MemAddResult;
 typedef MemResult MemDeleteResult;
 typedef MemResult MemReplaceResult;
+typedef MemResult MemAppendResult;
+typedef MemResult MemPreAppendResult;
 
 class MemIncResult:public MemResult
 {
-    typedef MemResult Base;
     uint64_t mValue;
 public:
+    typedef MemResult Base;
     typedef boost::shared_ptr<MemIncResult> Ptr;
-
-    MemIncResult(const std::string& key);
-
     uint64_t Value(int i = 0) const { return mValue; }
-    virtual bool FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen);
+
+_internal:
+    MemIncResult(const std::string& key);
+    virtual bool FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen,int keyLen);
 };
 
 typedef MemIncResult MemDecResult;
 
 typedef MemResult MemVersionResult;
 typedef MemResult MemFlushResult;
-typedef MemResult MemStatResult;
+
+class MemStatResult:public MemResult
+{
+public:
+    typedef MemResult Base;
+    struct Stat
+    {
+	std::string Key;
+	std::string Value;
+    };
+    typedef std::vector<Stat> StatsT;
+    typedef boost::shared_ptr<MemStatResult> Ptr;
+
+    const StatsT& Stats( void ) const { return mStats; }
+
+_internal:
+    MemStatResult(const std::string& key);
+    virtual bool FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen,int keyLen);
+    virtual bool HasMoreResult( void );
+
+private:
+    StatsT mStats;
+    bool mHasMoreResult;
+};
+
 #endif
  

@@ -2,9 +2,9 @@
 #define _MEMCACHEDCOMMON_H
 
 #ifdef _MEMCACHED_CLIENT_COMPILE
-//#define internal public
+#define _internal public //conflict with std::ios_base::internal
 #else
-//#define internal private
+#define _internal protected
 #endif
 
 typedef size_t hash_t;

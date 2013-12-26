@@ -43,9 +43,9 @@ MemSetResult::Ptr MemcachedClient::Store(uint8_t cmd
 
     memcpy(requestBuf.GetBody<protocol_binary_request_get>(),static_cast<const void*>(key.c_str()),key.size());
 
-    VConstBuffer vbuf;
-    vbuf.push_back(requestBuf);
-    vbuf.push_back(buf);
+    SVConstBuffer vbuf = boost::make_shared<VConstBuffer>();
+    vbuf->push_back(requestBuf);
+    vbuf->push_back(buf);
     server->SendRequest(requestId,vbuf);
 
     return result;

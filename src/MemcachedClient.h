@@ -28,6 +28,9 @@ public:
     MemIncResult::Ptr Increment(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry = 0xffffffff,Callback callback = DefaultCallback);
     MemDecResult::Ptr Decrement(const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry = 0xffffffff,Callback callback = DefaultCallback);
 
+    MemAppendResult::Ptr Append(const std::string& key,const ConstBuffer& value,Callback callback = DefaultCallback);
+    MemPreAppendResult::Ptr PreAppend(const std::string& key,const ConstBuffer& value,Callback callback = DefaultCallback);
+
     MemFlushResult::Ptr Flush(ServerItem::Ptr pServer,uint32_t expiry,Callback callback = DefaultCallback);
 
     MemVersionResult::Ptr Version(ServerItem::Ptr pServer,Callback callback = DefaultCallback);
@@ -44,6 +47,7 @@ private:
 
     MemResult::Ptr Store(uint8_t cmd,const std::string& key,uint32_t flag,uint32_t expiry,const ConstBuffer& buf,Callback callback);
     MemIncResult::Ptr SelfOp(uint8_t cmd,const std::string& key,uint64_t delta,uint64_t initValue,uint32_t expiry,Callback callback);
+    MemAppendResult::Ptr Append(uint8_t cmd,const std::string& key,const ConstBuffer& value,Callback callback = DefaultCallback);
 
     static void DefaultCallback(const MemResult::Ptr&){}
     static void AdjustEndian(protocol_binary_response_header* response);

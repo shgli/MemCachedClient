@@ -21,7 +21,7 @@ ERequestStatus MemResult::Finish( void )
 }
 
 
-bool MemResult::FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen)
+bool MemResult::FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen,int keyLen)
 {
     if(mValue.IsNull())
     {
@@ -40,20 +40,20 @@ MemGetResult::MemGetResult(const std::string& key,const Buffer& buffer)
     :Base(key,buffer)
 {}
 
-bool MemGetResult::FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen)
+bool MemGetResult::FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen,int keyLen)
 {
     if(ERequest_SUCCESS == status)
     {
         bufs.push_back(Buffer(&mFlag,4));
     }
-    return Base::FillReceiveBuffer(status,bufs,valueLen);
+    return Base::FillReceiveBuffer(status,bufs,valueLen,keyLen);
 }
 
 MemIncResult::MemIncResult(const std::string& key)
     :MemResult(key,Buffer())
 {}
 
-bool MemIncResult::FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen)
+bool MemIncResult::FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen,int keyLen)
 {
     if(ERequest_SUCCESS == status)
     {
@@ -62,7 +62,32 @@ bool MemIncResult::FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int val
     }
     else
     {
-	return Base::FillReceiveBuffer(status,bufs,valueLen);
+	return Base::FillReceiveBuffer(status,bufs,valueLen,keyLen);
     }
+}
+MemStatResult::MemStatResult(const std::string& key)
+    :MemResult(key,Buffer())
+{}
+
+bool MemStatResult::FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen,int keyLen)
+{
+    if(0 == valueLen)
+    {
+	mHasMoreResult = false;
+	return false;
+    }
+
+    mStats.push_back(Stat());
+    auto& stat = mStats.back();
+    stat.Key.resize(keyLen);
+    stat.Value.resize(valueLen);
+    bufs.push_back(Buffer(stat.Key));
+    bufs.push_back(Buffer(stat.Value));
+    return true;
+}
+
+bool MemStatResult::HasMoreResult( void )
+{
+    return mHasMoreResult;
 }
 

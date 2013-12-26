@@ -88,6 +88,7 @@ memc=/home/shgli/src/MemCachedClient CD=build filter="*.h *.cpp *.txt" {
   MemcachedClient.h
   MemcachedCommon.h
   RequestItem.h
+  MemAppend.cpp
   MemDelete.cpp
   MemGet.cpp
   MemResult.cpp
