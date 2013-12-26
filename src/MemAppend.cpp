@@ -21,7 +21,7 @@ MemAppendResult::Ptr MemcachedClient::Append(uint8_t cmd,const std::string& key,
 
     size_t requestSize = sizeof(protocol_binary_request_get) + key.size();
 
-    MemAppendResult::Ptr result = boost::make_shared<MemAppendResult>(key,value);
+    MemAppendResult::Ptr result = boost::make_shared<MemAppendResult>(key,Buffer());
     MemResult::Ptr baseResult = result;
     mRequests.insert(std::make_pair(requestId,RequestItem(callback,baseResult)));
 
@@ -45,8 +45,8 @@ MemAppendResult::Ptr MemcachedClient::Append(uint8_t cmd,const std::string& key,
 
     memcpy(requestBuf.GetBody<protocol_binary_request_append>(),static_cast<const void*>(key.c_str()),key.size());
 
-    SConstVBuffer sbuf = boost::make_shared<VConstBuffer>();
-    sbuf->push_back(request);
+    SVConstBuffer sbuf = boost::make_shared<VConstBuffer>();
+    sbuf->push_back(requestBuf);
     sbuf->push_back(value);
     server->SendRequest(requestId,sbuf);
 

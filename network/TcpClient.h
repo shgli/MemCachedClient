@@ -39,6 +39,9 @@ public:
     void Send(const SVConstBuffer& vbuf);
     void Close( void );
 
+protected:
+    boost::asio::ip::tcp::socket& Socket() { return mSocket; }
+
 private:
     void Send();
     void ReadHeader( void );

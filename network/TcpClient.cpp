@@ -43,11 +43,18 @@ void TcpClient::ReadHeader()
 	    asio::buffer(mHeaderBuffer,mHeaderLength),
 	    [this](const system::error_code& ec,std::size_t len)
 	    {
-	       if(!ec && OnHeader(static_cast<void*const>(mHeaderBuffer),mReadBuffers) && 0 != mReadBuffers.size())
+	       if(!ec) 
 	       {
-	           if(0 != len)
+	           if(OnHeader(static_cast<void*const>(mHeaderBuffer),mReadBuffers))
 		   {
-		       ReadBody();
+                       if(0 != mReadBuffers.size())
+                       {
+		           ReadBody();
+                       }
+                       else
+                       {
+                           Close4Error(ESocket_BodyBuffer,ec);
+                       }
 		   }
 		   else
 		   {
@@ -56,14 +63,7 @@ void TcpClient::ReadHeader()
 	       }
 	       else
 	       {
-	           if(ec)
-		   {
-	               Close4Error(ESocket_ReadHeader,ec);
-		   }
-		   else
-		   {
-		       Close4Error(ESocket_BodyBuffer,ec);
-		   }
+	           Close4Error(ESocket_ReadHeader,ec);
 	       }
 	    });
 }
@@ -77,6 +77,7 @@ void TcpClient::ReadBody()
 	        if(!ec)
 		{
 		    OnBody(static_cast<void*const>(mHeaderBuffer),mReadBuffers);
+                    ReadHeader();
 		}
 		else
 		{

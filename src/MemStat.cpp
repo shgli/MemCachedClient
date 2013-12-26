@@ -7,7 +7,7 @@ MemStatResult::Ptr MemcachedClient::Stat(ServerItem::Ptr pServer,const std::stri
     int requestId = mNextRequestId.fetch_add(1);
 
 
-    MemStatResult::Ptr result = boost::make_shared<MemStatResult>(key,Buffer());
+    MemStatResult::Ptr result = boost::make_shared<MemStatResult>(key);
     MemResult::Ptr baseResult = result;
     mRequests.insert(std::make_pair(requestId,RequestItem(callback,baseResult)));
 
