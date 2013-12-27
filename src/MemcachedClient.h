@@ -1,7 +1,7 @@
 #ifndef _MEMCACHEDCLIENT_H
 #define _MEMCACHEDCLIENT_H
 #include <functional>
-#include <atomic>
+#include <boost/atomic.hpp>
 #include <boost/noncopyable.hpp>
 #include <boost/asio/io_service.hpp>
 #include <boost/pool/object_pool.hpp>
@@ -56,7 +56,7 @@ private:
 
     boost::asio::io_service& mIoService;
 
-    std::atomic_int mNextRequestId;
+    boost::atomic_int mNextRequestId;
 
     RequestMap mRequests;
 

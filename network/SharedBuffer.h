@@ -65,7 +65,10 @@ private:
 	gBufferPool.destroy(pBuffer);
     }
 
-    static void DefaultD(const void* data) {}
+    static void DefaultD(const void* data) 
+    {
+	std::cout<<"buf freed"<<std::endl;
+    }
 
     boost::shared_ptr<value_type> mData;
     static boost::object_pool<value_type> gBufferPool;
