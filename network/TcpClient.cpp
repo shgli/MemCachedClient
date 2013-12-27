@@ -45,6 +45,7 @@ void TcpClient::ReadHeader()
 	    {
 	       if(!ec) 
 	       {
+                   mReadBuffers.clear();
 	           if(OnHeader(static_cast<void*const>(mHeaderBuffer),mReadBuffers))
 		   {
                        if(0 != mReadBuffers.size())
