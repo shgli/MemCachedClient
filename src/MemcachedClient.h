@@ -62,7 +62,7 @@ private:
 
     boost::mutex mSyncRequest;
 
-    MemLog mLog;
+//    MemLog mLog;
 };
 #endif
  

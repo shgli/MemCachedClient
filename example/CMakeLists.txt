@@ -19,7 +19,7 @@ TARGET_LINK_LIBRARIES(SyncGet boost_log)
 TARGET_LINK_LIBRARIES(AsyncGet network)
 TARGET_LINK_LIBRARIES(AsyncGet serverManager)
 TARGET_LINK_LIBRARIES(AsyncGet memclient)
-TARGET_LINK_LIBRARIES(AsyncGet boost_log)
+#TARGET_LINK_LIBRARIES(AsyncGet boost_log)
 TARGET_LINK_LIBRARIES(AsyncGet boost_program_options)
 
 INSTALL(TARGETS SyncGet AsyncGet

@@ -51,13 +51,13 @@ bool MemcachedClient::OnHeaderReaded(void* header,VBuffer& body)
 	}
 	else
 	{
-	    MEMLOG(mLog,Error) << "cannot find request " << requestId;
+	    //MEMLOG(mLog,Error) << "cannot find request " << requestId;
 	    return false;
 	}
     }
     else
     {
-	MEMLOG(mLog,Error) << "readed header is null ";
+	//MEMLOG(mLog,Error) << "readed header is null ";
 	return false;
     }
 }
@@ -77,12 +77,12 @@ void MemcachedClient::OnBodayReaded(const void* header,const VBuffer& boday)
 	}
 	else
 	{
-	    MEMLOG(mLog,Error) << "cannot find request " << requestId;
+	    //MEMLOG(mLog,Error) << "cannot find request " << requestId;
 	}
     }
     else
     {
-	MEMLOG(mLog,Error) << "readed header is null ";
+	//MEMLOG(mLog,Error) << "readed header is null ";
     }
 
 }

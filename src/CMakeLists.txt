@@ -14,8 +14,9 @@ ADD_LIBRARY(memclient ${memclient_SRCLISTS})
 
 TARGET_LINK_LIBRARIES(memclient network)
 TARGET_LINK_LIBRARIES(memclient serverManager)
-TARGET_LINK_LIBRARIES(memclient boost_log)
-TARGET_LINK_LIBRARIES(memclient boost_log_setup)
+TARGET_LINK_LIBRARIES(memclient boost_thread)
+#TARGET_LINK_LIBRARIES(memclient boost_log)
+#TARGET_LINK_LIBRARIES(memclient boost_log_setup)
 TARGET_LINK_LIBRARIES(memclient pthread)
 
 INSTALL(TARGETS memclient 
