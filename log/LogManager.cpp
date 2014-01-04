@@ -1,41 +1,10 @@
 #include <algorithm>
-#include <boost/algorithm/string.hpp>
 #include <boost/xpressive/xpressive_dynamic.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
 #include "FileHandler.h"
 #include  "LogManager.h"
 using namespace boost::xpressive;
-
-namespace fs = boost::filesystem;
-void LogManager::EscapeRegex(std::string &regex)
-{
-    boost::replace_all(regex, "\\", "\\\\");
-    boost::replace_all(regex, "^", "\\^");
-    boost::replace_all(regex, ".", "\\.");
-    boost::replace_all(regex, "$", "\\$");
-    boost::replace_all(regex, "|", "\\|");
-    boost::replace_all(regex, "(", "\\(");
-    boost::replace_all(regex, ")", "\\)");
-    boost::replace_all(regex, "[", "\\[");
-    boost::replace_all(regex, "]", "\\]");
-    boost::replace_all(regex, "*", "\\*");
-    boost::replace_all(regex, "+", "\\+");
-    boost::replace_all(regex, "?", "\\?");
-    boost::replace_all(regex, "/", "\\/");
-}
-
-sregex LogManager::Wildcard2Regex(const std::string& wildcardPattern)
-{
-    // Escape all regex special chars
-    EscapeRegex(wildcardPattern);
-
-    // Convert chars '*?' back to their regex equivalents
-    boost::replace_all(wildcardPattern, "\\?", ".");
-    boost::replace_all(wildcardPattern, "\\*", ".*");
-
-    return sregex::compile(wildcardPattern);
-}
 
 bool LogManager::Initialize(const std::string& strPath,bool ignoreCase)
 {
@@ -49,19 +18,14 @@ bool LogManager::Initialize(const std::string& strPath,bool ignoreCase)
        printError(); 
     }
 
-    if(fs::is_file(fullPath))
+    if(fs::is_regular_file(fullPath))
     {
 	configs.push_back(path);
     }
-    else if(fs::is_dir(fullPath))
+    else if(fs::is_directory(fullPath))
     {
-	auto pattern = Wildcard2Regex(path);
-	FindFiles(fullPath
-		,[](const fs::path& path,bool isdir)
-		{
-		    return isdir || regex_match(path.string(),pattern);
-		}
-		,configs);
+	const auto& pattern = Wildcard2Regex(path);
+	FindFiles(fullPath,pattern,configs);
 
 	if(0 == configs.size())
 	{

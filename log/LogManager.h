@@ -13,7 +13,6 @@ namespace src = boost::log::sources;
 namespace expr = boost::log::expressions;
 namespace attrs = boost::log::attributes;
 namespace keywords = boost::log::keywords;
-namespace fs = boost::filesystem;
 enum SeverityLevel
 {
     Info,
@@ -23,7 +22,7 @@ enum SeverityLevel
     Fatal
 };
 
-typedef Src::severity_logger_mt<SeverityLevel> Logger;
+typedef src::severity_logger_mt<SeverityLevel> Logger;
 
 class LogManager:
     public Singleton<LogManager>
@@ -34,8 +33,6 @@ public:
     Logger& GetLogger(const std::string& module,const std::string& name);
 
 private:
-    void EscapeRegex(std::string &regex);
-    boost::xpressive::sregex Wildcard2Regex(const std::string& wildcardPattern, bool caseSensitive = true);
     void LoadConfig(const fs::path& path);
 
     boost::unordered_map<std::string,Logger> mLoggers;

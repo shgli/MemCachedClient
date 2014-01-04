@@ -1,5 +1,5 @@
-#include <boost/xpressive/xpressive_dynamic.hpp>
 #include "FileHandler.h"
+#include <boost/algorithm/string.hpp>
 
 void FindFiles(const filesystem::path& dirPath,const Filter& filter,PathVec& out)
 {
@@ -16,6 +16,45 @@ void FindFiles(const filesystem::path& dirPath,const Filter& filter,PathVec& out
 	    }
 	}
     }
+}
+
+sregex Wildcard2Regex(const std::string& wildcardPattern)
+{
+    boost::replace_all(wildcardPattern, "\\", "\\\\");
+    boost::replace_all(wildcardPattern, "^", "\\^");
+    boost::replace_all(wildcardPattern, ".", "\\.");
+    boost::replace_all(wildcardPattern, "$", "\\$");
+    boost::replace_all(wildcardPattern, "|", "\\|");
+    boost::replace_all(wildcardPattern, "(", "\\(");
+    boost::replace_all(wildcardPattern, ")", "\\)");
+    boost::replace_all(wildcardPattern, "[", "\\[");
+    boost::replace_all(wildcardPattern, "]", "\\]");
+    boost::replace_all(wildcardPattern, "*", "\\*");
+    boost::replace_all(wildcardPattern, "+", "\\+");
+    boost::replace_all(wildcardPattern, "?", "\\?");
+    boost::replace_all(wildcardPattern, "/", "\\/");
+
+    boost::replace_all(wildcardPattern, "\\?", ".");
+    boost::replace_all(wildcardPattern, "\\*", ".*");
+
+    return sregex::compile(wildcardPattern);
+}
+
+void FindFiles(const fs::path& dirPath,const sregex& pattern,PathVec& out)
+{
+    return FildFiles(dirPath
+	    ,[&pattern](const filesystem::path& path,bool isDir)
+	    {
+	        return isdir || regex_match(path.string(),pattern);
+	    }
+	    ,out
+	    );
+}
+
+
+void FindFiles(const filesystem::path& dirPath,const std::string pattern,PathVec& out)
+{
+    return FindFiles(dirPath,sregex::compile(pattern),out);
 }
 
 using namespace boost::xpressive;
