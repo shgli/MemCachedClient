@@ -2,13 +2,13 @@
 
 
 template<typename Visit>
-void TraverseFile(const filesystem::path& filePath,Visit visit)
+void TraverseFile(const fs::path& filePath,Visit visit)
 {
     std::string strTempFileName(filePath.string());
     strTempFileName += "temp~";
-    filesystem::path pathTemp(strTempFileName);
+    fs::path pathTemp(strTempFileName);
     {
-	filesystem::fstream fileIn(filePath);
+	fs::fstream fileIn(filePath);
 	if(!fileIn.is_open())
 	{
 	    std::string strErr("can not open file ");
@@ -16,7 +16,7 @@ void TraverseFile(const filesystem::path& filePath,Visit visit)
 	    throw std::runtime_error(strErr);
 	}
 
-	filesystem::ofstream fileOut(pathTemp);
+	fs::ofstream fileOut(pathTemp);
 
 	std::string strLine;
 	while(getline(fileIn,strLine))

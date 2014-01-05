@@ -1,41 +1,38 @@
 #ifndef _LOGMANAGER_H
 #define _LOGMANAGER_H
-#include <boost/log/core/core.hpp>
-#include <boost/log/sources/severity_logger.hpp>
-#include <boost/log/sources/record_ostream.hpp>
-#include <boost/log/sources/severity_feature.hpp>
-#include <boost/xpressive/xpressive_dynamic.hpp>
-#include <boost/unordered/unordered_map.hpp>
-#include "Singleton.h"
-namespace logging = boost::log;
-namespace sinks = boost::log::sinks;
-namespace src = boost::log::sources;
-namespace expr = boost::log::expressions;
-namespace attrs = boost::log::attributes;
-namespace keywords = boost::log::keywords;
-enum SeverityLevel
-{
-    Info,
-    Debug,
-    Warn,
-    Error,
-    Fatal
-};
+#include <boost/property_tree/ptree.hpp>
+#include <boost/pool/object_pool.hpp>
+#include <boost/filesystem/path.hpp>
+#include <boost/log/utility/setup/settings_parser.hpp>
+#include "common/Singleton.h"
+#include "LogCommon.h"
+#include "SinkInfo.h"
+#include "LoggerInfo.h"
 
-typedef src::severity_logger_mt<SeverityLevel> Logger;
-
+namespace pt = boost::property_tree;
+namespace fs = boost::filesystem;
 class LogManager:
     public Singleton<LogManager>
 {
 public:
+    typedef logging::basic_settings_section< char> section;
     bool Initialize(const std::string& path); //support wildcard
     Logger& GetLogger(const std::string& name);
-    Logger& GetLogger(const std::string& module,const std::string& name);
-
 private:
     void LoadConfig(const fs::path& path);
+    void LoadLogger(section& sec,int nLevel);
+    LoggerInfo* GetLoggerInfo(const std::string& name);
+    LoggerInfo* RootInfo( void );
 
-    boost::unordered_map<std::string,Logger> mLoggers;
+    typedef pt::basic_ptree<std::string,LoggerInfo*> LoggerInfoTree;
+
+    LoggerInfoTree mLoggerInfos;
+    boost::unordered_map<std::string,SinkInfo*> mSinks;
+
+    boost::object_pool<LoggerInfo> mLoggerInfoPool;
+    boost::object_pool<SinkInfo> mSinkInfoPool;
+    boost::object_pool<Logger> mLoggerPool;
 };
+
 #endif
  

@@ -1,10 +1,10 @@
 #include "FileHandler.h"
 #include <boost/algorithm/string.hpp>
 
-void FindFiles(const filesystem::path& dirPath,const Filter& filter,PathVec& out)
+void FindFiles(const fs::path& dirPath,const Filter& filter,PathVec& out)
 {
-    filesystem::directory_iterator end;
-    for(filesystem::directory_iterator pos(dirPath); pos != end; ++pos)
+    fs::directory_iterator end;
+    for(fs::directory_iterator pos(dirPath); pos != end; ++pos)
     {
 	bool isDir = is_directory(*pos);
 	if(filter(*pos,isDir))
@@ -12,13 +12,13 @@ void FindFiles(const filesystem::path& dirPath,const Filter& filter,PathVec& out
 	    out.push_back(*pos);
 	    if (isDir)
 	    {
-		FindFile(*pos,filter,out);
+		FindFiles(*pos,filter,out);
 	    }
 	}
     }
 }
 
-sregex Wildcard2Regex(const std::string& wildcardPattern)
+re::sregex Wildcard2Regex(std::string& wildcardPattern)
 {
     boost::replace_all(wildcardPattern, "\\", "\\\\");
     boost::replace_all(wildcardPattern, "^", "\\^");
@@ -37,24 +37,26 @@ sregex Wildcard2Regex(const std::string& wildcardPattern)
     boost::replace_all(wildcardPattern, "\\?", ".");
     boost::replace_all(wildcardPattern, "\\*", ".*");
 
-    return sregex::compile(wildcardPattern);
+    return re::sregex::compile(wildcardPattern);
 }
 
-void FindFiles(const fs::path& dirPath,const sregex& pattern,PathVec& out)
+void FindFiles(const fs::path& dirPath,const re::sregex& pattern,PathVec& out)
 {
-    return FildFiles(dirPath
-	    ,[&pattern](const filesystem::path& path,bool isDir)
+    Filter filter = [&pattern](const fs::path& path,bool isDir)
 	    {
-	        return isdir || regex_match(path.string(),pattern);
-	    }
+	        return isDir || re::regex_match(path.string(),pattern);
+	    };
+
+    return FindFiles(dirPath
+	    ,filter
 	    ,out
 	    );
 }
 
 
-void FindFiles(const filesystem::path& dirPath,const std::string pattern,PathVec& out)
+void FindFiles(const fs::path& dirPath,const std::string pattern,PathVec& out)
 {
-    return FindFiles(dirPath,sregex::compile(pattern),out);
+    return FindFiles(dirPath,re::sregex::compile(pattern),out);
 }
 
 using namespace boost::xpressive;
@@ -80,7 +82,7 @@ private:
     const std::string& m_strTo;
 };
 
-void FindAndReplace(const filesystem::path& filePath,const std::string& strFrom,const std::string& strTo)
+void FindAndReplace(const fs::path& filePath,const std::string& strFrom,const std::string& strTo)
 {
     TraverseFile<SReplaceVisit>(filePath,SReplaceVisit(strFrom,strTo));
 }
@@ -101,7 +103,7 @@ private:
     const std::string& m_strTo;
 };
 
-void FindAndReplace(const filesystem::path& filePath,const sregex& regFrom,const std::string& strTo)
+void FindAndReplace(const fs::path& filePath,const sregex& regFrom,const std::string& strTo)
 {
     TraverseFile<ReplaceVisit>(filePath,ReplaceVisit(regFrom,strTo));
 }

@@ -23,17 +23,17 @@ namespace re = boost::xpressive;
 typedef boost::function<bool (const fs::path& path,bool isDir)> Filter;
 typedef std::vector<fs::path> PathVec;
 
-sregex Wildcard2Regex(const std::string& wildcardPattern);
+re::sregex Wildcard2Regex(const std::string& wildcardPattern);
 void FindFiles(const fs::path& dirPath,const Filter& filter,PathVec& out);
 void FindFiles(const fs::path& dirPath,const std::string pattern,PathVec& out);
-void FindFiles(const fs::path& dirPath,const sregex& pattern,PathVec& out);
+void FindFiles(const fs::path& dirPath,const re::sregex& pattern,PathVec& out);
 
 template<typename Visit>
 void TraverseFile(const fs::path& filePath,Visit visit);
 
 void FindAndReplace(const fs::path& filePath,const std::string& strFrom,const std::string& strTo);
 
-void FindAndReplace(const fs::path& filePath,const sregex& regFrom,const std::string& strTo);
+void FindAndReplace(const fs::path& filePath,const re::sregex& regFrom,const std::string& strTo);
 
 #include "FileHandler.hpp"
 #endif 
