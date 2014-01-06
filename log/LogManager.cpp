@@ -1,6 +1,8 @@
 #include <algorithm>
 #include <fstream>
 #include <boost/xpressive/xpressive_dynamic.hpp>
+#include <boost/log/expressions/predicates/is_in_range.hpp>
+#include <boost/log/utility/setup/from_settings.hpp>
 #include "common/FileHandler.h"
 #include  "LogManager.h"
 using namespace boost::xpressive;
@@ -56,7 +58,7 @@ void LogManager::LoadConfig(const fs::path& path)
 
 	// Apply core settings
 	if (section core_params = setts["Core"])
-	    //apply_core_settings(core_params);
+	    apply_core_settings(core_params);
 
 	// Construct and initialize sinks
 	if (section sink_params = setts["Sinks"])
@@ -68,7 +70,7 @@ void LogManager::LoadConfig(const fs::path& path)
 		// Ignore empty sections as they are most likely individual parameters (which should not be here anyway)
 		if (!sink_params.empty())
 		{
-		    //auto pSinkInfo = mSinkInfoPool.construct(construct_sink_from_settings(sink_params));
+		    auto pSinkInfo = mSinkInfoPool.construct(boost::static_pointer_cast<sinks::basic_sink_frontend>(construct_sink_from_settings(sink_params)));
 		    //mSinks.insert(it->get_name(),pSinkInfo);
 		}
 	    }
@@ -111,7 +113,7 @@ Logger& LogManager::GetLogger(const std::string& name)
 
 	    for(auto pSink : pInfo->SinkInfos)
 	    {
-		//pSink->AddFilter((logger_id >= pInfo->Id && logger_id < pInfo->NextId()));
+		pSink->AddFilter(expr::is_in_range(logger_id,pInfo->Id,pInfo->NextId()),pInfo->Filter);
 	    }
 	}
 

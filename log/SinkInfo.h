@@ -12,10 +12,16 @@ struct SinkInfo
 	:Sink(sin)
     {}
 
-    void AddFilter(logging::filter filt)
+    void AddFilter(logging::filter filt1,logging::filter filt2)
     {
-	//Filter = []() { return filt };
-	Sink->set_filter(filt);
+	auto oldFilter = Filter;
+	auto newFilter = [oldFilter,filt1,filt2](logging::attribute_value_set const& values)
+	{
+	    return oldFilter(values) || (filt1(values) && filt2(values));
+	};
+
+	Filter = newFilter;
+	Sink->set_filter(Filter);
     }
 };
 #endif

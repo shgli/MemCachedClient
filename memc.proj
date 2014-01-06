@@ -67,6 +67,7 @@ memc=/home/shgli/src/MemCachedClient CD=build filter="*.h *.cpp *.txt" {
  }
  log=log{
   LogCommon.h
+  LogCommon.cpp
   LogManager.h
   LoggerInfo.h
   SinkInfo.h

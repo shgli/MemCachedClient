@@ -23,6 +23,8 @@ ADD_EXECUTABLE(logTest ${logTest_SRCLISTS})
 TARGET_LINK_LIBRARIES(logTest Log)
 TARGET_LINK_LIBRARIES(logTest boost_log)
 TARGET_LINK_LIBRARIES(logTest boost_log_setup)
+TARGET_LINK_LIBRARIES(logTest boost_filesystem)
+TARGET_LINK_LIBRARIES(logTest pthread)
 
 INSTALL(TARGETS memtest 
     RUNTIME DESTINATION bin)

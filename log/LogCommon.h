@@ -1,5 +1,6 @@
 #ifndef _LOGCOMMON_H
 #define _LOGCOMMON_H
+#include <ostream>
 #include <boost/log/core/core.hpp>
 #include <boost/log/sources/severity_logger.hpp>
 #include <boost/log/sources/record_ostream.hpp>
@@ -23,6 +24,7 @@ enum SeverityLevel
 };
 
 typedef src::severity_logger_mt<SeverityLevel> Logger;
+std::ostream& operator<< (std::ostream& strm, SeverityLevel level);
 
 #define INFO(lg) BOOST_LOG_SEV(lg,Info)
 #define DEBUG(lg) BOOST_LOG_SEV(lg,Debug)

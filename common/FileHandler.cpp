@@ -18,7 +18,7 @@ void FindFiles(const fs::path& dirPath,const Filter& filter,PathVec& out)
     }
 }
 
-re::sregex Wildcard2Regex(std::string& wildcardPattern)
+re::sregex Wildcard2Regex(std::string wildcardPattern)
 {
     boost::replace_all(wildcardPattern, "\\", "\\\\");
     boost::replace_all(wildcardPattern, "^", "\\^");
