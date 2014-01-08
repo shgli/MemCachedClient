@@ -3,11 +3,18 @@
 #include <boost/xpressive/xpressive_dynamic.hpp>
 #include <boost/log/expressions/predicates/is_in_range.hpp>
 #include <boost/log/utility/setup/from_settings.hpp>
+#include <boost/log/utility/setup/filter_parser.hpp>
+#include <boost/algorithm/string/split.hpp>
 #include "common/FileHandler.h"
 #include  "LogManager.h"
 using namespace boost::xpressive;
 
 BOOST_LOG_ATTRIBUTE_KEYWORD(logger_id,"LoggerId",uint64_t)
+LogManager::LogManager()
+{
+    memset(mIds,0,sizeof(mIds));
+}
+
 bool LogManager::Initialize(const std::string& strPath)
 {
     PathVec configs;
@@ -54,11 +61,9 @@ void LogManager::LoadConfig(const fs::path& path)
     {
         auto setts = logging::parse_settings(settingFile);
 
-        extern boost::shared_ptr< sinks::sink > construct_sink_from_settings(section const& params);
-
 	// Apply core settings
 	if (section core_params = setts["Core"])
-	    apply_core_settings(core_params);
+	    _apply_core_settings(core_params);
 
 	// Construct and initialize sinks
 	if (section sink_params = setts["Sinks"])
@@ -71,7 +76,12 @@ void LogManager::LoadConfig(const fs::path& path)
 		if (!sink_params.empty())
 		{
 		    auto pSinkInfo = mSinkInfoPool.construct(boost::static_pointer_cast<sinks::basic_sink_frontend>(construct_sink_from_settings(sink_params)));
-		    //mSinks.insert(it->get_name(),pSinkInfo);
+		    auto filter = sink_params["Filter"].get();
+		    if(filter)
+		    {
+		         pSinkInfo->Filter = logging::parse_filter(filter.get());
+		    }
+		    mSinks.insert(std::make_pair(it.get_name(),pSinkInfo));
 		}
 	    }
 
@@ -97,9 +107,60 @@ void LogManager::LoadLogger(section& sec,int nLevel)
 
 	if(!logger_params.empty())
 	{
-            
+	    auto name = it.get_name();
+	    LoggerInfo* pInfo = new LoggerInfo();
+	    pInfo->Id = GetId(name,pInfo->Level);
+
+	    auto opSinkNames = logger_params["Sinks"].get();
+	    if(opSinkNames)
+	    {
+		std::vector<boost::iterator_range<std::string::iterator> > sinkNames;
+		auto strSinks = opSinkNames.get();
+		boost::split(sinkNames,strSinks,[](char c){ return ',' == c;},boost::token_compress_on);
+		for(auto itSinkName : sinkNames)
+		{
+		    auto itSink = mSinks.find(std::string(itSinkName.begin(),itSinkName.end()));
+		    if(itSink != mSinks.end())
+		    {
+			pInfo->SinkInfos.push_back(itSink->second);
+		    }
+		}
+	    }
+
+	    auto filter = logger_params["Filter"].get();
+	    if(filter)
+	    {
+	        pInfo->Filter = logging::parse_filter(filter.get());
+	    }
+            mLoggerInfos.put<LoggerInfo*>(name,pInfo);
 	}
     }
+}
+
+uint64_t LogManager::GetId(const std::string& name,uint8_t& level)
+{
+    using namespace std;
+    uint64_t mulitple = (1UL << 32) << 24;
+    uint64_t id;
+    size_t nextDotPos = name.find_first_of('.');
+    level = -1;
+    do
+    {
+	++level;
+	LoggerInfo* pInfo = mLoggerInfos.get<LoggerInfo*>(name.substr(0,nextDotPos));
+	if(nullptr != pInfo)
+	{
+	    id = pInfo->Id;
+	}
+	else
+	{
+	    id += mIds[level] * mulitple;
+	    ++mIds[level];
+	}
+        nextDotPos = name.find_first_of('.',nextDotPos + 1);
+    }while(string::npos != nextDotPos);
+   
+    return id;
 }
 
 Logger& LogManager::GetLogger(const std::string& name)

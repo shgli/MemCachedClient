@@ -13,6 +13,14 @@ struct LoggerInfo
     SinkInfoList SinkInfos; 
     Logger*  Log;
 
+    LoggerInfo()
+	:Id(0)
+	,Level(0)
+	,Log(nullptr)
+    {
+
+    }
+
     uint64_t NextId() const
     {
 	uint64_t shift = LEVEL_BITS * (MAX_LEVEL - Level);
