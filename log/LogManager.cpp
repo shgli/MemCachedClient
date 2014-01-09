@@ -21,7 +21,7 @@ bool LogManager::Initialize(const std::string& strPath)
     auto itLast = std::find_if(strPath.begin(),strPath.end(),[](char c){ return '*' == c || '?' == c;});
     fs::path fullPath = fs::system_complete(fs::path(std::string(strPath.begin(),itLast)));
 
-    auto printError = [&strPath](){std::cerr <<__FILE__<<":"<<__LINE__<<":"<<strPath<<"is not a valid log configure file"<<std::endl;};
+    auto printError = [&strPath](){std::cerr <<__FILE__<<":"<<__LINE__<<":"<<strPath<<" is not a valid log configure file"<<std::endl;};
     if(!fs::exists(fullPath))
     {
        printError(); 

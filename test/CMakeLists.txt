@@ -26,8 +26,11 @@ TARGET_LINK_LIBRARIES(logTest boost_log_setup)
 TARGET_LINK_LIBRARIES(logTest boost_filesystem)
 TARGET_LINK_LIBRARIES(logTest pthread)
 
-INSTALL(TARGETS memtest 
-    RUNTIME DESTINATION bin)
+INSTALL(TARGETS memtest logTest
+    RUNTIME DESTINATION bin
+    )
+INSTALL(DIRECTORY conf
+    DESTINATION bin/)
 
 
 

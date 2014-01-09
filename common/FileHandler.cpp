@@ -44,7 +44,7 @@ void FindFiles(const fs::path& dirPath,const re::sregex& pattern,PathVec& out)
 {
     Filter filter = [&pattern](const fs::path& path,bool isDir)
 	    {
-	        return isDir || re::regex_match(path.string(),pattern);
+	        return isDir || re::regex_search(path.string(),pattern);
 	    };
 
     return FindFiles(dirPath
