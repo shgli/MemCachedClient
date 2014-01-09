@@ -1,0 +1,37 @@
+--- libs/log/src/init_from_settings.cpp_	2014-01-06 22:31:25.560104361 +0800
++++ libs/log/src/init_from_settings.cpp	2014-01-07 21:03:26.270076712 +0800
+@@ -744,6 +744,34 @@
+ template BOOST_LOG_SETUP_API void init_from_settings< wchar_t >(basic_settings_section< wchar_t > const& setts);
+ #endif
+ 
++//#ifdef BOOST_LOG_SETUP_EX
++template< typename CharT >
++void _apply_core_settings(basic_settings_section< CharT > const& params)
++{
++}
++
++template< typename CharT >
++shared_ptr< sinks::sink > construct_sink_from_settings(basic_settings_section< CharT> const& params)
++{
++    typedef basic_settings_section< CharT > section;
++    typedef typename section::char_type char_type;
++    typedef typename section::string_type string_type;
++    typedef sinks_repository< char_type > sinks_repo_t;
++    sinks_repo_t::get().construct_sink_from_settings(params);
++}
++
++#ifdef  BOOST_LOG_USE_CHAR
++template BOOST_LOG_SETUP_API void _apply_core_settings<char>(basic_settings_section< char> const& params);
++template BOOST_LOG_SETUP_API shared_ptr< sinks::sink > construct_sink_from_settings<char>(basic_settings_section< char> const& params);
++#endif
++
++#ifdef  BOOST_LOG_USE_WCHAR_T
++template BOOST_LOG_SETUP_API void _apply_core_settings<wchar_t>(basic_settings_section< wchar_t> const& params);
++template BOOST_LOG_SETUP_API shared_ptr< sinks::sink > construct_sink_from_settings<wchar_t>(basic_settings_section< wchar_t> const& params);
++#endif
++
++//#endif
++
+ BOOST_LOG_CLOSE_NAMESPACE // namespace log
+ 
+ } // namespace boost

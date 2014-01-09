@@ -1,0 +1,16 @@
+--- boost/log/utility/setup/from_settings.hpp_	2014-01-06 22:30:18.872103995 +0800
++++ boost/log/utility/setup/from_settings.hpp	2014-01-07 21:04:20.790074281 +0800
+@@ -155,6 +155,13 @@
+     register_sink_factory(sink_name.c_str(), boost::static_pointer_cast< factory_base >(factory));
+ }
+ 
++//#ifdef BOOST_LOG_SETUP_EX
++template< typename CharT >
++BOOST_LOG_SETUP_API void _apply_core_settings(basic_settings_section< CharT > const& params);
++
++template< typename CharT >
++shared_ptr< sinks::sink > construct_sink_from_settings(basic_settings_section< CharT> const& params);
++//#endif
+ BOOST_LOG_CLOSE_NAMESPACE // namespace log
+ 
+ } // namespace boost
