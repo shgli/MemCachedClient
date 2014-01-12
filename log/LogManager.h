@@ -23,9 +23,11 @@ private:
     friend class Singleton<LogManager>;
     LogManager();
 
-    void LoadConfig(const fs::path& path);
-    void LoadLogger(section& sec,int nLevel);
+    void LoadConfig(const fs::path& path,std::vector<LoggerInfo*>& loggers);
+    void LoadLogger(section& sec,int nLevel,std::vector<LoggerInfo*>& loggers);
     uint64_t GetId(const std::string& name,uint8_t& level);
+    void LinkLoggerWithSink(std::vector<LoggerInfo*>& loggers);
+
     LoggerInfo* GetLoggerInfo(const std::string& name);
     LoggerInfo* RootInfo( void );
 
@@ -38,6 +40,7 @@ private:
     boost::object_pool<SinkInfo> mSinkInfoPool;
     boost::object_pool<Logger> mLoggerPool;
     uint32_t mIds[LoggerInfo::MAX_LEVEL];
+    uint32_t mFileId;
 };
 
 #endif
