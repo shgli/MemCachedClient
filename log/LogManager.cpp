@@ -80,7 +80,8 @@ void LogManager::LoadConfig(const fs::path& path,std::vector<LoggerInfo*>& logge
 		// Ignore empty sections as they are most likely individual parameters (which should not be here anyway)
 		if (!sink_params.empty())
 		{
-		    auto pSinkInfo = mSinkInfoPool.construct(boost::static_pointer_cast<sinks::basic_sink_frontend>(construct_sink_from_settings(sink_params)));
+		    auto pSink = construct_sink_from_settings(sink_params);
+		    auto pSinkInfo = mSinkInfoPool.construct(boost::static_pointer_cast<sinks::basic_sink_frontend>(pSink));
 		    auto filter = sink_params["Filter"].get();
 		    if(filter)
 		    {
@@ -106,6 +107,7 @@ void LogManager::LoadConfig(const fs::path& path,std::vector<LoggerInfo*>& logge
 
 void LogManager::LoadLogger(section& sec,int nLevel,std::vector<LoggerInfo*>& loggers)
 {
+    auto da = sec.property_tree().data();
     for (typename section::const_iterator it = sec.begin(), end = sec.end(); it != end; ++it)
     {
 	section logger_params = *it;

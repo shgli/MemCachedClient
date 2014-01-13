@@ -36,7 +36,7 @@ re::sregex Wildcard2Regex(std::string wildcardPattern)
 
     boost::replace_all(wildcardPattern, "\\?", ".");
     boost::replace_all(wildcardPattern, "\\*", ".*");
-
+    wildcardPattern += '$';
     return re::sregex::compile(wildcardPattern);
 }
 
