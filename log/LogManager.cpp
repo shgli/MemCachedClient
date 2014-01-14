@@ -94,7 +94,7 @@ void LogManager::LoadConfig(const fs::path& path,std::vector<LoggerInfo*>& logge
 	    //std::for_each(new_sinks.begin(), new_sinks.end(), boost::bind(&core::add_sink, core::get(), _1));
 	}
 
-	if(section logger_parms = setts["Loggers"])
+	if(section::reference logger_parms = setts["Loggers"])
 	{
 	    LoadLogger(logger_parms,0,loggers);
 	}
@@ -105,33 +105,41 @@ void LogManager::LoadConfig(const fs::path& path,std::vector<LoggerInfo*>& logge
     }
 }
 
-void LogManager::LoadLogger(section& sec,int nLevel,std::vector<LoggerInfo*>& loggers)
+void LogManager::LoadLogger(section::reference& rSection,int nLevel,std::vector<LoggerInfo*>& loggers)
 {
-    auto da = sec.property_tree().data();
-    for (typename section::const_iterator it = sec.begin(), end = sec.end(); it != end; ++it)
+    auto value = rSection.get();
+    section sec = rSection;
+    if(1 == sec.property_tree().count("Sinks"))
     {
-	section logger_params = *it;
+	auto name = rSection.get_name();
+	LoggerInfo* pInfo = new LoggerInfo();
+	pInfo->Id = GetId(name,pInfo->Level);
+	pInfo->FileId = mFileId;
 
-	if(!logger_params.empty())
+	auto opSinkNames = sec["Sinks"].get();
+	if(opSinkNames)
 	{
-	    auto name = it.get_name();
-	    LoggerInfo* pInfo = new LoggerInfo();
-	    pInfo->Id = GetId(name,pInfo->Level);
-	    pInfo->FileId = mFileId;
+	    pInfo->SinkNames = opSinkNames.get();
+	}
 
-	    auto opSinkNames = logger_params["Sinks"].get();
-	    if(opSinkNames)
+	auto filter = sec["Filter"].get();
+	if(filter)
+	{
+	    pInfo->Filter = logging::parse_filter(filter.get());
+	}
+	mLoggerInfos.put<LoggerInfo*>(name,pInfo);
+	loggers.push_back(pInfo);
+    }
+    else if(!sec.empty())
+    {
+	for (typename section::const_iterator it = sec.begin(), end = sec.end(); it != end; ++it)
+	{
+	    section childSec = *it;
+	    if(!childSec.empty())
 	    {
-		pInfo->SinkNames = opSinkNames.get();
+		auto childRef = sec[it.get_name()];
+		LoadLogger(childRef,nLevel + 1,loggers);
 	    }
-
-	    auto filter = logger_params["Filter"].get();
-	    if(filter)
-	    {
-	        pInfo->Filter = logging::parse_filter(filter.get());
-	    }
-            mLoggerInfos.put<LoggerInfo*>(name,pInfo);
-	    loggers.push_back(pInfo);
 	}
     }
 }
