@@ -26,7 +26,7 @@ struct LoggerInfo
 
     uint64_t NextId() const
     {
-	uint64_t shift = LEVEL_BITS * (MAX_LEVEL - Level);
+	uint64_t shift = LEVEL_BITS * (MAX_LEVEL - Level - 1);
 	uint64_t delta = 0;
 	if(shift > 32)
 	{

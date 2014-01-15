@@ -24,8 +24,8 @@ private:
     LogManager();
 
     void LoadConfig(const fs::path& path,std::vector<LoggerInfo*>& loggers);
-    void LoadLogger(section::reference& sec,int nLevel,std::vector<LoggerInfo*>& loggers);
-    uint64_t GetId(const std::string& name,uint8_t& level);
+    void LoadLogger(section::reference& sec,uint8_t nLevel,std::vector<LoggerInfo*>& loggers,const std::string& name,uint64_t parentId);
+    uint64_t GetId(const std::string& name,uint8_t level,uint64_t parentId);
     void LinkLoggerWithSink(std::vector<LoggerInfo*>& loggers);
 
     LoggerInfo* GetLoggerInfo(const std::string& name);
@@ -35,11 +35,13 @@ private:
 
     LoggerInfoTree mLoggerInfos;
     boost::unordered_map<std::string,SinkInfo*> mSinks;
+    boost::unordered_map<std::string,uint64_t> mIdMap;
 
     boost::object_pool<LoggerInfo> mLoggerInfoPool;
     boost::object_pool<SinkInfo> mSinkInfoPool;
     boost::object_pool<Logger> mLoggerPool;
     uint32_t mIds[LoggerInfo::MAX_LEVEL];
+    uint64_t mIdMultiple[LoggerInfo::MAX_LEVEL];
     uint32_t mFileId;
 };
 

@@ -13,7 +13,14 @@ BOOST_LOG_ATTRIBUTE_KEYWORD(logger_id,"LoggerId",uint64_t)
 LogManager::LogManager()
     :mFileId(0)
 {
-    memset(mIds,1,sizeof(mIds));
+    uint64_t multiple = 1;
+    uint64_t stepMulti = 1 << LoggerInfo::LEVEL_BITS;
+    for(int i = 0; i < LoggerInfo::MAX_LEVEL; ++i)
+    {
+	mIds[i] = 1;
+	mIdMultiple[LoggerInfo::MAX_LEVEL - i - 1] = multiple;
+	multiple *= stepMulti;
+    }
 }
 
 bool LogManager::Initialize(const std::string& strPath)
@@ -96,7 +103,7 @@ void LogManager::LoadConfig(const fs::path& path,std::vector<LoggerInfo*>& logge
 
 	if(section::reference logger_parms = setts["Loggers"])
 	{
-	    LoadLogger(logger_parms,0,loggers);
+	    LoadLogger(logger_parms,-1,loggers,"",0);
 	}
     }
     else
@@ -105,15 +112,14 @@ void LogManager::LoadConfig(const fs::path& path,std::vector<LoggerInfo*>& logge
     }
 }
 
-void LogManager::LoadLogger(section::reference& rSection,int nLevel,std::vector<LoggerInfo*>& loggers)
+void LogManager::LoadLogger(section::reference& rSection,uint8_t nLevel,std::vector<LoggerInfo*>& loggers,const std::string& strName,uint64_t parentId)
 {
     auto value = rSection.get();
     section sec = rSection;
     if(1 == sec.property_tree().count("Sinks"))
     {
-	auto name = rSection.get_name();
 	LoggerInfo* pInfo = new LoggerInfo();
-	pInfo->Id = GetId(name,pInfo->Level);
+	pInfo->Id = GetId(strName,nLevel,parentId);
 	pInfo->FileId = mFileId;
 
 	auto opSinkNames = sec["Sinks"].get();
@@ -127,47 +133,44 @@ void LogManager::LoadLogger(section::reference& rSection,int nLevel,std::vector<
 	{
 	    pInfo->Filter = logging::parse_filter(filter.get());
 	}
-	mLoggerInfos.put<LoggerInfo*>(name,pInfo);
+	mLoggerInfos.put<LoggerInfo*>(strName,pInfo);
 	loggers.push_back(pInfo);
     }
     else if(!sec.empty())
     {
+	std::string childName = strName;
+	if(0 != strName.length())
+	{
+	    parentId = GetId(strName,nLevel,parentId);
+	    childName += ".";
+	}
+
 	for (typename section::const_iterator it = sec.begin(), end = sec.end(); it != end; ++it)
 	{
 	    section childSec = *it;
 	    if(!childSec.empty())
 	    {
 		auto childRef = sec[it.get_name()];
-		LoadLogger(childRef,nLevel + 1,loggers);
+		LoadLogger(childRef,nLevel + 1,loggers,childName + it.get_name(),parentId);
 	    }
 	}
     }
 }
 
-uint64_t LogManager::GetId(const std::string& name,uint8_t& level)
+uint64_t LogManager::GetId(const std::string& name,uint8_t level,uint64_t parentId)
 {
-    using namespace std;
-    uint64_t mulitple = (1UL << 32) << 24;
-    uint64_t id = 0UL;
-    size_t nextDotPos = name.find_first_of('.');
-    level = -1;
-    do
+    auto itId = mIdMap.find(name);
+    if(itId != mIdMap.end())
     {
-	++level;
-	LoggerInfo* pInfo = mLoggerInfos.get<LoggerInfo*>(name.substr(0,nextDotPos),nullptr);
-	if(nullptr != pInfo)
-	{
-	    id = pInfo->Id;
-	}
-	else
-	{
-	    id += mIds[level] * mulitple;
-	    ++mIds[level];
-	}
-        nextDotPos = name.find_first_of('.',nextDotPos + 1);
-    }while(string::npos != nextDotPos);
-   
-    return id;
+	return itId->second;
+    }
+    else
+    {
+	uint64_t id = mIds[level]++;
+	id = (id * mIdMultiple[level]) + parentId;
+        mIdMap[name] = id;
+	return id;
+    }
 }
 
 void LogManager::LinkLoggerWithSink(std::vector<LoggerInfo*>& loggers)
