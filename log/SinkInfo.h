@@ -5,23 +5,27 @@
 typedef boost::shared_ptr<sinks::basic_sink_frontend> SinkPtr;
 struct SinkInfo
 {
-    logging::filter Filter;
+    logging::filter ReDirectFilter;
+    logging::filter InitFilter;
     SinkPtr Sink;
 
     SinkInfo(SinkPtr sin)
-	:Sink(sin)
+	:ReDirectFilter([](logging::attribute_value_set const& values){return false;})
+	,Sink(sin)
     {}
 
     void AddFilter(logging::filter filt1,logging::filter filt2)
     {
-	auto oldFilter = Filter;
-	auto newFilter = [oldFilter,filt1,filt2](logging::attribute_value_set const& values)
+	auto oldFilter = ReDirectFilter;
+	ReDirectFilter = [oldFilter,filt1,filt2](logging::attribute_value_set const& values)
 	{
 	    return oldFilter(values) || (filt1(values) && filt2(values));
 	};
+    }
 
-	Filter = newFilter;
-	Sink->set_filter(Filter);
+    bool FiltFun(logging::attribute_value_set const& values)
+    {
+        return InitFilter(values) && ReDirectFilter(values);
     }
 };
 #endif

@@ -24,18 +24,8 @@ enum SeverityLevel
 };
 
 typedef src::severity_logger_mt<SeverityLevel> Logger;
+const char* to_string(SeverityLevel lvl);
 std::ostream& operator<< (std::ostream& strm, SeverityLevel level);
-
-template< typename CharT, typename TraitsT >
-inline std::basic_ostream< CharT, TraitsT >& operator<< (std::basic_ostream< CharT, TraitsT >& strm, SeverityLevel lvl)
-{
-    const char* str = "of";//boost::log::trivial::to_string(lvl);
-    if (str)
-	strm << str;
-    else
-	strm << static_cast< int >(lvl);
-    return strm;
-}
 
 
 #define INFO(lg) BOOST_LOG_SEV(lg,Info)

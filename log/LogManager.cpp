@@ -95,18 +95,23 @@ void LogManager::LoadConfig(const fs::path& path,std::vector<LoggerInfo*>& logge
 		// Ignore empty sections as they are most likely individual parameters (which should not be here anyway)
 		if (!sink_params.empty())
 		{
-		    auto pSink = construct_sink_from_settings(sink_params);
-		    auto pSinkInfo = mSinkInfoPool.construct(boost::static_pointer_cast<sinks::basic_sink_frontend>(pSink));
+		    auto pSink = boost::static_pointer_cast<sinks::basic_sink_frontend>(construct_sink_from_settings(sink_params));
+		    auto pSinkInfo = mSinkInfoPool.construct(pSink);
 		    auto filter = sink_params["Filter"].get();
 		    if(filter)
 		    {
-			pSinkInfo->Filter = logging::parse_filter(filter.get());
+			pSinkInfo->InitFilter = logging::parse_filter(filter.get());
 		    }
+		    pSink->set_filter(boost::bind(&SinkInfo::FiltFun,pSinkInfo,_1));
 		    mSinks.insert(std::make_pair(it.get_name() + boost::lexical_cast<std::string>(mFileId),pSinkInfo));
 		}
 	    }
 
-	    //std::for_each(new_sinks.begin(), new_sinks.end(), boost::bind(&core::add_sink, core::get(), _1));
+	    std::for_each(mSinks.begin(), mSinks.end()
+		    , [](boost::unordered_map<std::string,SinkInfo*>::value_type sinkPair)
+		    { 
+		        logging::core::get()->add_sink(sinkPair.second->Sink);
+		    });
 	}
 
 	if(section::reference logger_parms = setts["Loggers"])
