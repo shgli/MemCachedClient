@@ -19,7 +19,7 @@ struct SinkInfo
 	auto oldFilter = ReDirectFilter;
 	ReDirectFilter = [oldFilter,filt1,filt2](logging::attribute_value_set const& values)
 	{
-	    return oldFilter(values) || (filt1(values) && filt2(values));
+	    return (filt1(values) && filt2(values)) || oldFilter(values);
 	};
     }
 

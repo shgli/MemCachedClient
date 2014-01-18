@@ -2,18 +2,25 @@
 #include <boost/log/utility/setup/common_attributes.hpp>
 #include <boost/log/utility/setup/file.hpp>
 #include <boost/log/sources/logger.hpp>
+#include <boost/log/trivial.hpp>
 int main(int argc,char** argv)
 {
     // Initialize logging to the "test.log" file
     logging::add_file_log("test.log"
-	    , keywords::format="%Severity%:%LoggerId%:%Message%"
+	    , keywords::format="[%TimeStamp%]: %Message%"
 	    );
     //
     // Here we go, we can write logs right away
     src::logger lg;
     BOOST_LOG(lg) << "Hello world!";
 
+    using namespace boost::log::trivial;
+    src::severity_logger_mt<severity_level> lg22;
+
+    BOOST_LOG_SEV(lg22,warning)<<"HAHA IT's ok"<<std::endl;
+
     logging::add_common_attributes();
+
     LogManager::Instance().Initialize("conf/*_log.conf");
     BOOST_LOG(lg) << "sec Hello world!";
 

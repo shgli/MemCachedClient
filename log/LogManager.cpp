@@ -6,7 +6,8 @@
 #include <boost/log/utility/setup/filter_parser.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <boost/log/attributes/constant.hpp>
-
+#include <boost/log/utility/setup/formatter_parser.hpp>
+#include <boost/log/utility/setup/filter_parser.hpp>
 #include "common/FileHandler.h"
 #include  "log/LogManager.h"
 using namespace boost::xpressive;
@@ -24,6 +25,12 @@ BOOST_LOG_ATTRIBUTE_KEYWORD(logger_id,"LoggerId",uint64_t)
         mIdMultiple[LoggerInfo::MAX_LEVEL - i - 1] = multiple;
         multiple *= stepMulti;
     }
+
+    logging::register_simple_formatter_factory<SeverityLevel,char>("Severity");
+    logging::register_simple_formatter_factory<uint64_t,char>("LoggerId");
+
+    logging::register_simple_filter_factory<SeverityLevel, char >("Severity");
+    logging::register_simple_filter_factory<uint64_t,char>("LoggerId");
 }
 
 LOG_EXPORT bool LogManager::Initialize(const std::string& strPath)
