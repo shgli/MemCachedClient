@@ -8,6 +8,7 @@
 +template< typename CharT >
 +void _apply_core_settings(basic_settings_section< CharT > const& params)
 +{
++    apply_core_settings(params);
 +}
 +
 +template< typename CharT >
@@ -17,7 +18,7 @@
 +    typedef typename section::char_type char_type;
 +    typedef typename section::string_type string_type;
 +    typedef sinks_repository< char_type > sinks_repo_t;
-+    sinks_repo_t::get().construct_sink_from_settings(params);
++    return sinks_repo_t::get().construct_sink_from_settings(params);
 +}
 +
 +#ifdef  BOOST_LOG_USE_CHAR
