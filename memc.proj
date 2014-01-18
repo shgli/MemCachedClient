@@ -1,5 +1,5 @@
 
-memc=/home/shgli/src/MemCachedClient CD=build filter="*.h *.cpp *.txt" {
+memc=/home/shgli/src/MemCachedClient CD=build filter="*.h *.cpp *.txt *.conf" {
  CMakeLists.txt
  build=build {
   CMakeCache.txt
@@ -61,16 +61,18 @@ memc=/home/shgli/src/MemCachedClient CD=build filter="*.h *.cpp *.txt" {
  }
  common=common{
   FileHandler.h
+  InternalMacros.h
   Singleton.h
   FileHandler.cpp
   CMakeLists.txt
  }
  log=log{
+  InternalMacros.h
   LogCommon.h
-  LogCommon.cpp
   LogManager.h
   LoggerInfo.h
   SinkInfo.h
+  LogCommon.cpp
   LogManager.cpp
   CMakeLists.txt
  }
@@ -118,8 +120,8 @@ memc=/home/shgli/src/MemCachedClient CD=build filter="*.h *.cpp *.txt" {
   CMakeLists.txt
  }
  test=test {
-  SharedBufferTest.cpp
   LogTest.cpp
+  SharedBufferTest.cpp
   CMakeLists.txt
   conf=conf{
    Core_log.conf
