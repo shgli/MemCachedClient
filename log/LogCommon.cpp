@@ -1,4 +1,4 @@
-#include "LogCommon.h"
+#include "log/LogCommon.h"
 // The operator puts a human-friendly representation of the severity level to the stream
 const char* to_string(SeverityLevel level)
 {

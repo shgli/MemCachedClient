@@ -7,6 +7,7 @@
 #include <boost/log/sources/severity_feature.hpp>
 #include <boost/xpressive/xpressive_dynamic.hpp>
 #include <boost/unordered/unordered_map.hpp>
+#include "log/InternalMacros.h"
 namespace logging = boost::log;
 namespace sinks = boost::log::sinks;
 namespace src = boost::log::sources;

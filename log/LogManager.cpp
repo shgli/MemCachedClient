@@ -8,7 +8,7 @@
 #include <boost/log/attributes/constant.hpp>
 
 #include "common/FileHandler.h"
-#include  "LogManager.h"
+#include  "log/LogManager.h"
 using namespace boost::xpressive;
 
 BOOST_LOG_ATTRIBUTE_KEYWORD(logger_id,"LoggerId",uint64_t)
@@ -26,7 +26,7 @@ LogManager::LogManager()
     }
 }
 
-bool LogManager::Initialize(const std::string& strPath)
+LOG_EXPORT bool LogManager::Initialize(const std::string& strPath)
 {
     PathVec configs;
     auto itLast = std::find_if(strPath.begin(),strPath.end(),[](char c){ return '*' == c || '?' == c;});
@@ -203,7 +203,7 @@ void LogManager::LinkLoggerWithSink(std::vector<LoggerInfo*>& loggers)
     }
 }
 
-Logger& LogManager::GetLogger(const std::string& name)
+LOG_EXPORT  Logger& LogManager::GetLogger(const std::string& name)
 {
     LoggerInfo* pInfo = GetLoggerInfo(name);
     if(nullptr != pInfo)

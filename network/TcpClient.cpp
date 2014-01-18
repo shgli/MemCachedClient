@@ -21,7 +21,8 @@ void TcpClient::Connect(const std::string& host,int port)
 {
     using namespace boost::asio::ip;
     ip::tcp::resolver resolver(mSocket.get_io_service());
-    auto endpointIt= resolver.resolve({host,lexical_cast<std::string>(port)});
+    ip::tcp::resolver::query query(host,boost::lexical_cast<std::string>(port));
+    auto endpointIt= resolver.resolve(query);
     asio::async_connect(mSocket,endpointIt,
 	    [this](const system::error_code& ec,tcp::resolver::iterator)
 	    {

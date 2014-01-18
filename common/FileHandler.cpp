@@ -1,7 +1,7 @@
-#include "FileHandler.h"
+#include "common/FileHandler.h"
 #include <boost/algorithm/string.hpp>
 
-void FindFiles(const fs::path& dirPath,const Filter& filter,PathVec& out)
+COMMON_EXPORT void FindFiles(const fs::path& dirPath,const Filter& filter,PathVec& out)
 {
     fs::directory_iterator end;
     for(fs::directory_iterator pos(dirPath); pos != end; ++pos)
@@ -18,7 +18,7 @@ void FindFiles(const fs::path& dirPath,const Filter& filter,PathVec& out)
     }
 }
 
-re::sregex Wildcard2Regex(std::string wildcardPattern)
+COMMON_EXPORT re::sregex Wildcard2Regex(std::string wildcardPattern)
 {
     boost::replace_all(wildcardPattern, "\\", "\\\\");
     boost::replace_all(wildcardPattern, "^", "\\^");
@@ -40,7 +40,7 @@ re::sregex Wildcard2Regex(std::string wildcardPattern)
     return re::sregex::compile(wildcardPattern);
 }
 
-void FindFiles(const fs::path& dirPath,const re::sregex& pattern,PathVec& out)
+COMMON_EXPORT void FindFiles(const fs::path& dirPath,const re::sregex& pattern,PathVec& out)
 {
     Filter filter = [&pattern](const fs::path& path,bool isDir)
 	    {
@@ -54,7 +54,7 @@ void FindFiles(const fs::path& dirPath,const re::sregex& pattern,PathVec& out)
 }
 
 
-void FindFiles(const fs::path& dirPath,const std::string pattern,PathVec& out)
+COMMON_EXPORT void FindFiles(const fs::path& dirPath,const std::string pattern,PathVec& out)
 {
     return FindFiles(dirPath,re::sregex::compile(pattern),out);
 }
@@ -82,7 +82,7 @@ private:
     const std::string& m_strTo;
 };
 
-void FindAndReplace(const fs::path& filePath,const std::string& strFrom,const std::string& strTo)
+COMMON_EXPORT void FindAndReplace(const fs::path& filePath,const std::string& strFrom,const std::string& strTo)
 {
     TraverseFile<SReplaceVisit>(filePath,SReplaceVisit(strFrom,strTo));
 }
@@ -103,7 +103,7 @@ private:
     const std::string& m_strTo;
 };
 
-void FindAndReplace(const fs::path& filePath,const sregex& regFrom,const std::string& strTo)
+COMMON_EXPORT void FindAndReplace(const fs::path& filePath,const sregex& regFrom,const std::string& strTo)
 {
     TraverseFile<ReplaceVisit>(filePath,ReplaceVisit(regFrom,strTo));
 }

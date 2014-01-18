@@ -5,9 +5,9 @@
 #include <boost/filesystem/path.hpp>
 #include <boost/log/utility/setup/settings_parser.hpp>
 #include "common/Singleton.h"
-#include "LogCommon.h"
-#include "SinkInfo.h"
-#include "LoggerInfo.h"
+#include "log/LogCommon.h"
+#include "log/SinkInfo.h"
+#include "log/LoggerInfo.h"
 
 namespace pt = boost::property_tree;
 namespace fs = boost::filesystem;
@@ -16,12 +16,12 @@ class LogManager:
 {
 public:
     typedef logging::basic_settings_section< char> section;
-    bool Initialize(const std::string& path); //support wildcard
-    Logger& GetLogger(const std::string& name);
+    LOG_EXPORT bool Initialize(const std::string& path); //support wildcard
+    LOG_EXPORT Logger& GetLogger(const std::string& name);
 
 private:
     friend class Singleton<LogManager>;
-    LogManager();
+    LOG_EXPORT LogManager();
 
     void LoadConfig(const fs::path& path,std::vector<LoggerInfo*>& loggers);
     void LoadLogger(section::reference& sec,uint8_t nLevel,std::vector<LoggerInfo*>& loggers,const std::string& name,uint64_t parentId);
