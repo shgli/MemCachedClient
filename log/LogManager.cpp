@@ -33,6 +33,7 @@ bool LogManager::Initialize(const std::string& strPath)
     if(!fs::exists(fullPath))
     {
        printError(); 
+       return false;
     }
 
     if(fs::is_regular_file(fullPath))
@@ -48,11 +49,13 @@ bool LogManager::Initialize(const std::string& strPath)
     else
     {
 	printError();
+    return false;
     }
 
     if(0 == configs.size())
     {
 	printError();
+    return false;
     }
     else
     {
@@ -61,8 +64,10 @@ bool LogManager::Initialize(const std::string& strPath)
 	{
 	    LoadConfig(config,loggers);
 	}
-        LinkLoggerWithSink(loggers);
+        LinkLoggerWithSink(loggers);                
     }
+
+    return true;
 }
 
 void LogManager::LoadConfig(const fs::path& path,std::vector<LoggerInfo*>& loggers)
@@ -80,7 +85,7 @@ void LogManager::LoadConfig(const fs::path& path,std::vector<LoggerInfo*>& logge
 	// Construct and initialize sinks
 	if (section sink_params = setts["Sinks"])
 	{
-	    for (typename section::const_iterator it = sink_params.begin(), end = sink_params.end(); it != end; ++it)
+	    for ( section::const_iterator it = sink_params.begin(), end = sink_params.end(); it != end; ++it)
 	    {
 		section sink_params = *it;
 
@@ -145,7 +150,7 @@ void LogManager::LoadLogger(section::reference& rSection,uint8_t nLevel,std::vec
 	    childName += ".";
 	}
 
-	for (typename section::const_iterator it = sec.begin(), end = sec.end(); it != end; ++it)
+	for ( section::const_iterator it = sec.begin(), end = sec.end(); it != end; ++it)
 	{
 	    section childSec = *it;
 	    if(!childSec.empty())
