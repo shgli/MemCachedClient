@@ -1,8 +1,21 @@
 #include "log/LogManager.h"
-
+#include <boost/log/utility/setup/common_attributes.hpp>
+#include <boost/log/utility/setup/file.hpp>
+#include <boost/log/sources/logger.hpp>
 int main(int argc,char** argv)
 {
+    // Initialize logging to the "test.log" file
+    logging::add_file_log("test.log"
+	    , keywords::format="%Severity%:%LoggerId%:%Message%"
+	    );
+    //
+    // Here we go, we can write logs right away
+    src::logger lg;
+    BOOST_LOG(lg) << "Hello world!";
+
     LogManager::Instance().Initialize("conf/*_log.conf");
+    logging::add_common_attributes();
+    BOOST_LOG(lg) << "sec Hello world!";
 
     auto lg1 = LogManager::Instance().GetLogger("Feeder.FeedSource");
     INFO(lg1) << "lg1 INFO";

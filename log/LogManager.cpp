@@ -5,13 +5,16 @@
 #include <boost/log/utility/setup/from_settings.hpp>
 #include <boost/log/utility/setup/filter_parser.hpp>
 #include <boost/algorithm/string/split.hpp>
+#include <boost/log/attributes/constant.hpp>
+
 #include "common/FileHandler.h"
 #include  "LogManager.h"
 using namespace boost::xpressive;
 
 BOOST_LOG_ATTRIBUTE_KEYWORD(logger_id,"LoggerId",uint64_t)
+
 LogManager::LogManager()
-    :mFileId(0)
+:mFileId(0)
 {
     uint64_t multiple = 1;
     uint64_t stepMulti = 1 << LoggerInfo::LEVEL_BITS;
@@ -32,8 +35,8 @@ bool LogManager::Initialize(const std::string& strPath)
     auto printError = [&strPath](){std::cerr <<__FILE__<<":"<<__LINE__<<":"<<strPath<<" is not a valid log configure file"<<std::endl;};
     if(!fs::exists(fullPath))
     {
-       printError(); 
-       return false;
+	printError(); 
+	return false;
     }
 
     if(fs::is_regular_file(fullPath))
@@ -49,13 +52,13 @@ bool LogManager::Initialize(const std::string& strPath)
     else
     {
 	printError();
-    return false;
+	return false;
     }
 
     if(0 == configs.size())
     {
 	printError();
-    return false;
+	return false;
     }
     else
     {
@@ -64,7 +67,7 @@ bool LogManager::Initialize(const std::string& strPath)
 	{
 	    LoadConfig(config,loggers);
 	}
-        LinkLoggerWithSink(loggers);                
+	LinkLoggerWithSink(loggers);                
     }
 
     return true;
@@ -76,7 +79,7 @@ void LogManager::LoadConfig(const fs::path& path,std::vector<LoggerInfo*>& logge
     if(settingFile.is_open())
     {
 	++mFileId;
-        auto setts = logging::parse_settings(settingFile);
+	auto setts = logging::parse_settings(settingFile);
 
 	// Apply core settings
 	if (section core_params = setts["Core"])
@@ -85,7 +88,7 @@ void LogManager::LoadConfig(const fs::path& path,std::vector<LoggerInfo*>& logge
 	// Construct and initialize sinks
 	if (section sink_params = setts["Sinks"])
 	{
-	    for ( section::const_iterator it = sink_params.begin(), end = sink_params.end(); it != end; ++it)
+	    for (section::const_iterator it = sink_params.begin(), end = sink_params.end(); it != end; ++it)
 	    {
 		section sink_params = *it;
 
@@ -97,7 +100,7 @@ void LogManager::LoadConfig(const fs::path& path,std::vector<LoggerInfo*>& logge
 		    auto filter = sink_params["Filter"].get();
 		    if(filter)
 		    {
-		         pSinkInfo->Filter = logging::parse_filter(filter.get());
+			pSinkInfo->Filter = logging::parse_filter(filter.get());
 		    }
 		    mSinks.insert(std::make_pair(it.get_name() + boost::lexical_cast<std::string>(mFileId),pSinkInfo));
 		}
@@ -173,7 +176,7 @@ uint64_t LogManager::GetId(const std::string& name,uint8_t level,uint64_t parent
     {
 	uint64_t id = mIds[level]++;
 	id = (id * mIdMultiple[level]) + parentId;
-        mIdMap[name] = id;
+	mIdMap[name] = id;
 	return id;
     }
 }
@@ -200,9 +203,10 @@ Logger& LogManager::GetLogger(const std::string& name)
     LoggerInfo* pInfo = GetLoggerInfo(name);
     if(nullptr != pInfo)
     {
-        if(nullptr == pInfo->Log)
+	if(nullptr == pInfo->Log)
 	{
 	    pInfo->Log = mLoggerPool.construct();
+	    pInfo->Log->add_attribute("LoggerId",attrs::constant<uint64_t>(pInfo->Id));
 
 	    for(auto pSink : pInfo->SinkInfos)
 	    {
@@ -228,7 +232,7 @@ LoggerInfo* LogManager::GetLoggerInfo(const std::string& name)
 	{
 	    return pInfo;
 	}
-        lastPos = name.find_last_of('.');
+	lastPos = name.find_last_of('.');
     }
 
     return RootInfo();
