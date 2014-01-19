@@ -22,7 +22,7 @@ void MemcachedClient::OnServerRemoved(const ServerItem::Ptr& item)
 {
     for(int request : item->PendingRequests())
     {
-	FinishRequest(mRequests.find(request),ERequest_NETWORK_ERROR);
+        FinishRequest(mRequests.find(request),ERequest_NETWORK_ERROR);
     }
 }
 
@@ -32,33 +32,33 @@ bool MemcachedClient::OnHeaderReaded(void* header,VBuffer& body)
     assert(nullptr != pHeader);
     if(nullptr != pHeader)
     {
-	AdjustEndian(pHeader);
-	int requestId = pHeader->response.opaque;
-	int valueLen = pHeader->response.bodylen - pHeader->response.extlen - pHeader->response.keylen;
+        AdjustEndian(pHeader);
+        int requestId = pHeader->response.opaque;
+        int valueLen = pHeader->response.bodylen - pHeader->response.extlen - pHeader->response.keylen;
 
-	auto requestIt = mRequests.find(requestId);
-	if(mRequests.end() != requestIt)
-	{
-	    if(0 == valueLen)
-	    {
-		FinishRequest(requestIt,(ERequestStatus)pHeader->response.status);
-		return false;
-	    }
-	    else
-	    {
-	        return requestIt->second.FillReceiveBuffer((ERequestStatus)pHeader->response.status,body,valueLen,pHeader->response.keylen);
-	    }
-	}
-	else
-	{
-	    //MEMLOG(mLog,Error) << "cannot find request " << requestId;
-	    return false;
-	}
+        auto requestIt = mRequests.find(requestId);
+        if(mRequests.end() != requestIt)
+        {
+            if(0 == valueLen)
+            {
+                FinishRequest(requestIt,(ERequestStatus)pHeader->response.status);
+                return false;
+            }
+            else
+            {
+                return requestIt->second.FillReceiveBuffer((ERequestStatus)pHeader->response.status,body,valueLen,pHeader->response.keylen);
+            }
+        }
+        else
+        {
+            //MEMLOG(mLog,Error) << "cannot find request " << requestId;
+            return false;
+        }
     }
     else
     {
-	//MEMLOG(mLog,Error) << "readed header is null ";
-	return false;
+        //MEMLOG(mLog,Error) << "readed header is null ";
+        return false;
     }
 }
 
@@ -68,21 +68,21 @@ void MemcachedClient::OnBodayReaded(const void* header,const VBuffer& boday)
     assert(nullptr != pHeader);
     if(nullptr != pHeader)
     {
-	int requestId = pHeader->response.opaque;
+        int requestId = pHeader->response.opaque;
 
-	auto requestIt = mRequests.find(requestId);
-	if(mRequests.end() != requestIt)
-	{
-	    FinishRequest(requestIt,(ERequestStatus)pHeader->response.status);
-	}
-	else
-	{
-	    //MEMLOG(mLog,Error) << "cannot find request " << requestId;
-	}
+        auto requestIt = mRequests.find(requestId);
+        if(mRequests.end() != requestIt)
+        {
+            FinishRequest(requestIt,(ERequestStatus)pHeader->response.status);
+        }
+        else
+        {
+            //MEMLOG(mLog,Error) << "cannot find request " << requestId;
+        }
     }
     else
     {
-	//MEMLOG(mLog,Error) << "readed header is null ";
+        //MEMLOG(mLog,Error) << "readed header is null ";
     }
 
 }
@@ -91,11 +91,11 @@ void MemcachedClient::FinishRequest(RequestMap::iterator requestIt,ERequestStatu
 {
     if(!requestIt->second.HasMoreResult())
     {
-	mIoService.post([this,requestIt,err]()
-		{
-		    requestIt->second.Notify(err);
-		    mRequests.erase(requestIt);
-		});
+        mIoService.post([this,requestIt,err]()
+        {
+            requestIt->second.Notify(err);
+            mRequests.erase(requestIt);
+        });
     }
 }
 

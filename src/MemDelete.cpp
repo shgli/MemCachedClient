@@ -16,11 +16,11 @@ MemDeleteResult::Ptr MemcachedClient::Delete(const std::string& key,Callback cal
 
     size_t requestSize = sizeof(protocol_binary_request_delete) + key.size();
     ConstBuffer requestBuf(malloc(requestSize)
-	    ,requestSize
-	    ,[this](void* pData)
-	    {
-	        free(pData);
-	    });
+        ,requestSize
+        ,[this](void* pData)
+    {
+        free(pData);
+    });
     auto& request = requestBuf.GetHeader<protocol_binary_request_header>();
     request.request.magic = PROTOCOL_BINARY_REQ;
     request.request.opcode = PROTOCOL_BINARY_CMD_DELETE;

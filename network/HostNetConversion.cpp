@@ -1,4 +1,4 @@
-#include "HostNetConversion.h"
+#include "network/HostNetConversion.h"
 #ifndef HAVE_HTONLL
 static uint64_t mc_swap64(uint64_t in) {
 #ifdef ENDIAN_LITTLE
@@ -17,11 +17,11 @@ static uint64_t mc_swap64(uint64_t in) {
 #endif
 }
 
-uint64_t ntohll(uint64_t val) {
+NETWORK_EXPORT uint64_t ntohll(uint64_t val) {
        return mc_swap64(val);
 }
 
-uint64_t htonll(uint64_t val) {
+NETWORK_EXPORT uint64_t htonll(uint64_t val) {
        return mc_swap64(val);
 }
 #endif

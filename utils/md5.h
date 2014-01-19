@@ -3,7 +3,7 @@
 
 #include <string>
 #include <fstream>
-
+#include "utils/InternalMacros.h"
 /* Type define */
 typedef unsigned char byte;
 typedef unsigned int uint32;
@@ -12,7 +12,7 @@ using std::string;
 using std::ifstream;
 
 /* MD5 declaration. */
-class MD5 
+class UTILS_EXPORT MD5 
 {
 public:
 	MD5();

@@ -5,7 +5,7 @@
 #include <boost/signals2.hpp>
 #include <boost/asio/io_service.hpp>
 #include "ServerItem.h"
-#include "DistributeAlgorithm.h"
+#include "serverManager/DistributeAlgorithm.h"
 
 typedef size_t hash_t;
 using namespace boost;
@@ -19,19 +19,19 @@ public:
     ServerEvent OnServerRemoved;
 
 public:
-    ServerList(uint32_t replication = 200);
+    SERVERMGR_EXPORT ServerList(uint32_t replication = 200);
 
-    bool Add(const std::string& host,int port,boost::asio::io_service& ioService);
-    bool Remove(const std::string& host,int port);
+    SERVERMGR_EXPORT bool Add(const std::string& host,int port,boost::asio::io_service& ioService);
+    SERVERMGR_EXPORT bool Remove(const std::string& host,int port);
 
-    ServerItem::Ptr& Get(const std::string& key);
-    ServerItem::Ptr Get(const std::string& host,int port);
-    size_t Count( void ) { return mServers.size(); }
+    SERVERMGR_EXPORT ServerItem::Ptr Get(const std::string& key);
+    SERVERMGR_EXPORT ServerItem::Ptr Get(const std::string& host,int port);
+    SERVERMGR_EXPORT size_t Count( void ) { return mServers.size(); }
 
-    void SetDistributeAlgorithm(DistributeAlgorithm* algorithm);
-    void SetHashAlogrithm(HashFunc hFunc) { mHashFunc = hFunc; }
+    SERVERMGR_EXPORT void SetDistributeAlgorithm(DistributeAlgorithm* algorithm);
+    SERVERMGR_EXPORT void SetHashAlogrithm(HashFunc hFunc) { mHashFunc = hFunc; }
 
-    const boost::unordered_map<std::string,ServerItem::Ptr> Items( void ) const { return mServers; }
+    SERVERMGR_EXPORT const boost::unordered_map<std::string,ServerItem::Ptr> Items( void ) const { return mServers; }
 private:
     boost::unordered_map<std::string,ServerItem::Ptr> mServers;
     DistributeAlgorithm* mDistributeAlgorithm;

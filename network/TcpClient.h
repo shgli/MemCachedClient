@@ -4,18 +4,18 @@
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/signals2/signal.hpp>
 #include <boost/noncopyable.hpp>
-#include <SharedBuffer.h>
-
+#include "network/SharedBuffer.h"
+#include "network/InternalMacros.h"
 class TcpClient:boost::noncopyable
 {
 public:
     enum ESocketError
     {
-	ESocket_Connect,
-	ESocket_ReadHeader,
-	ESocket_ReadBody,
-	ESocket_Send,
-	ESocket_BodyBuffer
+        ESocket_Connect,
+        ESocket_ReadHeader,
+        ESocket_ReadBody,
+        ESocket_Send,
+        ESocket_BodyBuffer
     };
 
 
@@ -25,8 +25,8 @@ public:
     typedef signals2::signal<void ( void )> ClosedEvent;
     typedef signals2::signal<void ()> ConnectedEvent;
 
-    TcpClient(boost::asio::io_service& ioService,size_t nHeaderLen);
-    ~TcpClient();
+    NETWORK_EXPORT TcpClient(boost::asio::io_service& ioService,size_t nHeaderLen);
+    NETWORK_EXPORT ~TcpClient();
 
     ConnectedEvent OnConnected;
     HeaderReadedEvent OnHeader;
@@ -34,13 +34,13 @@ public:
     ErrorEvent OnError;
     ClosedEvent OnClosed;
 public:
-    void Connect(const std::string& host,int port);
-    void Send(const ConstBuffer& buf);
-    void Send(const SVConstBuffer& vbuf);
-    void Close( void );
+    NETWORK_EXPORT void Connect(const std::string& host,int port);
+    NETWORK_EXPORT void Send(const ConstBuffer& buf);
+    NETWORK_EXPORT void Send(const SVConstBuffer& vbuf);
+    NETWORK_EXPORT void Close( void );
 
 protected:
-    boost::asio::ip::tcp::socket& Socket() { return mSocket; }
+    NETWORK_EXPORT boost::asio::ip::tcp::socket& Socket() { return mSocket; }
 
 private:
     void Send();
@@ -58,4 +58,4 @@ private:
     char* const mHeaderBuffer;
 };
 #endif
- 
+
