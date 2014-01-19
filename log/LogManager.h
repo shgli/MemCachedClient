@@ -46,5 +46,8 @@ private:
     uint32_t mFileId;
 };
 
+LOG_EXPORT void ConfigLog(const std::string& path);
+LOG_EXPORT Logger& GetLogger(const std::string& name);
+
 #endif
  

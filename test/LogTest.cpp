@@ -5,26 +5,11 @@
 #include <boost/log/trivial.hpp>
 int main(int argc,char** argv)
 {
-    // Initialize logging to the "test.log" file
-    logging::add_file_log("test.log"
-	    , keywords::format="[%TimeStamp%]: %Message%"
-	    );
-    //
-    // Here we go, we can write logs right away
-    src::logger lg;
-    BOOST_LOG(lg) << "Hello world!";
-
-    using namespace boost::log::trivial;
-    src::severity_logger_mt<severity_level> lg22;
-
-    BOOST_LOG_SEV(lg22,warning)<<"HAHA IT's ok"<<std::endl;
-
     logging::add_common_attributes();
 
-    LogManager::Instance().Initialize("conf\\*_log.conf");
-    BOOST_LOG(lg) << "sec Hello world!";
+    ConfigLog("conf/*_log.conf");
 
-    auto lg1 = LogManager::Instance().GetLogger("Feeder.FeedSource");
+    auto lg1 = GetLogger("Feeder.FeedSource");
     INFO(lg1) << "FeedSource INFO";
     DEBUG(lg1) <<"FeedSource debug";
     WARN(lg1) <<" FeedSource warn";

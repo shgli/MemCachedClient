@@ -291,4 +291,13 @@ LoggerInfo* LogManager::RootInfo( void )
     return rootInfo;
 }
 
+LOG_EXPORT void ConfigLog(const std::string& path)
+{
+    LogManager::Instance().Initialize(path);
+}
+
+LOG_EXPORT Logger& GetLogger(const std::string& name)
+{
+    return LogManager::Instance().GetLogger(name);
+}
 
