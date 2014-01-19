@@ -31,7 +31,7 @@ int main(int argc,char** argv)
     ERROR(lg1) <<"FeedSource error";
     FATAL(lg1) <<"FeedSource fatal";
 
-    auto lg2 = LogManager::Instance().GetLogger("Feeder.Manager");
+    auto lg2 = LogManager::Instance().GetLogger("Manager");
     INFO(lg2) << "Manager INFO";
     DEBUG(lg2) <<"Manager debug";
     WARN(lg2) <<" Manager warn";

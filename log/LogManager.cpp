@@ -93,26 +93,9 @@ void LogManager::LoadConfig(const fs::path& path,std::vector<LoggerInfo*>& logge
             _apply_core_settings(core_params);
 
         // Construct and initialize sinks
-        if (section sink_params = setts["Sinks"])
+        if (section::reference  sink_params = setts["Sinks"])
         {
-            for (section::const_iterator it = sink_params.begin(), end = sink_params.end(); it != end; ++it)
-            {
-                section sink_params = *it;
-
-                // Ignore empty sections as they are most likely individual parameters (which should not be here anyway)
-                if (!sink_params.empty())
-                {
-                    auto pSink = boost::static_pointer_cast<sinks::basic_sink_frontend>(construct_sink_from_settings(sink_params));
-                    auto pSinkInfo = mSinkInfoPool.construct(pSink);
-                    auto filter = sink_params["Filter"].get();
-                    if(filter)
-                    {
-                        pSinkInfo->InitFilter = logging::parse_filter(filter.get());
-                    }
-                    pSink->set_filter(boost::bind(&SinkInfo::FiltFun,pSinkInfo,_1));
-                    mSinks.insert(std::make_pair(it.get_name() + boost::lexical_cast<std::string>(mFileId),pSinkInfo));
-                }
-            }
+            LoadSink(sink_params,"");
 
             std::for_each(mSinks.begin(), mSinks.end()
                 , [](boost::unordered_map<std::string,SinkInfo*>::value_type sinkPair)
@@ -132,9 +115,45 @@ void LogManager::LoadConfig(const fs::path& path,std::vector<LoggerInfo*>& logge
     }
 }
 
+void LogManager::LoadSink(section::reference& rSection,const std::string& strName)
+{
+    section sinkSec = rSection;
+
+    if(1 == sinkSec.property_tree().count("Destination"))
+    {
+	auto pSink = boost::static_pointer_cast<sinks::basic_sink_frontend>(construct_sink_from_settings(sinkSec));
+	auto pSinkInfo = mSinkInfoPool.construct(pSink);
+	auto filter = sinkSec["Filter"].get();
+	if(filter)
+	{
+	    pSinkInfo->InitFilter = logging::parse_filter(filter.get());
+	}
+	pSink->set_filter(boost::bind(&SinkInfo::FiltFun,pSinkInfo,_1));
+	mSinks.insert(std::make_pair(strName + boost::lexical_cast<std::string>(mFileId),pSinkInfo));
+    }
+    else
+    {
+        std::string childName = strName;
+        if(0 != strName.length())
+        {
+            childName += ".";
+        }
+
+	for (section::const_iterator it = sinkSec.begin(), end = sinkSec.end(); it != end; ++it)
+	{
+            section childSec = *it;
+	    // Ignore empty sinkSections as they are most likely individual parameters (which should not be here anyway)
+            if(!childSec.empty())
+            {
+                auto childRef = sinkSec[it.get_name()];
+		LoadSink(childRef,childName + it.get_name());
+	    }
+	}//for
+    }//if
+}
+
 void LogManager::LoadLogger(section::reference& rSection,uint8_t nLevel,std::vector<LoggerInfo*>& loggers,const std::string& strName,uint64_t parentId)
 {
-    auto value = rSection.get();
     section sec = rSection;
     if(1 == sec.property_tree().count("Sinks"))
     {

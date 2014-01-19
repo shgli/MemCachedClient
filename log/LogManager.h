@@ -24,6 +24,7 @@ private:
     LOG_EXPORT LogManager();
 
     void LoadConfig(const fs::path& path,std::vector<LoggerInfo*>& loggers);
+    void LoadSink(section::reference& rSection,const std::string& strName);
     void LoadLogger(section::reference& sec,uint8_t nLevel,std::vector<LoggerInfo*>& loggers,const std::string& name,uint64_t parentId);
     uint64_t GetId(const std::string& name,uint8_t level,uint64_t parentId);
     void LinkLoggerWithSink(std::vector<LoggerInfo*>& loggers);
