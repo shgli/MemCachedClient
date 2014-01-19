@@ -1,7 +1,7 @@
 #include <string.h>
 #include <boost/make_shared.hpp>
-#include "MemcachedClient.h"
-#include "HostNetConversion.h"
+#include "memcachedClient/MemcachedClient.h"
+#include "network/HostNetConversion.h"
 #include <memcached/protocol_binary.h>
 MemAppendResult::Ptr MemcachedClient::Append(const std::string& key,const ConstBuffer& value,Callback callback)
 {

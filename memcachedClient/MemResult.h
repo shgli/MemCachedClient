@@ -5,7 +5,7 @@
 #include <boost/thread/condition_variable.hpp>
 #include <boost/pool/pool.hpp>
 #include <memcached/protocol_binary.h>
-#include "MemcachedCommon.h"
+#include "memcachedClient/MemcachedCommon.h"
 enum ERequestStatus
 {
     ERequest_SUCCESS = 0x00,
@@ -34,17 +34,17 @@ class MemResult
 public:
     typedef boost::shared_ptr<MemResult> Ptr;
 
-    MemResult(const std::string& key,const Buffer& buffer);
+    MEMCACHEDCLIENT_EXPORT MemResult(const std::string& key,const Buffer& buffer);
 
-    const Buffer& Value() const { return mValue; }
+    MEMCACHEDCLIENT_EXPORT const Buffer& Value() const { return mValue; }
 
-    int ErrorCode( void ) const { return mErrorCode; }
+    MEMCACHEDCLIENT_EXPORT int ErrorCode( void ) const { return mErrorCode; }
 
-    const std::string& Key( void ) const { return mKey; }
+    MEMCACHEDCLIENT_EXPORT const std::string& Key( void ) const { return mKey; }
 
-    ERequestStatus Finish( void );
+    MEMCACHEDCLIENT_EXPORT ERequestStatus Finish( void );
 
-    static const std::string StrError(int error);
+    MEMCACHEDCLIENT_EXPORT static const std::string StrError(int error);
 
 _internal:
     virtual bool FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen,int keyLen);

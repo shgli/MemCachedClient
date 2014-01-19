@@ -1,4 +1,3 @@
-#define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MODULE MemcachedTest
 #include <boost/test/unit_test.hpp>
 #include "SharedBuffer.h"

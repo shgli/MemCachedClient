@@ -2,7 +2,7 @@
 #define _REQUESTITEM_H
 #include <vector>
 #include <string>
-#include "MemResult.h"
+#include "memcachedClient/MemResult.h"
 
 typedef boost::function<void (const MemResult::Ptr&)> Callback;
 class RequestItem

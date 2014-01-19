@@ -8,5 +8,7 @@
 #endif
 
 typedef size_t hash_t;
+
+#include "memcachedClient/InternalMacros.h"
 #endif
  

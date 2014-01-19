@@ -21,7 +21,7 @@ int main(int argc,char** argv)
 
     logging::add_common_attributes();
 
-    LogManager::Instance().Initialize("conf/*_log.conf");
+    LogManager::Instance().Initialize("conf\\*_log.conf");
     BOOST_LOG(lg) << "sec Hello world!";
 
     auto lg1 = LogManager::Instance().GetLogger("Feeder.FeedSource");

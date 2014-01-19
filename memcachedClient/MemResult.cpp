@@ -1,9 +1,17 @@
-#include "MemResult.h"
-MemResult::MemResult(const std::string& key,const Buffer& buffer)
+#include "memcachedClient/MemResult.h"
+MEMCACHEDCLIENT_EXPORT MemResult::MemResult(const std::string& key,const Buffer& buffer)
     :mKey(key)
     ,mErrorCode(ERequest_PENDING)
     ,mValue(buffer)
 {}
+
+MEMCACHEDCLIENT_EXPORT ERequestStatus MemResult::Finish( void )
+{
+    boost::unique_lock<boost::mutex> lock(mSyncMut);
+    mSyncEvent.wait(lock);
+
+    return mErrorCode;
+}
 
 void MemResult::Notify(ERequestStatus err)
 {
@@ -12,13 +20,7 @@ void MemResult::Notify(ERequestStatus err)
     mSyncEvent.notify_all();
 }
 
-ERequestStatus MemResult::Finish( void )
-{
-    boost::unique_lock<boost::mutex> lock(mSyncMut);
-    mSyncEvent.wait(lock);
 
-    return mErrorCode;
-}
 
 
 bool MemResult::FillReceiveBuffer(ERequestStatus status,VBuffer& bufs,int valueLen,int keyLen)

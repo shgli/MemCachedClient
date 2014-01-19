@@ -6,7 +6,7 @@ class ConsistentHashDistri
     :public DistributeAlgorithm
 {
 public:
-    ConsistentHashDistri(int replis = 200);
+    SERVERMGR_EXPORT ConsistentHashDistri(int replis = 200);
 
     typedef std::map<hash_t,ServerItem::Ptr> CycleType;
     virtual void Add(ServerItem::Ptr& pServer);
