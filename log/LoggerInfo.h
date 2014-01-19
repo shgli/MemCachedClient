@@ -16,18 +16,18 @@ struct LoggerInfo
     Logger*  Log;
 
     LoggerInfo()
-	:Id(0)
-	,Level(0)
-	,FileId(0)
-	,Log(nullptr)
+        :Id(0)
+        ,Level(0)
+        ,FileId(0)
+        ,Log(nullptr)
     {
 
     }
 
     uint64_t NextId() const
     {
-	uint64_t shift = LEVEL_BITS * (MAX_LEVEL - Level - 1);
-	uint64_t delta = ((uint64_t)1) << shift;
+        uint64_t shift = LEVEL_BITS * (MAX_LEVEL - Level - 1);
+        uint64_t delta = ((uint64_t)1) << shift;
 
         return Id + delta;
     }

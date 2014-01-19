@@ -10,17 +10,17 @@ struct SinkInfo
     SinkPtr Sink;
 
     SinkInfo(SinkPtr sin)
-	:ReDirectFilter([](logging::attribute_value_set const& values){return false;})
-	,Sink(sin)
+        :ReDirectFilter([](logging::attribute_value_set const& values){return false;})
+        ,Sink(sin)
     {}
 
     void AddFilter(logging::filter filt1,logging::filter filt2)
     {
-	auto oldFilter = ReDirectFilter;
-	ReDirectFilter = [oldFilter,filt1,filt2](logging::attribute_value_set const& values)
-	{
-	    return (filt1(values) && filt2(values)) || oldFilter(values);
-	};
+        auto oldFilter = ReDirectFilter;
+        ReDirectFilter = [oldFilter,filt1,filt2](logging::attribute_value_set const& values)
+        {
+            return (filt1(values) && filt2(values)) || oldFilter(values);
+        };
     }
 
     bool FiltFun(logging::attribute_value_set const& values)

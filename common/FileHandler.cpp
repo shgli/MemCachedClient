@@ -6,15 +6,15 @@ COMMON_EXPORT void FindFiles(const fs::path& dirPath,const Filter& filter,PathVe
     fs::directory_iterator end;
     for(fs::directory_iterator pos(dirPath); pos != end; ++pos)
     {
-	bool isDir = is_directory(*pos);
-	if(filter(*pos,isDir))
-	{
-	    out.push_back(*pos);
-	    if (isDir)
-	    {
-		FindFiles(*pos,filter,out);
-	    }
-	}
+        bool isDir = is_directory(*pos);
+        if(filter(*pos,isDir))
+        {
+            out.push_back(*pos);
+            if (isDir)
+            {
+                FindFiles(*pos,filter,out);
+            }
+        }
     }
 }
 
@@ -43,14 +43,14 @@ COMMON_EXPORT re::sregex Wildcard2Regex(std::string wildcardPattern)
 COMMON_EXPORT void FindFiles(const fs::path& dirPath,const re::sregex& pattern,PathVec& out)
 {
     Filter filter = [&pattern](const fs::path& path,bool isDir)
-	    {
-	        return isDir || re::regex_search(path.string(),pattern);
-	    };
+    {
+        return isDir || re::regex_search(path.string(),pattern);
+    };
 
     return FindFiles(dirPath
-	    ,filter
-	    ,out
-	    );
+        ,filter
+        ,out
+        );
 }
 
 
@@ -72,8 +72,8 @@ public:
         std::string::size_type nIndex = strLine.find(m_strFrom,0);
         while(nIndex != strLine.npos)
         {
-	    strLine.replace(nIndex,m_strFrom.length(),m_strTo);
-	    nIndex = strLine.find(m_strFrom,nIndex + m_strTo.length());
+            strLine.replace(nIndex,m_strFrom.length(),m_strTo);
+            nIndex = strLine.find(m_strFrom,nIndex + m_strTo.length());
         }
     }
 
