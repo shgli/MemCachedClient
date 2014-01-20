@@ -24,7 +24,7 @@ int main(int argc,char** argv)
     FATAL(lg2) <<"Manager fatal";
 
 
-    auto lg3 = LogManager::Instance().GetLogger("Indicator.EWMA");
+    auto lg3 = LogManager::Instance().GetLogger("Core.Indicator.EWMA");
     INFO(lg3) << "EWMA INFO";
     DEBUG(lg3) <<"EWMA debug";
     WARN(lg3) <<" EWMA warn";

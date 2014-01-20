@@ -44,6 +44,8 @@ private:
     uint32_t mIds[LoggerInfo::MAX_LEVEL];
     uint64_t mIdMultiple[LoggerInfo::MAX_LEVEL];
     uint32_t mFileId;
+
+    static LoggerInfo* gRootInfo;
 };
 
 LOG_EXPORT void ConfigLog(const std::string& path);

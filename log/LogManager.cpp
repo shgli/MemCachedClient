@@ -8,13 +8,16 @@
 #include <boost/log/attributes/constant.hpp>
 #include <boost/log/utility/setup/formatter_parser.hpp>
 #include <boost/log/utility/setup/filter_parser.hpp>
+#include <boost/thread/once.hpp>
 #include "common/FileHandler.h"
 #include  "log/LogManager.h"
 using namespace boost::xpressive;
 
+LoggerInfo* LogManager::gRootInfo = nullptr;
+
 BOOST_LOG_ATTRIBUTE_KEYWORD(logger_id,"LoggerId",uint64_t)
 
-    LogManager::LogManager()
+LogManager::LogManager()
     :mFileId(0)
 {
     uint64_t multiple = 1;
@@ -267,12 +270,16 @@ LoggerInfo* LogManager::GetLoggerInfo(const std::string& name)
     size_t lastPos = name.size();
     while(string::npos != lastPos)
     {
-        LoggerInfo* pInfo = mLoggerInfos.get<LoggerInfo*>(name.substr(0,lastPos),nullptr);
-        if(nullptr != pInfo)
+        std::string key = name.substr(0,lastPos);
+        if(1 == mIdMap.count(key))
         {
-            return pInfo;
+            LoggerInfo* pInfo = mLoggerInfos.get<LoggerInfo*>(key,nullptr);
+            if(nullptr != pInfo)
+            {
+                return pInfo;
+            }
         }
-        lastPos = name.find_last_of('.');
+        lastPos = name.find_last_of('.',lastPos - 1);
     }
 
     return RootInfo();
@@ -280,15 +287,17 @@ LoggerInfo* LogManager::GetLoggerInfo(const std::string& name)
 
 LoggerInfo* LogManager::RootInfo( void )
 {
-    static LoggerInfo* rootInfo;
-    if(nullptr == rootInfo)
-    {
-        rootInfo->Id = 0;
-        rootInfo->Level = 0;
-        rootInfo->Log = mLoggerPool.construct();
-    }
+    static boost::once_flag initFlag = BOOST_ONCE_INIT;
+    boost::call_once([this]()
+            {
+                gRootInfo = new LoggerInfo();
+                gRootInfo->Id = 0;
+                gRootInfo->Level = 0;
+                gRootInfo->Log = mLoggerPool.construct();
+            },initFlag);
 
-    return rootInfo;
+
+    return gRootInfo;
 }
 
 LOG_EXPORT void ConfigLog(const std::string& path)
