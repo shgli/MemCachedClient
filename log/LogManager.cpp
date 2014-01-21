@@ -168,10 +168,10 @@ void LogManager::LoadLogger(section::reference& rSection,uint8_t nLevel,std::vec
         else
         {
             pInfo = new LoggerInfo();
+            pInfo->Id = GetId(strName,nLevel,parentId);
+            pInfo->Level = nLevel;
         }
-        pInfo->Id = GetId(strName,nLevel,parentId);
         pInfo->FileId = mFileId;
-        pInfo->Level = nLevel;
 
         auto opSinkNames = sec["Sinks"].get();
         if(opSinkNames)
@@ -184,7 +184,7 @@ void LogManager::LoadLogger(section::reference& rSection,uint8_t nLevel,std::vec
         {
             pInfo->Filter = logging::parse_filter(filter.get());
         }
-        mLoggerInfos.put<LoggerInfo*>(strName,pInfo);
+        mLoggerInfos.insert(std::make_pair(strName,pInfo));
         loggers.push_back(pInfo);
     }
     else if(!sec.empty())
@@ -273,10 +273,10 @@ LoggerInfo* LogManager::GetLoggerInfo(const std::string& name)
         std::string key = name.substr(0,lastPos);
         if(1 == mIdMap.count(key))
         {
-            LoggerInfo* pInfo = mLoggerInfos.get<LoggerInfo*>(key,nullptr);
-            if(nullptr != pInfo)
+            auto itInfo = mLoggerInfos.find(key);
+            if(mLoggerInfos.end() != itInfo)
             {
-                return pInfo;
+                return itInfo->second;
             }
         }
         lastPos = name.find_last_of('.',lastPos - 1);
@@ -293,7 +293,7 @@ LoggerInfo* LogManager::RootInfo( void )
                 gRootInfo = new LoggerInfo();
                 gRootInfo->Id = 0;
                 gRootInfo->Level = 0;
-                gRootInfo->Log = mLoggerPool.construct();
+                gRootInfo->Log = nullptr;
             },initFlag);
 
 

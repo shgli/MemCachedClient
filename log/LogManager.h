@@ -32,9 +32,8 @@ private:
     LoggerInfo* GetLoggerInfo(const std::string& name);
     LoggerInfo* RootInfo( void );
 
-    typedef pt::basic_ptree<std::string,LoggerInfo*> LoggerInfoTree;
 
-    LoggerInfoTree mLoggerInfos;
+    boost::unordered_map<std::string,LoggerInfo*> mLoggerInfos;
     boost::unordered_map<std::string,SinkInfo*> mSinks;
     boost::unordered_map<std::string,uint64_t> mIdMap;
 
