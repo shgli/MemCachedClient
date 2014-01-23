@@ -14,7 +14,8 @@ ADD_LIBRARY(serverManager ${serverManager_SRCLISTS})
 TARGET_LINK_LIBRARIES(serverManager network)
 TARGET_LINK_LIBRARIES(serverManager utils)
 
-INSTALL(TARGETS serverManager 
+INSTALL(TARGETS serverManager
+    RUNTIME DESTINATION lib 
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib)
 

@@ -17,7 +17,8 @@ LoggerInfo* LogManager::gRootInfo = nullptr;
 
 BOOST_LOG_ATTRIBUTE_KEYWORD(logger_id,"LoggerId",uint64_t)
 
-LogManager::LogManager()
+
+    LogManager::LogManager()
     :mFileId(0)
 {
     uint64_t multiple = 1;
@@ -124,15 +125,15 @@ void LogManager::LoadSink(section::reference& rSection,const std::string& strNam
 
     if(1 == sinkSec.property_tree().count("Destination"))
     {
-	auto pSink = boost::static_pointer_cast<sinks::basic_sink_frontend>(construct_sink_from_settings(sinkSec));
-	auto pSinkInfo = mSinkInfoPool.construct(pSink);
-	auto filter = sinkSec["Filter"].get();
-	if(filter)
-	{
-	    pSinkInfo->InitFilter = logging::parse_filter(filter.get());
-	}
-	pSink->set_filter(boost::bind(&SinkInfo::FiltFun,pSinkInfo,_1));
-	mSinks.insert(std::make_pair(strName + boost::lexical_cast<std::string>(mFileId),pSinkInfo));
+        auto pSink = boost::static_pointer_cast<sinks::basic_sink_frontend>(construct_sink_from_settings(sinkSec));
+        auto pSinkInfo = mSinkInfoPool.construct(pSink);
+        auto filter = sinkSec["Filter"].get();
+        if(filter)
+        {
+            pSinkInfo->InitFilter = logging::parse_filter(filter.get());
+        }
+        pSink->set_filter(boost::bind(&SinkInfo::FiltFun,pSinkInfo,_1));
+        mSinks.insert(std::make_pair(strName + boost::lexical_cast<std::string>(mFileId),pSinkInfo));
     }
     else
     {
@@ -142,16 +143,16 @@ void LogManager::LoadSink(section::reference& rSection,const std::string& strNam
             childName += ".";
         }
 
-	for (section::const_iterator it = sinkSec.begin(), end = sinkSec.end(); it != end; ++it)
-	{
+        for (section::const_iterator it = sinkSec.begin(), end = sinkSec.end(); it != end; ++it)
+        {
             section childSec = *it;
-	    // Ignore empty sinkSections as they are most likely individual parameters (which should not be here anyway)
+            // Ignore empty sinkSections as they are most likely individual parameters (which should not be here anyway)
             if(!childSec.empty())
             {
                 auto childRef = sinkSec[it.get_name()];
-		LoadSink(childRef,childName + it.get_name());
-	    }
-	}//for
+                LoadSink(childRef,childName + it.get_name());
+            }
+        }//for
     }//if
 }
 
@@ -289,12 +290,12 @@ LoggerInfo* LogManager::RootInfo( void )
 {
     static boost::once_flag initFlag = BOOST_ONCE_INIT;
     boost::call_once([this]()
-            {
-                gRootInfo = new LoggerInfo();
-                gRootInfo->Id = 0;
-                gRootInfo->Level = 0;
-                gRootInfo->Log = nullptr;
-            },initFlag);
+    {
+        gRootInfo = new LoggerInfo();
+        gRootInfo->Id = 0;
+        gRootInfo->Level = 0;
+        gRootInfo->Log = nullptr;
+    },initFlag);
 
 
     return gRootInfo;

@@ -1,15 +1,29 @@
 #ifndef _SINGLETON_H
 #define _SINGLETON_H
 #include <boost/noncopyable.hpp>
-#include "common/InternalMacros.h"
+#include <boost/thread/once.hpp>
+
+#ifdef _WIN32
+    #ifdef  _EXPORT_SINGLETON
+        #define SINGLETON_EXPORT __declspec(dllexport)
+    #else
+        #define SINGLETON_EXPORT __declspec(dllimport)
+    #endif
+#else
+    #define SINGLETON_EXPORT
+#endif
+
 template<typename T>
 class Singleton:boost::noncopyable
 {
 public:
-    static T& Instance( void )
+    SINGLETON_EXPORT static T& Instance( void )
     {
-        static T instance;
-        return instance;
+        static T* gpInstance = nullptr;
+        static boost::once_flag init_instance = BOOST_ONCE_INIT;
+        boost::call_once(init_instance,[](){ gpInstance = new T();});
+        return *gpInstance;
     }
 };
+
 #endif

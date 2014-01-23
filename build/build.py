@@ -13,7 +13,12 @@ def RunAll(runList):
 	    subprocess.Popen(item).wait()
 	else:
 	    raise TypeError(item + ' not callable')
+runList = []
 
-runList = ['cmake -DCMAKE_INSTALL_PREFIX=../install -DCMAKE_BUILD_TYPE=DEBUG ../'
+if sys.platform.startswith('linux'):
+    runList = ['cmake -DCMAKE_INSTALL_PREFIX=../install -DCMAKE_BUILD_TYPE=DEBUG ../'
+	,'make install']
+else:
+    runList = ['cmake -G "Visual Studio 11 Win64" -DCMAKE_INSTALL_PREFIX=../install -DCMAKE_BUILD_TYPE=DEBUG ../'
 	,'make install']
 RunAll(runList)

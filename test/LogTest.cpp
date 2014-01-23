@@ -7,8 +7,11 @@ int main(int argc,char** argv)
 {
     logging::add_common_attributes();
 
+#ifdef _WIN32
+    ConfigLog("conf\\*_log.conf");
+#else
     ConfigLog("conf/*_log.conf");
-
+#endif
     auto lg1 = GetLogger("Feeder.FeedSource");
     INFO(lg1) << "FeedSource INFO";
     DEBUG(lg1) <<"FeedSource debug";

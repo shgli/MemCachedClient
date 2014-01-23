@@ -12,6 +12,7 @@ ADD_LIBRARY(network ${network_SRCLISTS})
 TARGET_LINK_LIBRARIES(network boost_system)
 
 INSTALL(TARGETS network 
+    RUNTIME DESTINATION lib
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib)
 

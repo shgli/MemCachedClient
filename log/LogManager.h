@@ -4,13 +4,18 @@
 #include <boost/pool/object_pool.hpp>
 #include <boost/filesystem/path.hpp>
 #include <boost/log/utility/setup/settings_parser.hpp>
+#ifdef BUILDING_LOG
+#define _EXPORT_SINGLETON
+#endif
 #include "common/Singleton.h"
+#undef _EXPORT_SINGLETON
 #include "log/LogCommon.h"
 #include "log/SinkInfo.h"
 #include "log/LoggerInfo.h"
 
 namespace pt = boost::property_tree;
 namespace fs = boost::filesystem;
+
 class LogManager:
     public Singleton<LogManager>
 {
@@ -22,6 +27,8 @@ public:
 private:
     friend class Singleton<LogManager>;
     LOG_EXPORT LogManager();
+
+    //LOG_EXPORT static void CreateInstance();
 
     void LoadConfig(const fs::path& path,std::vector<LoggerInfo*>& loggers);
     void LoadSink(section::reference& rSection,const std::string& strName);
