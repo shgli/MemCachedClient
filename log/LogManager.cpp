@@ -125,15 +125,16 @@ void LogManager::LoadSink(section::reference& rSection,const std::string& strNam
 
     if(1 == sinkSec.property_tree().count("Destination"))
     {
+        auto name = strName + boost::lexical_cast<std::string>(mFileId);
         auto pSink = boost::static_pointer_cast<sinks::basic_sink_frontend>(construct_sink_from_settings(sinkSec));
-        auto pSinkInfo = mSinkInfoPool.construct(pSink);
+        auto pSinkInfo = mSinkInfoPool.construct(name,pSink);
         auto filter = sinkSec["Filter"].get();
         if(filter)
         {
             pSinkInfo->InitFilter = logging::parse_filter(filter.get());
         }
         pSink->set_filter(boost::bind(&SinkInfo::FiltFun,pSinkInfo,_1));
-        mSinks.insert(std::make_pair(strName + boost::lexical_cast<std::string>(mFileId),pSinkInfo));
+        mSinks.insert(std::make_pair(name,pSinkInfo));
     }
     else
     {

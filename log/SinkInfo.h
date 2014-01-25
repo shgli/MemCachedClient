@@ -8,10 +8,12 @@ struct SinkInfo
     logging::filter ReDirectFilter;
     logging::filter InitFilter;
     SinkPtr Sink;
+    std::string Name;
 
-    SinkInfo(SinkPtr sin)
+    SinkInfo(const std::string& name,SinkPtr sin)
         :ReDirectFilter([](logging::attribute_value_set const& values){return false;})
         ,Sink(sin)
+        ,Name(name)
     {}
 
     void AddFilter(logging::filter filt1,logging::filter filt2)

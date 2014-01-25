@@ -73,6 +73,7 @@ memc=/home/shgli/src/MemCachedClient CD=build filter="*.h *.cpp *.txt *.conf" {
   LoggerInfo.h
   SinkInfo.h
   LogCommon.cpp
+  LogManager.cpp
   CMakeLists.txt
  }
  network=network {
@@ -119,7 +120,6 @@ memc=/home/shgli/src/MemCachedClient CD=build filter="*.h *.cpp *.txt *.conf" {
   CMakeLists.txt
  }
  test=test {
-  LogManager.cpp
   LogTest.cpp
   SharedBufferTest.cpp
   CMakeLists.txt
