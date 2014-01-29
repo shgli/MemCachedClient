@@ -19,9 +19,9 @@ class Singleton:boost::noncopyable
 public:
     SINGLETON_EXPORT static T& Instance( void )
     {
-        static T* gpInstance = nullptr;
+        static boost::shared_ptr<T> gpInstance;
         static boost::once_flag init_instance = BOOST_ONCE_INIT;
-        boost::call_once(init_instance,[](){ gpInstance = new T();});
+        boost::call_once(init_instance,[](){gpInstance.reset(new T());});
         return *gpInstance;
     }
 };

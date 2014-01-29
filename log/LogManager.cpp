@@ -18,7 +18,7 @@ LoggerInfo* LogManager::gRootInfo = nullptr;
 BOOST_LOG_ATTRIBUTE_KEYWORD(logger_id,"LoggerId",uint64_t)
 
 
-    LogManager::LogManager()
+LogManager::LogManager()
     :mFileId(0)
 {
     uint64_t multiple = 1;
