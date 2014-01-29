@@ -13,13 +13,13 @@
 #include  "log/LogManager.h"
 using namespace boost::xpressive;
 
-LoggerInfo* LogManager::gRootInfo = nullptr;
 
 BOOST_LOG_ATTRIBUTE_KEYWORD(logger_id,"LoggerId",uint64_t)
 
 
 LogManager::LogManager()
     :mFileId(0)
+    ,mRootOnceFlag(BOOST_ONCE_INIT)
 {
     uint64_t multiple = 1;
     uint64_t stepMulti = 1 << LoggerInfo::LEVEL_BITS;
@@ -39,6 +39,7 @@ LogManager::LogManager()
 
 LOG_EXPORT bool LogManager::Initialize(const std::string& strPath)
 {
+    boost::unique_lock<boost::mutex> lock(mMutex);
     PathVec configs;
     auto itLast = std::find_if(strPath.begin(),strPath.end(),[](char c){ return '*' == c || '?' == c;});
     fs::path fullPath = fs::system_complete(fs::path(std::string(strPath.begin(),itLast)));
@@ -125,6 +126,10 @@ void LogManager::LoadSink(section::reference& rSection,const std::string& strNam
 
     if(1 == sinkSec.property_tree().count("Destination"))
     {
+        if(mSinks.end() != mSinks.find(strName))
+        {
+            throw std::runtime_error("Double initialize " + strName + " doesn't allowed." );
+        }
         auto name = strName + boost::lexical_cast<std::string>(mFileId);
         auto pSink = boost::static_pointer_cast<sinks::basic_sink_frontend>(construct_sink_from_settings(sinkSec));
         auto pSinkInfo = mSinkInfoPool.construct(name,pSink);
@@ -166,9 +171,18 @@ void LogManager::LoadLogger(section::reference& rSection,uint8_t nLevel,std::vec
         if(strName == "Root")
         {
             pInfo = RootInfo();
+            if(0 != pInfo->FileId)
+            {
+                throw std::runtime_error("Double initialize Root logger doesn't allowed.");
+            }
         }
         else
         {
+            if(mLoggerInfos.end() != mLoggerInfos.find(strName))
+            {
+                throw std::runtime_error("Double initialize Logger " + strName + " doesn't allowed.");
+            }
+
             pInfo = new LoggerInfo();
             pInfo->Id = GetId(strName,nLevel,parentId);
             pInfo->Level = nLevel;
@@ -245,6 +259,7 @@ void LogManager::LinkLoggerWithSink(std::vector<LoggerInfo*>& loggers)
 
 LOG_EXPORT  Logger& LogManager::GetLogger(const std::string& name)
 {
+    boost::unique_lock<boost::mutex> lock(mMutex);
     LoggerInfo* pInfo = GetLoggerInfo(name);
     if(nullptr != pInfo)
     {
@@ -289,17 +304,16 @@ LoggerInfo* LogManager::GetLoggerInfo(const std::string& name)
 
 LoggerInfo* LogManager::RootInfo( void )
 {
-    static boost::once_flag initFlag = BOOST_ONCE_INIT;
     boost::call_once([this]()
     {
-        gRootInfo = new LoggerInfo();
-        gRootInfo->Id = 0;
-        gRootInfo->Level = 0;
-        gRootInfo->Log = nullptr;
-    },initFlag);
+        mRootInfo = new LoggerInfo();
+        mRootInfo->Id = 0;
+        mRootInfo->Level = 0;
+        mRootInfo->Log = nullptr;
+    },mRootOnceFlag);
 
 
-    return gRootInfo;
+    return mRootInfo;
 }
 
 LOG_EXPORT void ConfigLog(const std::string& path)

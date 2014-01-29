@@ -51,7 +51,10 @@ private:
     uint64_t mIdMultiple[LoggerInfo::MAX_LEVEL];
     uint32_t mFileId;
 
-    static LoggerInfo* gRootInfo;
+    LoggerInfo* mRootInfo;
+    boost::once_flag mRootOnceFlag;
+
+    boost::mutex mMutex;
 };
 
 LOG_EXPORT void ConfigLog(const std::string& path);
