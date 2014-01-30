@@ -6,6 +6,7 @@
 #include <boost/noncopyable.hpp>
 #include "network/SharedBuffer.h"
 #include "network/InternalMacros.h"
+#include "log/LogCommon.h"
 class TcpClient:boost::noncopyable
 {
 public:
@@ -38,7 +39,7 @@ public:
     NETWORK_EXPORT void Send(const ConstBuffer& buf);
     NETWORK_EXPORT void Send(const SVConstBuffer& vbuf);
     NETWORK_EXPORT void Close( void );
-
+    NETWORK_EXPORT const std::string& SocketError2String(ESocketError);
 protected:
     NETWORK_EXPORT boost::asio::ip::tcp::socket& Socket() { return mSocket; }
 
@@ -56,6 +57,7 @@ private:
     boost::asio::ip::tcp::socket mSocket;
     size_t mHeaderLength;
     char* const mHeaderBuffer;
+    Logger mLog;
 };
 #endif
 

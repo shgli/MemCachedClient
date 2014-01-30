@@ -1,4 +1,5 @@
 #include <boost/make_shared.hpp>
+#include <boost/thread/lock_types.hpp>
 #include "serverManager/ServerList.h"
 #include "serverManager/DistributeAlgorithm.h"
 SERVERMGR_EXPORT ServerList::ServerList(uint32_t replication)
@@ -8,6 +9,7 @@ SERVERMGR_EXPORT ServerList::ServerList(uint32_t replication)
 
 SERVERMGR_EXPORT bool ServerList::Add(const std::string& host,int port,boost::asio::io_service& ioService)
 {
+    boost::unique_lock<boost::mutex> lock(mMutex);
     std::string key = ServerItem::ToString(host,port);
     auto findResult = mServers.find(key);
     if(findResult != mServers.end())
@@ -36,6 +38,7 @@ SERVERMGR_EXPORT bool ServerList::Add(const std::string& host,int port,boost::as
 
 SERVERMGR_EXPORT bool ServerList::Remove(const std::string& host,int port)
 {
+    boost::unique_lock<boost::mutex> lock(mMutex);
     std::string key = ServerItem::ToString(host,port);
     auto findResult = mServers.find(key);
     if(findResult != mServers.end())
@@ -50,11 +53,13 @@ SERVERMGR_EXPORT bool ServerList::Remove(const std::string& host,int port)
 
 SERVERMGR_EXPORT ServerItem::Ptr ServerList::Get(const std::string& key)
 {
+    boost::unique_lock<boost::mutex> lock(mMutex);
     return mDistributeAlgorithm->Get(mHashFunc(key));
 }
 
 SERVERMGR_EXPORT ServerItem::Ptr ServerList::Get(const std::string& host,int port)
 {
+    boost::unique_lock<boost::mutex> lock(mMutex);
     std::string key = ServerItem::ToString(host,port);
     auto findResult = mServers.find(key);
     if(findResult != mServers.end())
@@ -65,13 +70,26 @@ SERVERMGR_EXPORT ServerItem::Ptr ServerList::Get(const std::string& host,int por
     return nullptr;
 }
 
-void ServerList::SetDistributeAlgorithm(DistributeAlgorithm* algorithm)
+SERVERMGR_EXPORT void ServerList::SetDistributeAlgorithm(DistributeAlgorithm* algorithm)
 {
+    boost::unique_lock<boost::mutex> lock(mMutex);
     assert(nullptr != algorithm);
     mDistributeAlgorithm =  algorithm;
     for(auto& serverPair : mServers)
     {
         mDistributeAlgorithm->Add(serverPair.second);
     }
+}
+
+SERVERMGR_EXPORT size_t ServerList::Count( void )
+{
+    boost::unique_lock<boost::mutex> lock(mMutex);
+    return mServers.size(); 
+}
+
+SERVERMGR_EXPORT void ServerList::SetHashAlogrithm(HashFunc hFunc) 
+{
+    boost::unique_lock<boost::mutex> lock(mMutex);
+    mHashFunc = hFunc; 
 }
 

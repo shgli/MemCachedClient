@@ -83,6 +83,7 @@ memc=/home/shgli/src/MemCachedClient CD=build filter="*.h *.cpp *.txt *.conf" {
   HostNetConversion.cpp
   SharedBuffer.cpp
   TcpClient.cpp
+  NetworkLog.conf
   CMakeLists.txt
  }
  serverManager=serverManager {

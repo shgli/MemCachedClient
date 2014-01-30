@@ -2,6 +2,7 @@
 #define _SERVERLIST_H
 #include <string>
 #include <boost/unordered/unordered_map.hpp>
+#include <boost/thread/mutex.hpp>
 #include <boost/signals2.hpp>
 #include <boost/asio/io_service.hpp>
 #include "ServerItem.h"
@@ -26,10 +27,10 @@ public:
 
     SERVERMGR_EXPORT ServerItem::Ptr Get(const std::string& key);
     SERVERMGR_EXPORT ServerItem::Ptr Get(const std::string& host,int port);
-    SERVERMGR_EXPORT size_t Count( void ) { return mServers.size(); }
+    SERVERMGR_EXPORT size_t Count( void );
 
     SERVERMGR_EXPORT void SetDistributeAlgorithm(DistributeAlgorithm* algorithm);
-    SERVERMGR_EXPORT void SetHashAlogrithm(HashFunc hFunc) { mHashFunc = hFunc; }
+    SERVERMGR_EXPORT void SetHashAlogrithm(HashFunc hFunc);
 
     SERVERMGR_EXPORT const boost::unordered_map<std::string,ServerItem::Ptr> Items( void ) const { return mServers; }
 private:
@@ -37,6 +38,7 @@ private:
     DistributeAlgorithm* mDistributeAlgorithm;
     HashFunc mHashFunc;
     uint32_t mReplications;
+    boost::mutex mMutex;
 };
 #endif
  
