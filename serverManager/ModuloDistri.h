@@ -5,9 +5,13 @@ class ModuloDistri:public DistributeAlgorithm
 {
 public:
     ModuloDistri();
+
+smgr_internal:
     virtual void Add(ServerItem::Ptr& pServer);
     virtual void Remove(ServerItem::Ptr& pServer);
     virtual ServerItem::Ptr Get(hash_t hash);
+    virtual void Clear() {}
+
 private:
     std::vector<ServerItem::Ptr> mServers;
 };

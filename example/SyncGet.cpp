@@ -1,4 +1,5 @@
 #include <boost/asio/io_service.hpp>
+#include <boost/make_shared.hpp>
 #include "memcachedClient/MemcachedClient.h"
 #include "ConsistentHashDistri.h"
 #include <boost/thread.hpp>
@@ -9,7 +10,7 @@ int main(int argc,char** argv)
 {
     io_service io;
     MemcachedClient client(io);
-    client.Servers.SetDistributeAlgorithm(new ConsistentHashDistri());
+    client.Servers.SetDistributeAlgorithm(boost::make_shared<ConsistentHashDistri>());
     client.Servers.Add(std::string("127.0.0.1"),11211,io);
 
     std::string value;

@@ -10,4 +10,11 @@
 #else
 #define SERVERMGR_EXPORT 
 #endif
+
+#ifdef BUILDING_SERVERMGR
+#define smgr_internal public
+#else
+#define smgr_internal protected
+#endif
+
 #endif

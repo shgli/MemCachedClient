@@ -73,3 +73,9 @@ ServerItem::Ptr MemoDistri::Get(hash_t hash)
     return nullptr;
 }
 
+void MemoDistri::Clear()
+{
+    mKeyServerMapping.clear();
+    mBalanceInfos.clear();
+}
+

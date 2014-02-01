@@ -7,6 +7,7 @@
 #include <boost/asio/io_service.hpp>
 #include "ServerItem.h"
 #include "serverManager/DistributeAlgorithm.h"
+#include "log/LogCommon.h"
 
 typedef size_t hash_t;
 using namespace boost;
@@ -29,16 +30,17 @@ public:
     SERVERMGR_EXPORT ServerItem::Ptr Get(const std::string& host,int port);
     SERVERMGR_EXPORT size_t Count( void );
 
-    SERVERMGR_EXPORT void SetDistributeAlgorithm(DistributeAlgorithm* algorithm);
-    SERVERMGR_EXPORT void SetHashAlogrithm(HashFunc hFunc);
+    SERVERMGR_EXPORT DistributeAlgorithm::Ptr SetDistributeAlgorithm(const DistributeAlgorithm::Ptr& algorithm);
+    SERVERMGR_EXPORT HashFunc SetHashAlogrithm(HashFunc hFunc);
 
     SERVERMGR_EXPORT const boost::unordered_map<std::string,ServerItem::Ptr> Items( void ) const { return mServers; }
 private:
     boost::unordered_map<std::string,ServerItem::Ptr> mServers;
-    DistributeAlgorithm* mDistributeAlgorithm;
+    DistributeAlgorithm::Ptr mDistributeAlgorithm;
     HashFunc mHashFunc;
     uint32_t mReplications;
     boost::mutex mMutex;
+    Logger mLog;
 };
 #endif
  

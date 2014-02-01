@@ -70,3 +70,8 @@ ServerItem::Ptr ConsistentHashDistri::Get(hash_t hash)
     return ServerItem::Ptr(nullptr);
 }
 
+void ConsistentHashDistri::Clear( void )
+{
+    mCircle.clear();
+}
+

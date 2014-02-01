@@ -9,9 +9,12 @@ public:
     SERVERMGR_EXPORT ConsistentHashDistri(int replis = 200);
 
     typedef std::map<hash_t,ServerItem::Ptr> CycleType;
+
+smgr_internal:
     virtual void Add(ServerItem::Ptr& pServer);
     virtual void Remove(ServerItem::Ptr& pServer);
     virtual ServerItem::Ptr Get(hash_t hash);
+    virtual void Clear( void );
 
 private:
     hash_t Hash(const std::string& md5Value,int offset);

@@ -1,4 +1,5 @@
 #include <boost/asio/io_service.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/program_options.hpp>
 #include "memcachedClient/MemcachedClient.h"
 #include "serverManager/ConsistentHashDistri.h"
@@ -40,7 +41,7 @@ int main(int argc,char** argv)
 
     io_service io;
     MemcachedClient client(io);
-    client.Servers.SetDistributeAlgorithm(new ConsistentHashDistri());
+    client.Servers.SetDistributeAlgorithm(boost::make_shared<ConsistentHashDistri>());
     client.Servers.Add(host,port,io);
 
     auto result = client.Get(key,[&](const MemResult::Ptr& result)

@@ -2,9 +2,11 @@
 #include <boost/thread/lock_types.hpp>
 #include "serverManager/ServerList.h"
 #include "serverManager/DistributeAlgorithm.h"
+#include "log/LogManager.h"
 SERVERMGR_EXPORT ServerList::ServerList(uint32_t replication)
     :mHashFunc(std::hash<std::string>())	
     ,mReplications(replication)
+    ,mLog(LogManager::Instance().GetLogger("serverManager"))
 {}
 
 SERVERMGR_EXPORT bool ServerList::Add(const std::string& host,int port,boost::asio::io_service& ioService)
@@ -14,6 +16,7 @@ SERVERMGR_EXPORT bool ServerList::Add(const std::string& host,int port,boost::as
     auto findResult = mServers.find(key);
     if(findResult != mServers.end())
     {
+        WARN(mLog)<<"Server "<<host<<":"<<port<<" already exists in server list.";
         return false;
     }
     else
@@ -30,8 +33,10 @@ SERVERMGR_EXPORT bool ServerList::Add(const std::string& host,int port,boost::as
             mDistributeAlgorithm->Add(serverItem);
             (*serverItem)->Connect(host,port);
             OnServerAdded(serverItem);
+            INFO(mLog)<<"Add server "<<host<<":"<<port<<" successed";
             return true;
         }
+        WARN(mLog)<<"Server "<<host<<":"<<port<<" already exists in server list.";
         return false;
     }
 }
@@ -46,8 +51,10 @@ SERVERMGR_EXPORT bool ServerList::Remove(const std::string& host,int port)
         mDistributeAlgorithm->Remove(findResult->second);
         OnServerRemoved(findResult->second);
         mServers.erase(findResult);
+        INFO(mLog)<<"Remove server "<<host<<":"<<port<<" successed";
         return true;
     }
+    WARN(mLog)<<"You're tring to remove a not exists server "<<host<<":"<<port;
     return false;
 }
 
@@ -70,15 +77,23 @@ SERVERMGR_EXPORT ServerItem::Ptr ServerList::Get(const std::string& host,int por
     return nullptr;
 }
 
-SERVERMGR_EXPORT void ServerList::SetDistributeAlgorithm(DistributeAlgorithm* algorithm)
+SERVERMGR_EXPORT DistributeAlgorithm::Ptr ServerList::SetDistributeAlgorithm(const DistributeAlgorithm::Ptr& algorithm)
 {
     boost::unique_lock<boost::mutex> lock(mMutex);
     assert(nullptr != algorithm);
+    INFO(mLog)<<"Set new distribute algorithm:"<<algorithm.get();
+    auto oldAlgorithm = mDistributeAlgorithm;
     mDistributeAlgorithm =  algorithm;
     for(auto& serverPair : mServers)
     {
         mDistributeAlgorithm->Add(serverPair.second);
     }
+
+    if(nullptr != oldAlgorithm)
+    {
+        oldAlgorithm->Clear();
+    }
+    return oldAlgorithm;
 }
 
 SERVERMGR_EXPORT size_t ServerList::Count( void )
@@ -87,9 +102,12 @@ SERVERMGR_EXPORT size_t ServerList::Count( void )
     return mServers.size(); 
 }
 
-SERVERMGR_EXPORT void ServerList::SetHashAlogrithm(HashFunc hFunc) 
+SERVERMGR_EXPORT ServerList::HashFunc ServerList::SetHashAlogrithm(HashFunc hFunc) 
 {
     boost::unique_lock<boost::mutex> lock(mMutex);
+    INFO(mLog)<<"set new hash function:"<<hFunc;
+    auto oldFunc = mHashFunc;
     mHashFunc = hFunc; 
+    return oldFunc;
 }
 

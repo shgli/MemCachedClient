@@ -4,10 +4,11 @@
 #include "serverManager/DistributeAlgorithm.h"
 class MemoDistri:public DistributeAlgorithm
 {
-public:
+smgr_internal:
     virtual void Add(ServerItem::Ptr& pServer);
     virtual void Remove(ServerItem::Ptr& pServer);
     virtual ServerItem::Ptr Get(hash_t hash);
+    virtual void Clear();
 
 private:
     typedef boost::unordered_map<long,ServerItem::Ptr> KeyServerMap;

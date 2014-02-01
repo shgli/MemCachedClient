@@ -1,11 +1,7 @@
 
-memc=/home/shgli/src/MemCachedClient CD=build filter="*.h *.cpp *.txt *.conf" {
- CMakeLists.txt
+memc=/home/shgli/src/MemCachedClient CD=build filter="*.h *.hpp *.cpp" {
  build=build {
-  CMakeCache.txt
-  install_manifest.txt
   CMakeFiles=CMakeFiles {
-   TargetDirectories.txt
    2.8.11.2=2.8.11.2 {
     CompilerIdC=CompilerIdC {
     }
@@ -16,57 +12,111 @@ memc=/home/shgli/src/MemCachedClient CD=build filter="*.h *.cpp *.txt *.conf" {
    CMakeTmp=CMakeTmp {
    }
   }
+  common=common {
+   CMakeFiles=CMakeFiles {
+    common.dir=common.dir {
+    }
+   }
+  }
+  example=example {
+   CMakeFiles=CMakeFiles {
+    AsyncGet.dir=AsyncGet.dir {
+    }
+    SyncGet.dir=SyncGet.dir {
+    }
+   }
+  }
+  log=log {
+   CMakeFiles=CMakeFiles {
+    Log.dir=Log.dir {
+    }
+   }
+  }
+  memcachedClient=memcachedClient {
+   CMakeFiles=CMakeFiles {
+    memclient.dir=memclient.dir {
+    }
+   }
+  }
   network=network {
    CMakeFiles=CMakeFiles {
     network.dir=network.dir {
-     link.txt
     }
    }
   }
   serverManager=serverManager {
    CMakeFiles=CMakeFiles {
     serverManager.dir=serverManager.dir {
-     link.txt
-    }
-   }
-  }
-  src=src {
-   CMakeFiles=CMakeFiles {
-    memclient.dir=memclient.dir {
-     link.txt
     }
    }
   }
   test=test {
    CMakeFiles=CMakeFiles {
+    logTest.dir=logTest.dir {
+    }
     memtest.dir=memtest.dir {
-     link.txt
     }
    }
   }
   utils=utils {
    CMakeFiles=CMakeFiles {
     utils.dir=utils.dir {
-     link.txt
     }
    }
   }
  }
  cmake=cmake {
  }
- example=example {
-  AsyncGet.cpp
-  SyncGet.cpp
-  CMakeLists.txt
- }
- common=common{
+ common=common {
   FileHandler.h
   InternalMacros.h
   Singleton.h
+  FileHandler.hpp
   FileHandler.cpp
-  CMakeLists.txt
  }
- log=log{
+ example=example {
+  AsyncGet.cpp
+  SyncGet.cpp
+ }
+ install=install {
+  bin=bin {
+   conf=conf {
+   }
+  }
+  include=include {
+   Log=Log {
+   }
+   common=common {
+    FileHandler.h
+    InternalMacros.h
+    Singleton.h
+   }
+   memclient=memclient {
+   }
+   network=network {
+    HostNetConversion.h
+    InternalMacros.h
+    SharedBuffer.h
+    TcpClient.h
+   }
+   serverManager=serverManager {
+    ConsistentHashDistri.h
+    DistributeAlgorithm.h
+    InternalMacros.h
+    MemoDistri.h
+    ModuloDistri.h
+    ServerItem.h
+    ServerList.h
+   }
+   utils=utils {
+    InternalMacros.h
+    md5.h
+   }
+  }
+  lib=lib {
+  }
+ }
+ log=log {
   InternalMacros.h
   LogCommon.h
   LogManager.h
@@ -74,33 +124,9 @@ memc=/home/shgli/src/MemCachedClient CD=build filter="*.h *.cpp *.txt *.conf" {
   SinkInfo.h
   LogCommon.cpp
   LogManager.cpp
-  CMakeLists.txt
  }
- network=network {
-  HostNetConversion.h
-  SharedBuffer.h
-  TcpClient.h
-  HostNetConversion.cpp
-  SharedBuffer.cpp
-  TcpClient.cpp
-  NetworkLog.conf
-  CMakeLists.txt
- }
- serverManager=serverManager {
-  ConsistentHashDistri.h
-  DistributeAlgorithm.h
-  MemoDistri.h
-  ModuloDistri.h
-  ServerItem.h
-  ServerList.h
-  ConsistentHashDistri.cpp
-  MemoDistri.cpp
-  ModuloDistri.cpp
-  ServerItem.cpp
-  ServerList.cpp
-  CMakeLists.txt
- }
- src=src {
+ memcachedClient=memcachedClient {
+  InternalMacros.h
   MemAppend.h
   MemLog.h
   MemResult.h
@@ -118,20 +144,39 @@ memc=/home/shgli/src/MemCachedClient CD=build filter="*.h *.cpp *.txt *.conf" {
   MemVersion.cpp
   MemcachedClient.cpp
   RequestItem.cpp
-  CMakeLists.txt
+ }
+ network=network {
+  HostNetConversion.h
+  InternalMacros.h
+  SharedBuffer.h
+  TcpClient.h
+  HostNetConversion.cpp
+  SharedBuffer.cpp
+  TcpClient.cpp
+ }
+ serverManager=serverManager {
+  ConsistentHashDistri.h
+  DistributeAlgorithm.h
+  InternalMacros.h
+  MemoDistri.h
+  ModuloDistri.h
+  ServerItem.h
+  ServerList.h
+  ConsistentHashDistri.cpp
+  MemoDistri.cpp
+  ModuloDistri.cpp
+  ServerItem.cpp
+  ServerList.cpp
  }
  test=test {
   LogTest.cpp
   SharedBufferTest.cpp
-  CMakeLists.txt
-  conf=conf{
-   Core_log.conf
-   Feeder_log.conf
+  conf=conf {
   }
  }
  utils=utils {
+  InternalMacros.h
   md5.h
   md5.cpp
-  CMakeLists.txt
  }
 }
