@@ -34,6 +34,9 @@ int main(int argc,char** argv)
     ERROR(lg3) <<"EWMA error";
     FATAL(lg3) <<"EWMA fatal";
 
+    auto lg4 = LogManager::Instance().GetLogger("Manager");
+    FATAL(lg4) <<"It's ok"<<std::endl;
+
     return 0;
 }
 

@@ -24,11 +24,10 @@ public:
     LOG_EXPORT bool Initialize(const std::string& path); //support wildcard
     LOG_EXPORT Logger& GetLogger(const std::string& name);
 
+    LOG_EXPORT ~LogManager();
 private:
     friend class Singleton<LogManager>;
     LOG_EXPORT LogManager();
-
-    //LOG_EXPORT static void CreateInstance();
 
     void LoadConfig(const fs::path& path,std::vector<LoggerInfo*>& loggers);
     void LoadSink(section::reference& rSection,const std::string& strName);

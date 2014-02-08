@@ -37,6 +37,18 @@ LogManager::LogManager()
     logging::register_simple_filter_factory<uint64_t,char>("LoggerId");
 }
 
+LogManager::~LogManager()
+{
+    //for(auto& sinkPair : mSinks)
+    //{
+    //    if(nullptr != sinkPair.second)
+    //    {
+    //        sinkPair.second->Sink->stop();
+    //        sinkPair.second->Sink->flush();
+    //    }
+    //}
+}
+
 LOG_EXPORT bool LogManager::Initialize(const std::string& strPath)
 {
     boost::unique_lock<boost::mutex> lock(mMutex);

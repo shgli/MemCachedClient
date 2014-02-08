@@ -1,5 +1,6 @@
 #ifndef _LOGCOMMON_H
 #define _LOGCOMMON_H
+#define BOOST_ASIO_HAS_STD_ATOMIC 1
 #include <iostream>
 #include <boost/log/core/core.hpp>
 #include <boost/log/sources/severity_logger.hpp>
